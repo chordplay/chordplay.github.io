@@ -20,7 +20,7 @@ $( document ).ready(function() {
     windowWidth = window.innerWidth;
     windowHeight = window.innerHeight;
 
-    libraryWidth = Math.floor(windowWidth / 5);
+    libraryWidth = Math.floor(windowWidth / 8);
     libraryHeight = windowHeight;
 
     mainWidth = windowWidth - libraryWidth;
