@@ -1,0 +1,28 @@
+body{
+  margin:0;
+  padding:0;
+}
+
+#mainDiv{
+  display: flex;
+}
+
+#libraryDiv{
+  background-color: #fef9c7;
+}
+
+#rightDiv{
+  flex-grow: 1;
+}
+
+#menuDiv{
+  background-color: #ffe6f2;
+}
+
+#scoreDiv{
+  background-color: #e0edff;
+}
+
+#importDiv{
+  background-color: #a0db8e;
+}
