@@ -1,51 +1,60 @@
 $( document ).ready(function() {
-  var windowWidth = window.innerWidth;
-  var windowHeight = window.innerHeight;
-  /*
-  // make sure width:height = 16:9
-  if(windowWidth / 16 * 9 > windowHeight) {
-    windowWidth = Math.floor(windowHeight / 9 * 16)
-  }
-  else {
-    windowHeight = Math.floor(windowWidth / 16 * 9);
-  }
-  */
+  var windowWidth, windowHeight;
 
   // dimensions for divs
-  var libraryWidth = Math.floor(windowWidth / 5);
-  var libraryHeight = windowHeight;
+  var libraryWidth, libraryHeight;
+  var mainWidth, mainHeight;
+  var menuWidth, menuHeight;
+  var scoreWidth, scoreHeight;
+  var importWidth, importHeight;
 
-  var mainWidth = windowWidth - libraryWidth;
-  var mainHeight = windowHeight;
-
-  var menuWidth = mainWidth;
-  var menuHeight = Math.floor(windowHeight / 12);
-
-  var scoreWidth = mainWidth;
-  var scoreHeight = windowHeight - menuHeight;
-
+  // TODO: stuff for bar sizes
   var firstBarWidth;
   var firstBarHeight;
-
   var restBarWidth;
   var restBarHeight;
 
-  var importWidth = mainWidth;
-  var importHeight = Math.floor(windowHeight / 3);
+  updateSize();
 
-  $("#mainDiv").height(windowHeight);
-  $("#mainDiv").width(windowWidth);
+  function updateSize(){
+    windowWidth = window.innerWidth;
+    windowHeight = window.innerHeight;
 
-  $("#libraryDiv").height(libraryHeight);
-  $("#libraryDiv").width(libraryWidth);
+    libraryWidth = Math.floor(windowWidth / 5);
+    libraryHeight = windowHeight;
 
-  $("#menuDiv").height(menuHeight);
-  $("#menuDiv").width(menuWidth);
+    mainWidth = windowWidth - libraryWidth;
+    mainHeight = windowHeight;
 
-  $("#scoreDiv").height(scoreHeight);
-  $("#scoreDiv").width(scoreWidth);
+    menuWidth = mainWidth;
+    menuHeight = Math.floor(windowHeight / 12);
 
-  $("#importDiv").height(importHeight);
-  $("#importDiv").width(importWidth);
-  $("#importDiv").css("margin-top", -importHeight);
+    scoreWidth = mainWidth;
+    scoreHeight = windowHeight - menuHeight;
+
+    importWidth = mainWidth;
+    importHeight = Math.floor(windowHeight / 3);
+
+    $("#mainDiv").height(windowHeight);
+    $("#mainDiv").width(windowWidth);
+
+    $("#libraryDiv").height(libraryHeight);
+    $("#libraryDiv").width(libraryWidth);
+
+    $("#menuDiv").height(menuHeight);
+    $("#menuDiv").width(menuWidth);
+
+    $("#scoreDiv").height(scoreHeight);
+    $("#scoreDiv").width(scoreWidth);
+
+    $("#importDiv").height(importHeight);
+    $("#importDiv").width(importWidth);
+    $("#importDiv").css("margin-top", -importHeight);
+  }
+
+  $(window).resize(function(){
+    updateSize();
+  });
+
+
 });
