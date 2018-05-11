@@ -16,6 +16,11 @@ $( document ).ready(function() {
 
   updateSize();
 
+  var u = new Unit("Ab");
+  console.log(u.chord);
+  console.log(u);
+  console.log(u.right[0].rest);
+
   function updateSize(){
     windowWidth = window.innerWidth;
     windowHeight = window.innerHeight;
