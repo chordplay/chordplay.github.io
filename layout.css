@@ -20,11 +20,15 @@ body{
 }
 
 #scoreDiv{
-  background-color: #e0edff;
+  /* background-color: #e0edff; */
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 #importDiv{
   background-color: #a0db8e;
+  position: fixed;
+  z-index: 999;
 }
 
 img{
