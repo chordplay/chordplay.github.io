@@ -64,6 +64,12 @@ function updateSize(){
   scoreWidth = mainWidth;
   scoreHeight = windowHeight - menuHeight - importHeight;
 
+  titleHeight = 173
+  titleWidth = libraryWidth;
+  treeHeight = libraryHeight - titleHeight;
+
+  treeWidth = libraryWidth;
+
   $("#mainDiv").height(windowHeight);
   $("#mainDiv").width(windowWidth);
 
@@ -82,5 +88,31 @@ function updateSize(){
 
   $("#importDiv").height(importHeight);
   $("#importDiv").width(importWidth);
+
+  $("#chordplayDiv").height(titleHeight);
+  $("#chordplayDiv").width(titleWidth);
+
+  //$("#chordtreeDiv").height(treeHeight);
+  $("#chordtreeDiv").width(treeWidth);
+
+  $("#homeDiv").height(70); // need to fix
+  $("#homeDiv").width(titleWidth-68);
+  $("#searchDiv").height(titleHeight-70);
+  $("#searchDiv").width(titleWidth-36);
+
+  $(".basetree").width(titleWidth);
+
+
+  /*$("#homeDiv").css("padding-top", 32);
+  $("#homeDiv").css("padding-left", 34);
+  $("#homeDiv").css("padding-right", 34);
+  $("#homeDiv").css("padding-down", 26);
+
+  $("#searchinput").css("padding-left", 18);
+  $("#searchinput").css("padding-right", 18);
+  $("#searchinput").css("padding-down", 20);
+
+  $("#treetitle").css("padding-left", 10);*/
+
   //$("#importDiv").css("margin-top", importHeight);
 }

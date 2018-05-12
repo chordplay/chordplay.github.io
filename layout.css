@@ -9,8 +9,52 @@ body{
 
 #libraryDiv{
   background-color: #fef9c7;
+  overflow: scroll
 }
+#chordplayDiv{
+  background-color: #b7a211;
 
+}
+#homeDiv{
+  text-align: center;
+  padding-left: 34;
+  padding-right: 34;
+  padding-top: 32;
+  padding-down: 26;
+}
+#searchinput{
+  padding-left: 18;
+  padding-right: 18;
+  padding-down: 20;
+}
+#treetitle{
+  padding-left: 10;
+}
+#chordtreeDiv{
+  background-color: #b0b0aa;
+  height: auto;
+}
+#chordtable{
+  border-collapse: collapse;
+
+}
+.basetree{
+  height: 65;
+
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
+}
+.chordname{
+  vertical-align: middle;
+  color: #FFFFFF;
+  font-size: 20;
+}
+.deeptree{
+  height: 65;
+  background-color: #252525;
+  border-top: 2px solid white;
+  border-bottom: 2px solid white;
+}
 #rightDiv{
   flex-grow: 1;
 }
