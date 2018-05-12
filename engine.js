@@ -6,31 +6,31 @@ function parseChord(chord){
 
     const re = /^([A-G]([b#])?)(m|M|aug|dim)?([2-7]|9|11|13)?(sus|add)?([2-7]|9|11|13)?(\/)?([A-G][b#])?$/;
 
-    function iter(root, sharpflat, arr){
-        let notes = [numToNote(root, sharpflat)];
+    function iter(root, accidental, arr){
+        let notes = [numToNote(root, accidental)];
         arr.forEach(function(interval){
-            notes.push(numToNote(root+interval, sharpflat));
+            notes.push(numToNote(root+interval, accidental));
         });
         // console.log(notes);
         return notes;
     }
 
-    function numToNote(num, sharpflat){ //follow MIDI note notation: 0 for C-1, 60 for C4
+    function numToNote(num, accidental){ //follow MIDI note notation: 0 for C-1, 60 for C4
         let octave = (Math.floor(num/12)-1).toString();
         let note;
-        if(sharpflat === "#"){
+        if(accidental === "#"){
             note = notes_sharp[num%12];
-        } else if (sharpflat === "b"){
+        } else if (accidental === "b"){
             note = notes_flat[num%12];
         }
         return note+"/"+octave;
     }
 
-    function noteToNum(note, sharpflat) {
-        if(sharpflat === "#") {
-            return 60+notes_sharp.indexOf(note);
-        } else if (sharpflat === "b"){
-            return 60+notes_flat.indexOf(note);
+    function noteToNum(note, accidental) {
+        if(accidental === "#") {
+            return 48+notes_sharp.indexOf(note);
+        } else if (accidental === "b"){
+            return 48+notes_flat.indexOf(note);
         } else {
             //error
         }
@@ -40,7 +40,7 @@ function parseChord(chord){
     // console.log(myArray);
 
     let root = myArray[1];
-    let sharpflat = myArray[2];
+    let accidental = myArray[2];
     let triad = myArray[3];
     let seven = myArray[4];
     let susadd = myArray[5];
@@ -48,8 +48,8 @@ function parseChord(chord){
     let slash = myArray[7];
     let bass = myArray[8];
 
-    if(sharpflat === undefined)
-        sharpflat = "b";
+    if(accidental === undefined)
+        accidental = "b";
 
     let notes = [];
     let intervals = null;
@@ -85,7 +85,7 @@ function parseChord(chord){
     }
 
     if(intervals != null){
-        return iter(noteToNum(root, sharpflat), sharpflat, intervals);
+        return iter(noteToNum(root, accidental), accidental, intervals);
     }
 
     return null;
@@ -98,8 +98,9 @@ class Unit {
 
     setChord(chord_name){
         this.chord_name = chord_name;
-        this.right = [new Note(chord_name, "q", false), new Note(chord_name, "q", false)];
-        this.left = [new Note("C/3", "h", false)];
+        let notes = parseChord(chord_name);
+        this.right = [new Note([notes[2]], "q", false), new Note([notes[2]], "q", false)];
+        this.left = [new Note(notes, "h", false)];
     };
 
     deleteChord(){
@@ -119,10 +120,9 @@ class Unit {
 
 class Note {
     constructor(keys, duration, is_rest) {
-        this.is_rest = is_rest;
-        this.duration = duration;
         this.keys = keys;
-
+        this.duration = duration;
+        this.is_rest = is_rest;
         //TODO add method to convert and add keys
     }
 
@@ -272,3 +272,4 @@ score.push(unit2);
 score.push(unit3);
 score.push(unit4);
 */
+
