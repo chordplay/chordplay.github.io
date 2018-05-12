@@ -1,0 +1,21 @@
+.halfBar {
+  display: inline-block;
+  *display: inline;
+  vertical-align: top;
+}
+
+.chordText{
+  background-color: transparent;
+  outline: none;
+  outline-style: none;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: solid #000000 1px;
+  padding: 3px 10px;
+  width: 5em
+}
+
+.barLine{
+  margin-bottom: 50px; /* to be adjusted */
+}
