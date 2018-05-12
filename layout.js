@@ -16,10 +16,11 @@ $( document ).ready(function() {
 
   updateSize();
 
-  var u = new Unit("Ab");
-  console.log(u.chord);
+  var u = new Unit();
+  u.setChord("Ab");
+  console.log(u.chord_name);
   console.log(u);
-  console.log(u.right[0].rest);
+  console.log(u.right[0].is_rest);
 
   function updateSize(){
     windowWidth = window.innerWidth;
