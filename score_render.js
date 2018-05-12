@@ -57,8 +57,8 @@ function renderScore(){
         leftStave.addClef("bass").addTimeSignature("4/4");
       }
       else if(lineScore % 2 ==  0) {
-          rightStave = new VF.Stave(0, 0, rendererWidth).setEndBarType(VF.Barline.type.NONE);
-          leftStave = new VF.Stave(0, 103, rendererWidth).setEndBarType(VF.Barline.type.NONE);
+          rightStave = new VF.Stave(0, 0, rendererWidth).setEndBarType(VF.Barline.type.NONE).setBegBarType(VF.Barline.type.NONE);
+          leftStave = new VF.Stave(0, 103, rendererWidth).setEndBarType(VF.Barline.type.NONE).setBegBarType(VF.Barline.type.NONE);
       }
       else {
         rightStave = new VF.Stave(0, 0, rendererWidth-1).setBegBarType(VF.Barline.type.NONE);
