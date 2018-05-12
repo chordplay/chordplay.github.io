@@ -8,29 +8,36 @@ var scoreWidth, scoreHeight;
 var importWidth, importHeight;
 
 $( document ).ready(function() {
-  updateSize();
-  renderScore();
 
   addUnit();
-  // addUnit();
-  // addUnit();
-  // addUnit();
+  addUnit();
+  addUnit();
+  addUnit();
+  addUnit();
+  addUnit();
+  addUnit();
+  addUnit();
+  addUnit();
+  addUnit();
+  addUnit();
+  addUnit();
 
-  setChord(0, "C/4");
+  setChord(0, "C");
+  setChord(1, "C");
+  setChord(2, "C");
+  setChord(3, "C");
+  setChord(4, "C");
+  setChord(5, "C");
+  setChord(6, "C");
+  setChord(7, "C");
+  setChord(8, "C");
+  setChord(9, "C");
+  setChord(10, "C");
+  setChord(11, "C");
+  console.log(score);
 
-  var u = new Unit();
-  u.setChord("Ab");
-  console.log(u.chord_name);
-  console.log(u);
-  console.log(u.right[0].is_rest);
-
-  function updateSize() {
-      windowWidth = window.innerWidth;
-      windowHeight = window.innerHeight;
-
-      libraryWidth = Math.floor(windowWidth / 8);
-      libraryHeight = windowHeight;
-  }
+  updateSize();
+  renderScore();
 
   $(window).resize(function(){
     updateSize();

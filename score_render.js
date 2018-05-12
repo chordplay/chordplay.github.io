@@ -98,7 +98,7 @@ function renderScore(){
         var currNote = currUnit.right[i];
         var durationString;
         var hasDot = false;
-        if(currNote.is_rest == 1) {
+        if(currNote.is_rest) {
           durationString = currNote.duration + "r";
         }
         else{
@@ -130,7 +130,7 @@ function renderScore(){
         var currNote = currUnit.left[i];
         var durationString;
         var hasDot = false;
-        if(currNote.is_rest == 1) {
+        if(currNote.is_rest) {
           durationString = currNote.duration + "r";
         }
         else{
