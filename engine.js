@@ -119,6 +119,7 @@ class Unit {
 }
 
 class Note {
+    //duration: w, h, q, 8, 16 + d
     constructor(keys, duration, is_rest) {
         this.keys = keys;
         this.duration = duration;
