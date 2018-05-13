@@ -38,6 +38,7 @@ $( document ).ready(function() {
 
   updateSize();
   renderScore();
+  document.getElementById('files').addEventListener('change', handleFileSelect, false);
 
   $(window).resize(function(){
     updateSize();
@@ -73,44 +74,46 @@ function updateSize(){
   $("#menuDiv").height(menuHeight);
   $("#menuDiv").width(menuWidth);
 
-  $("#line").width(menuWidth);   
-  $("#line").css("padding-top" , menuHeight*0.02); 
+  $("#selectionDiv").height(menuHeight);
+  $("#buttonDiv").height(menuHeight);
+  $("#buttonDiv").width(menuWidth-150);
 
-  $(".menubutton").css("padding-top" , menuHeight*0.1);
-  $(".menubutton").css("padding-left" , menuHeight*0.23);
-  $(".menubutton").css("padding-right" , menuHeight*0.23);
+  $("#line").width(menuWidth); 
 
-  $("#playButton").height(menuHeight*0.77);
-  $("#playButton").width(menuHeight*0.46);
+  $(".menubutton").css("padding-top" , Math.floor(menuHeight*0.1));
+  $(".menubutton").css("padding-left" , Math.floor(menuHeight*0.23));
+  $(".menubutton").css("padding-right" , Math.floor(menuHeight*0.23));
 
-  $("#invertChordButton").height(menuHeight*0.77);
-  $("#invertChordButton").width(menuHeight*0.99);
+  $("#playButton").height(Math.floor(menuHeight*0.77));
+  $("#playButton").width(Math.floor(menuHeight*0.46));
 
-  $("#changeRhythmButton").height(menuHeight*0.77);
-  $("#changeRhythmButton").width(menuHeight*1.14);
+  $("#invertChordButton").height(Math.floor(menuHeight*0.77));
+  $("#invertChordButton").width(Math.floor(menuHeight*0.99));
 
-  $("#deleteChordsButton").height(menuHeight*0.77);
-  $("#deleteChordsButton").width(menuHeight*1.06);
+  $("#changeRhythmButton").height(Math.floor(menuHeight*0.77));
+  $("#changeRhythmButton").width(Math.floor(menuHeight*1.14));
 
-  $("#deleteBarsButton").height(menuHeight*0.77);
-  $("#deleteBarsButton").width(menuHeight*0.85);
+  $("#deleteChordsButton").height(Math.floor(menuHeight*0.77));
+  $("#deleteChordsButton").width(Math.floor(menuHeight*1.06));
 
-  $("#insertBarAfterButton").height(menuHeight*0.77);
-  $("#insertBarAfterButton").width(menuHeight*1.15);
+  $("#deleteBarsButton").height(Math.floor(menuHeight*0.77));
+  $("#deleteBarsButton").width(Math.floor(menuHeight*0.85));
+
+  $("#insertBarAfterButton").height(Math.floor(menuHeight*0.77));
+  $("#insertBarAfterButton").width(Math.floor(menuHeight*1.15));
 
 
-  $("#addBarsButton").height(menuHeight*0.77);
-  $("#addBarsButton").width(menuHeight*0.69);
+  $("#addBarsButton").height(Math.floor(menuHeight*0.77));
+  $("#addBarsButton").width(Math.floor(menuHeight*0.69));
 
-  $("#exportScoreButton").height(menuHeight*0.77);
-  $("#exportScoreButton").width(menuHeight);
+  $("#exportScoreButton").height(Math.floor(menuHeight*0.77));
+  $("#exportScoreButton").width(Math.floor(menuHeight));
 
   $("#scoreDiv").height(scoreHeight);
   $("#scoreDiv").width(scoreWidth);
 
   $("#importDiv").height(importHeight);
   $("#importDiv").width(importWidth);
-  $("#importDiv").css("margin-top", -importHeight);
 
   $("#melody").height(importHeight-30);
   $("#melody").width(importWidth);
@@ -149,8 +152,6 @@ function handleFileSelect(evt) {
     reader.readAsDataURL(f);
   }
 }
-
-document.getElementById('files').addEventListener('change', handleFileSelect, false);
 
 
 var startpos, diffpos=0, range=50;
