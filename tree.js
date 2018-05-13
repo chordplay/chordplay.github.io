@@ -22,6 +22,12 @@ $(document).ready(function(){
       }
     }
   })
+  $("#invertChordButton").click(function(){
+    var index = score.length;
+    invertChord(index-1, 1);
+    renderScore();
+  })
+
   $(document).on('click', '.deeptree', function(){
 
     var str = $(this).find("p").text();
