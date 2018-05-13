@@ -4,7 +4,7 @@ body{
 }
 
 #mainDiv{
-  display: flex;
+
 }
 
 .Group-15 {
@@ -154,4 +154,8 @@ body{
 
 img{
   width: 100%
+}
+
+.hidden {
+  display: none;
 }

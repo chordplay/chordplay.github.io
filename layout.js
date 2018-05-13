@@ -41,6 +41,9 @@ $( document ).ready(function() {
   updateSize();
   renderScore();
 
+  $("#mainDiv").removeClass("hidden");
+  $("#mainDiv").css("display", "flex");
+
   $(window).resize(function(){
     updateSize();
     renderScore();
@@ -66,8 +69,8 @@ function updateSize(){
   menuWidth = mainWidth;
   menuHeight = Math.floor(windowHeight / 12);
 
-  importWidth = mainWidth;
-  importHeight = Math.floor(windowHeight / 3);
+  importWidth = mainWidth - 30;
+  importHeight = Math.floor(windowHeight / 3) - 20;
 
   scoreWidth = mainWidth;
   scoreHeight = windowHeight - menuHeight - importHeight;
@@ -125,7 +128,9 @@ function updateSize(){
   $("#importDiv").height(importHeight);
   $("#importDiv").width(importWidth);
 
-  $("#melody").height(importHeight-30);
+  $("#headerImport").height(20);
+
+  $("#melody").height(importHeight-$("#headerImport").height());
   $("#melody").width(importWidth);
 
   $("#tempTitle").width(scoreWidth);
