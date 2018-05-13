@@ -6,6 +6,7 @@
 <body>
   <script src="./jquery-3.3.1.min.js"></script>
   <script src="layout.js" type="text/javascript"></script>
+  <script src="https://www.w3.org/TR/2017/WD-FileAPI-20171026/"></script>
 
   <div id="mainDiv">
 
@@ -17,15 +18,33 @@
     <div id="rightDiv">
 
       <div id="menuDiv">
-        Menu
+        <img src="img/menu/play.png" srcset="img/menu/play@2x.png 2x, img/menu/play@3x.png 3x" class="menubutton" id="playButton">
+        <img src="img/menu/invertChords.png" srcset="img/menu/invertChords@2x.png 2x, img/menu/invertChords@3x.png 3x" class="menubutton" id="invertChordButton">
+        <img src="img/menu/changeRhythm.png" srcset="img/menu/changeRhythm@2x.png 2x, img/menu/changeRhythm@3x.png 3x" class="menubutton" id="changeRhythmButton">
+        <img src="img/menu/deleteChords.png" srcset="img/menu/deleteChords@2x.png 2x, img/menu/deleteChords@3x.png 3x" class="menubutton" id="deleteChordsButton">
+        <img src="img/menu/deleteBars.png" srcset="img/menu/deleteBars@2x.png 2x, img/menu/deleteBars@3x.png 3x" class="menubutton" id="deleteBarsButton">
+        <img src="img/menu/insertBarAfter.png" srcset="img/menu/insertBarAfter@2x.png 2x, img/menu/insertBarAfter@3x.png 3x" class="menubutton" id="insertBarAfterButton">
+
+        <img src="img/menu/exportScore.png" srcset="img/menu/exportScore@2x.png 2x, img/menu/exportScore@3x.png 3x" class="menubutton" id="exportScoreButton">
+        <img src="img/menu/addBars.png" srcset="img/menu/addBars@2x.png 2x, img/menu/addBars@3x.png 3x" class="menubutton" id="addBarsButton">
+        <div id="line">
+        </div>
       </div>
 
       <div id="scoreDiv">
         Score
       </div>
 
-      <div id="importDiv">
-        Import
+      <div id="importDiv" onload="init()">
+        <div id="lineImportDiv">
+        </div>
+        <div id= "headerImport">
+          Import
+          <input type="file" id="files" name="files[]" multiple />
+        </div>
+        <div id="melody">
+          <output id="list"></output>
+        </div>
       </div>
 
     </div>
