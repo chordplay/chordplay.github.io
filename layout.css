@@ -16,7 +16,42 @@ body{
 }
 
 #menuDiv{
-  background-color: #ffe6f2;
+  background-color: #ffffff;
+}
+
+#line{
+  border-bottom: 2px solid #979797;
+  /*vertical-align: bottom;*/
+}
+
+.menubutton {
+  position: relative;
+}
+
+#playButton {
+}
+
+#invertChordButton {
+}
+
+#changeRhythmButton {
+}
+
+#deleteChordsButton {
+}
+
+#deleteBarsButton {
+}
+
+#insertBarAfterButton {
+}
+
+#addBarsButton {
+  float: right;
+}
+
+#exportScoreButton {
+  float: right;
 }
 
 #scoreDiv{
@@ -26,10 +61,36 @@ body{
 }
 
 #importDiv{
-  background-color: #a0db8e;
   position: fixed;
   z-index: 999;
+  background-color: #ffffff;
 }
+
+#lineImportDiv{
+  border-bottom: 2px solid #979797;
+  cursor:pointer;
+  /*vertical-align: bottom;*/
+}
+
+#headerImport{
+	padding: 10px 15px 10px 15px;
+
+}
+
+#files{
+	float:right;
+}
+#filename{
+	float:left;
+}
+
+#melody{
+  overflow:scroll;
+}
+.thumb {
+    border: 1px solid #000;
+  }
+
 
 img{
   width: 100%
