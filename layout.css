@@ -7,18 +7,29 @@ body{
   display: flex;
 }
 
+.Group-15 {
+  width: 168px;
+  height: 32px;
+  object-fit: contain;
+}
+.CHORDPLAY {
+  width: 192px;
+  height: 32px;
+  margin-left: auto;
+  margin-right: auto;
+  object-fit: contain;
+}
 #libraryDiv{
-  background-color: #fef9c7;
-  overflow: scroll
+  background-color: #36393D;
+
 }
 #chordplayDiv{
-  background-color: #b7a211;
+  background-color: #36393D;
 
 }
 #homeDiv{
-  text-align: center;
-  padding-left: 34;
-  padding-right: 34;
+  padding-left: 24;
+
   padding-top: 32;
   padding-down: 26;
 }
@@ -28,32 +39,37 @@ body{
   padding-down: 20;
 }
 #treetitle{
-  padding-left: 10;
+
 }
 #chordtreeDiv{
-  background-color: #b0b0aa;
+  background-color: #36393D;
   height: auto;
+  cursor: pointer;
+  overflow: scroll;
 }
 #chordtable{
   border-collapse: collapse;
 
 }
+
 .basetree{
   height: 65;
-
-  border-top: 2px solid black;
-  border-bottom: 2px solid black;
+  background-color: #939393;
+  border-top: 2px solid #36393D;
+  border-bottom: 2px solid #36393D;
 }
 .chordname{
   vertical-align: middle;
+  font-family: Roboto;
   color: #FFFFFF;
   font-size: 20;
 }
 .deeptree{
   height: 65;
-  background-color: #252525;
-  border-top: 2px solid white;
-  border-bottom: 2px solid white;
+  background-color: #36393D;
+  border-top: 2px solid #484B4E;
+  border-bottom: 2px solid #484B4E;
+
 }
 #rightDiv{
   flex-grow: 1;

@@ -57,7 +57,7 @@ function updateSize(){
   windowWidth = window.innerWidth;
   windowHeight = window.innerHeight;
 
-  libraryWidth = Math.floor(windowWidth / 8);
+  libraryWidth = 240;
   libraryHeight = windowHeight;
 
   mainWidth = windowWidth - libraryWidth;
@@ -137,6 +137,7 @@ function updateSize(){
 
   //$("#chordtreeDiv").height(treeHeight);
   $("#chordtreeDiv").width(treeWidth);
+  $("#chordtreeDiv").height(windowHeight-titleHeight);
 
   $("#homeDiv").height(70); // need to fix
   $("#homeDiv").width(titleWidth-68);
