@@ -9,6 +9,8 @@ var importWidth, importHeight;
 
 $( document ).ready(function() {
 
+  document.getElementById('files').addEventListener('change', handleFileSelect, false);
+
   addUnit();
   addUnit();
   addUnit();
@@ -40,17 +42,26 @@ $( document ).ready(function() {
   renderScore();
   document.getElementById('files').addEventListener('change', handleFileSelect, false);
 
+  $("#mainDiv").removeClass("hidden");
+  $("#mainDiv").css("display", "flex");
+
   $(window).resize(function(){
     updateSize();
     renderScore();
   });
+
+  function init() {
+    document.getElementById("#lineImportDiv").onmousedown = on_mouse_down;
+    document.onmouseup = on_mouse_up;
+    document.onmousemove = on_mouse_move;
+  }
 });
 
 function updateSize(){
   windowWidth = window.innerWidth;
   windowHeight = window.innerHeight;
 
-  libraryWidth = Math.floor(windowWidth / 8);
+  libraryWidth = 240;
   libraryHeight = windowHeight;
 
   mainWidth = windowWidth - libraryWidth;
@@ -59,11 +70,17 @@ function updateSize(){
   menuWidth = mainWidth;
   menuHeight = Math.floor(windowHeight / 12);
 
-  importWidth = mainWidth;
-  importHeight = Math.floor(windowHeight / 3);
+  importWidth = mainWidth - 30;
+  importHeight = Math.floor(windowHeight / 3) - 20;
 
   scoreWidth = mainWidth;
   scoreHeight = windowHeight - menuHeight - importHeight;
+
+  titleHeight = 173
+  titleWidth = libraryWidth;
+  treeHeight = libraryHeight - titleHeight;
+
+  treeWidth = libraryWidth;
 
   $("#mainDiv").height(windowHeight);
   $("#mainDiv").width(windowWidth);
@@ -115,13 +132,32 @@ function updateSize(){
   $("#importDiv").height(importHeight);
   $("#importDiv").width(importWidth);
 
-  $("#melody").height(importHeight-30);
+  $("#headerImport").height(20);
+
+  $("#melody").height(importHeight-$("#headerImport").height());
   $("#melody").width(importWidth);
 
   $("#tempTitle").width(scoreWidth);
   $("#tempTitle").css("text-align", "center");
   $("#tempTitle").css("font-size", "24px");
+
+  $("#chordplayDiv").height(titleHeight);
+  $("#chordplayDiv").width(titleWidth);
+
+  //$("#chordtreeDiv").height(treeHeight);
+  $("#chordtreeDiv").width(treeWidth);
+  $("#chordtreeDiv").height(windowHeight-titleHeight);
+
+  $("#homeDiv").height(70); // need to fix
+  $("#homeDiv").width(titleWidth-68);
+  $("#searchDiv").height(titleHeight-70);
+  $("#searchDiv").width(titleWidth-36);
+
+  $(".basetree").width(titleWidth);
+
 }
+
+
 
 function handleFileSelect(evt) {
   var files = evt.target.files; // FileList object
@@ -153,11 +189,8 @@ function handleFileSelect(evt) {
   }
 }
 
-
 var startpos, diffpos=0, range=50;
 var isEnable = false;
-
-
 
 function on_mouse_down(e) {
   startpos = event.clientX + diffpos;
@@ -170,27 +203,13 @@ function on_mouse_up(e) {
   return false;
 }
 
-
-
 function on_mouse_move(e) {
   if (isEnable) {
     pos = event.clientX;
     diffpos = startpos-pos;
-    
+
     if (diffpos > -(width-range) && diffpos < (width-range)) {
       document.getElementById("#importDiv").style.height = importHeight - diffpos + "px";
     }
   }
 }
-
-function init() {
-  document.getElementById("#lineImportDiv").onmousedown = on_mouse_down;
-  document.onmouseup = on_mouse_up;
-  document.onmousemove = on_mouse_move;
-
-}
-
-
-$(window).resize(function(){
-  updateSize();
-});

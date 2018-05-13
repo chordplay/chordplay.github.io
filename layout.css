@@ -4,13 +4,73 @@ body{
 }
 
 #mainDiv{
-  display: flex;
+
 }
 
+.Group-15 {
+  width: 168px;
+  height: 32px;
+  object-fit: contain;
+}
+.CHORDPLAY {
+  width: 192px;
+  height: 32px;
+  margin-left: auto;
+  margin-right: auto;
+  object-fit: contain;
+}
 #libraryDiv{
-  background-color: #fef9c7;
+  background-color: #36393D;
+
+}
+#chordplayDiv{
+  background-color: #36393D;
+
+}
+#homeDiv{
+  padding-left: 24;
+
+  padding-top: 32;
+  padding-down: 26;
+}
+#searchinput{
+  padding-left: 18;
+  padding-right: 18;
+  padding-down: 20;
+}
+#treetitle{
+
+}
+#chordtreeDiv{
+  background-color: #36393D;
+  height: auto;
+  cursor: pointer;
+  overflow: scroll;
+}
+#chordtable{
+  border-collapse: collapse;
+
 }
 
+.basetree{
+  height: 65;
+  background-color: #939393;
+  border-top: 2px solid #36393D;
+  border-bottom: 2px solid #36393D;
+}
+.chordname{
+  vertical-align: middle;
+  font-family: Roboto;
+  color: #FFFFFF;
+  font-size: 20;
+}
+.deeptree{
+  height: 65;
+  background-color: #36393D;
+  border-top: 2px solid #484B4E;
+  border-bottom: 2px solid #484B4E;
+
+}
 #rightDiv{
   flex-grow: 1;
 }
@@ -107,4 +167,8 @@ body{
 
 img{
   width: 100%
+}
+
+.hidden {
+  display: none;
 }

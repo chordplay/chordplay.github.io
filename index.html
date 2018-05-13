@@ -26,14 +26,101 @@
   <script src="./midi/js/util/dom_request_xhr.js" type="text/javascript"></script>
   <script src="./midi/js/util/dom_request_script.js" type="text/javascript"></script>
   <script src="score_render.js" type="text/javascript"></script>
-  <script src="https://www.w3.org/TR/2017/WD-FileAPI-20171026/"></script>
-
-  <div id="mainDiv">
+  <script src="https://www.w3.org/TR/2017/WD-FileAPI-20171026/"> </script>
+  <script src="tree.js" type="text/javascript"></script>
+  <div id="mainDiv" class="hidden">
 
     <div id="libraryDiv">
-      <!--Chord Library
-      -->
-      <img src="./img/library_img.png">
+
+      <div id="chordplayDiv">
+        <div id="homeDiv">
+          <img src="img/CHORDPLAY.png"
+               srcset="img/CHORDPLAY@2x.png 2x,
+                       img/CHORDPLAY@3x.png 3x"
+               class="CHORDPLAY">
+        </div>
+        <div id="searchDiv">
+          <div id="searchinput">
+            <input type="search" placeholder= "search your chords!">
+          </div>
+          <div id="treetitle">
+            <br />
+            <img src="img/group-15.png"
+           srcset="img/group-15@2x.png 2x,
+                   img/group-15@3x.png 3x"
+           class="Group-15">
+          </div>
+        </div>
+      </div>
+
+      <div id="chordtreeDiv">
+        <table id="chordtable">
+          <tbody>
+
+            <tr class='temp'>
+              <td class="basetree", id="C">
+                <p class="chordname">C</p>
+              </td>
+            </tr>
+            <tr>
+              <td class="basetree", id="C#">
+                <p class="chordname">C#(Db)</p>
+              </td>
+            </tr>
+            <tr>
+              <td class="basetree", id="D">
+                <p class="chordname">D</p>
+              </td>
+            </tr>
+            <tr>
+              <td class="basetree", id="D#">
+                <p class="chordname">D#(Eb)</p>
+              </td>
+            </tr>
+            <tr>
+              <td class="basetree", id="E">
+                <p class="chordname">E</p>
+              </td>
+            </tr>
+            <tr>
+              <td class="basetree", id="F">
+                <p class="chordname">F</p>
+              </td>
+            </tr>
+            <tr>
+              <td class="basetree", id="F#">
+                <p class="chordname">F#(Gb)</p>
+              </td>
+            </tr>
+            <tr>
+              <td class="basetree", id="G">
+                <p class="chordname">G</p>
+              </td>
+            </tr>
+            <tr>
+              <td class="basetree", id="G#">
+                <p class="chordname">G#(Ab)</p>
+              </td>
+            </tr>
+            <tr>
+              <td class="basetree", id="A">
+                <p class="chordname">A</p>
+              </td>
+            </tr>
+            <tr>
+              <td class="basetree", id="A#">
+                <p class="chordname">A#(Bb)</p>
+              </td>
+            </tr>
+            <tr>
+              <td class="basetree", id="B">
+                <p class="chordname">B</p>
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
     </div>
     <div id="rightDiv">
 
@@ -60,7 +147,7 @@
         </div>
       </div>
 
-      <div id="importDiv" onload="init()">
+      <div id="importDiv">
         <div id="lineImportDiv">
         </div>
         <div id= "headerImport">
