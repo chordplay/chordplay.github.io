@@ -9,6 +9,8 @@ var importWidth, importHeight;
 
 $( document ).ready(function() {
 
+  document.getElementById('files').addEventListener('change', handleFileSelect, false);
+
   addUnit();
   addUnit();
   addUnit();
@@ -43,6 +45,12 @@ $( document ).ready(function() {
     updateSize();
     renderScore();
   });
+
+  function init() {
+    document.getElementById("#lineImportDiv").onmousedown = on_mouse_down;
+    document.onmouseup = on_mouse_up;
+    document.onmousemove = on_mouse_move;
+  }
 });
 
 function updateSize(){
@@ -64,6 +72,12 @@ function updateSize(){
   scoreWidth = mainWidth;
   scoreHeight = windowHeight - menuHeight - importHeight;
 
+  titleHeight = 173
+  titleWidth = libraryWidth;
+  treeHeight = libraryHeight - titleHeight;
+
+  treeWidth = libraryWidth;
+
   $("#mainDiv").height(windowHeight);
   $("#mainDiv").width(windowWidth);
 
@@ -73,8 +87,8 @@ function updateSize(){
   $("#menuDiv").height(menuHeight);
   $("#menuDiv").width(menuWidth);
 
-  $("#line").width(menuWidth);   
-  $("#line").css("padding-top" , menuHeight*0.02); 
+  $("#line").width(menuWidth);
+  $("#line").css("padding-top" , menuHeight*0.02);
 
   $(".menubutton").css("padding-top" , menuHeight*0.1);
   $(".menubutton").css("padding-left" , menuHeight*0.23);
@@ -110,7 +124,6 @@ function updateSize(){
 
   $("#importDiv").height(importHeight);
   $("#importDiv").width(importWidth);
-  $("#importDiv").css("margin-top", -importHeight);
 
   $("#melody").height(importHeight-30);
   $("#melody").width(importWidth);
@@ -118,7 +131,23 @@ function updateSize(){
   $("#tempTitle").width(scoreWidth);
   $("#tempTitle").css("text-align", "center");
   $("#tempTitle").css("font-size", "24px");
+
+  $("#chordplayDiv").height(titleHeight);
+  $("#chordplayDiv").width(titleWidth);
+
+  //$("#chordtreeDiv").height(treeHeight);
+  $("#chordtreeDiv").width(treeWidth);
+
+  $("#homeDiv").height(70); // need to fix
+  $("#homeDiv").width(titleWidth-68);
+  $("#searchDiv").height(titleHeight-70);
+  $("#searchDiv").width(titleWidth-36);
+
+  $(".basetree").width(titleWidth);
+
 }
+
+
 
 function handleFileSelect(evt) {
   var files = evt.target.files; // FileList object
@@ -150,13 +179,8 @@ function handleFileSelect(evt) {
   }
 }
 
-document.getElementById('files').addEventListener('change', handleFileSelect, false);
-
-
 var startpos, diffpos=0, range=50;
 var isEnable = false;
-
-
 
 function on_mouse_down(e) {
   startpos = event.clientX + diffpos;
@@ -169,27 +193,13 @@ function on_mouse_up(e) {
   return false;
 }
 
-
-
 function on_mouse_move(e) {
   if (isEnable) {
     pos = event.clientX;
     diffpos = startpos-pos;
-    
+
     if (diffpos > -(width-range) && diffpos < (width-range)) {
       document.getElementById("#importDiv").style.height = importHeight - diffpos + "px";
     }
   }
 }
-
-function init() {
-  document.getElementById("#lineImportDiv").onmousedown = on_mouse_down;
-  document.onmouseup = on_mouse_up;
-  document.onmousemove = on_mouse_move;
-
-}
-
-
-$(window).resize(function(){
-  updateSize();
-});

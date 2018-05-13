@@ -13,7 +13,7 @@ window.onload = function () {
         }
     });
 
-    document.getElementById("playBtn").onclick = function(){
+    document.getElementById("playButton").onclick = function(){
         console.log($('#bpm').val());
         console.log(typeof($('#bpm').val()));
 
