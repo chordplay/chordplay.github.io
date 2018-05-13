@@ -40,40 +40,53 @@ function playChord(notes, delay, length){
 }
 
 function playMIDI (bpm){
-    let delay = MIDI.getContext().currentTime;
-    let qLength = 60.0 / bpm; //length of quarter note (1 beat)
-    console.log("qLength: " + qLength);
+    let ldelay = MIDI.getContext().currentTime;
+    let rdelay = MIDI.getContext().currentTime;
+    let qLength = 60.0/bpm; //length of quarter note (1 beat)
+
     MIDI.setVolume(0, 127);
     score.forEach(function(unit){
-        unit.left.forEach(function(note){
-            function durationToType(duration){
-                const durations = ['w', 'h', 'q', '8', '16'];
-                let hasdot = false;
-                if(duration.includes('d')){
-                    hasdot = true;
-                    duration = duration.replace("d", "");
-                }
-                let type = Math.pow(2, 2-durations.indexOf(duration));
-                if(hasdot){
-                    type *= 1.5;
-                }
-                return type;
-            }
 
+        function playNotes(note, mode){
             let type = durationToType(note.duration);
 
             if(note.is_rest){
-                delay += qLength * type;
+                if(mode === "right")
+                    rdelay += qLength * type;
+                else if (mode === "left")
+                    ldelay += qLength*type;
             } else {
-                let pitch = note.keys.map(function(key){
-                    return MIDI.keyToNote[key.replace("/", "")];
+                let pitch = note.keys.map(key => MIDI.keyToNote[key.replace("/", "")]);
                     //TODO fix this because MIDI.keyToNote object is not perfect
-                });
-                console.log("pitch: ", pitch);
-                playChord(pitch, delay, qLength*type);
+
                 // playNote(MIDI.keyToNote[pitch], delay, qLength * note.type);
-                delay += qLength * type;
+                if(mode === "right"){
+                    playChord(pitch, rdelay, qLength*type);
+                    rdelay += qLength * type;
+                } else if (mode === "left"){
+                    playChord(pitch, ldelay, qLength*type);
+                    ldelay += qLength * type;
+                } else {
+                    //error
+                }
             }
-        });
+        }
+
+        unit.left.forEach(note => playNotes(note, "left"));
+        unit.right.forEach(note => playNotes(note, "right"));
     });
+}
+
+function durationToType(duration){
+    const durations = ['w', 'h', 'q', '8', '16'];
+    let hasdot = false;
+    if(duration.includes('d')){
+        hasdot = true;
+        duration = duration.replace("d", "");
+    }
+    let type = Math.pow(2, 2-durations.indexOf(duration));
+    if(hasdot){
+        type *= 1.5;
+    }
+    return type;
 }

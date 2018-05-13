@@ -99,7 +99,7 @@ class Unit {
     setChord(chord_name){
         this.chord_name = chord_name;
         let notes = parseChord(chord_name);
-        this.right = [new Note([notes[2]], "q", false), new Note([notes[2]], "q", false)];
+        this.right = [new Note(["E/4"], "q", false), new Note(["C/4"], "q", false)];
         this.left = [new Note(notes, "h", false)];
     };
 
