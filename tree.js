@@ -25,7 +25,11 @@ $(document).ready(function(){
   $(document).on('click', '.deeptree', function(){
 
     var str = $(this).find("p").text();
-    parseChord(str.split(" (")[0]);
+    var chord=str.split(" (")[0];
+    console.log(chord);
+    var chord_notes = parseChord(chord);
+    console.log(chord_notes);
+
   })
 
   function openDetails(chordname, trtemp){
