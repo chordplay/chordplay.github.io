@@ -27,8 +27,10 @@ $(document).ready(function(){
     var str = $(this).find("p").text();
     var chord=str.split(" (")[0];
     console.log(chord);
-    var chord_notes = parseChord(chord);
-    console.log(chord_notes);
+    var index = score.length;
+    addUnit();
+    setChord(index, chord);
+    renderScore();
 
   })
 
