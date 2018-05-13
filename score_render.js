@@ -88,6 +88,9 @@ function renderScore(){
       if(lineScore == 0){
         var firstStartX = startX;
       }
+      else{
+        var restStartX = startX;
+      }
 
       var rightNotes = [];
       var leftNotes = [];
@@ -179,6 +182,6 @@ function renderScore(){
   $(".firstUnit").width(firstUnitWidth);
   $(".restUnit").width(restUnitWidth);
 
-  $(".chordText").css("margin-left",startX);
+  $(".chordText").css("margin-left",restStartX);
   $(".firstText").css("margin-left",firstStartX);
 }
