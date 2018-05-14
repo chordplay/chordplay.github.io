@@ -104,7 +104,7 @@ function updateSize(){
   $("#buttonDiv").height(menuHeight);
   $("#buttonDiv").width(menuWidth-150);
 
-  $("#line").width(menuWidth); 
+  $("#line").width(menuWidth);
 
   $(".menubutton").css("padding-top" , Math.floor(menuHeight*0.1));
   $(".menubutton").css("padding-left" , Math.floor(menuHeight*0.23));
