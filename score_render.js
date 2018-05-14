@@ -32,7 +32,7 @@ function renderScore(){
       if(lineScore == 0){
         rendererWidth = firstUnitWidth;
         $("#barLine"+line).append("<div class='firstUnit halfBar' id='unit"+ numScore +"'></div>");
-        $("#unit"+numScore).append("<input type='text' class='chordText firstText' id='chordText"+ numScore +"'/>");
+        $("#unit"+numScore).append("<input type='text' class='chordText firstText' id='chordText"+ numScore +"' selected='false'/>");
         $("#unit"+numScore).append("<div class='firstUnit' id='renderDiv"+ numScore +"'></div>");
       }
       else {

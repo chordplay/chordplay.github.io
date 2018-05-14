@@ -9,7 +9,6 @@ window.onload = function () {
         },
         onsuccess: function() {
             console.log("Loaded");
-            document.getElementById("playBtn").disabled = false;
         }
     });
 

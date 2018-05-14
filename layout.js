@@ -57,6 +57,10 @@ $( document ).ready(function() {
   }
 
   $('.halfBar').click(function(event) {
+    let item = event.currentTarget;
+    let selected = item.getAttribute("selected") === "true";
+    event.currentTarget.setAttribute("selected", !selected);
+    console.log(event.currentTarget);
     let id = event.currentTarget.id.replace("unit", "");
     console.log(id);
   });
