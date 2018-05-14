@@ -1,4 +1,5 @@
 var score = [];
+var selected_units = [];
 
 function parseChord(chord){
     const notes_sharp = ['C', 'C#', 'D', 'D#', "E", "F", "F#", "G", "G#", "A", "A#", "B"];
