@@ -1,5 +1,5 @@
 window.onload = function () {
-    let BPM = 120;
+    let BPM = 78;
 
     MIDI.loadPlugin({
         soundfontUrl: "./midi/examples/soundfont/",
@@ -18,8 +18,20 @@ window.onload = function () {
 
         // playMIDI(notes, parseInt($('#bpm').val(), 10));
         //playMIDI(notes, BPM, 10);
+        $("#stopButton").show();
+        $("#playButton").hide();
         playMIDI(BPM);
     };
+
+    $("#stopButton").click(function(){
+        console.log("stop");
+        // if(selected_units.length === 0){
+        //     MIDI.stopAllNotes();
+        // }
+        $("#stopButton").hide();
+        $("#playButton").show();
+        MIDI.stopAllNotes();
+    });
 };
 
 /*
@@ -35,6 +47,7 @@ function playNote(note, delay, length){
 
 function playChord(notes, delay, length){
     MIDI.chordOn(0, notes, 127, delay);
+    console.log(notes);
     MIDI.chordOff(0, notes, delay+length);
 }
 
@@ -55,9 +68,18 @@ function playMIDI (bpm){
                 else if (mode === "left")
                     ldelay += qLength*type;
             } else {
-                let pitch = note.keys.map(key => MIDI.keyToNote[key.replace("/", "")]);
+                console.log(note.keys);
+                //let pitch = note.keys.map(key => MIDI.keyToNote[key.replace("/", "")]);
+                let pitch =  note.keys.map(function(key){
+                  if(key.includes("#")) {
+                    return MIDI.keyToNote[key.replace("#/", "")] + 1;
+                  }
+                  else {
+                    return MIDI.keyToNote[key.replace("/", "")];
+                  }
+                })
                     //TODO fix this because MIDI.keyToNote object is not perfect
-
+                console.log(typeof(note.keys))
                 // playNote(MIDI.keyToNote[pitch], delay, qLength * note.type);
                 if(mode === "right"){
                     playChord(pitch, rdelay, qLength*type);
