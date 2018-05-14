@@ -1,5 +1,5 @@
 window.onload = function () {
-    let BPM = 120;
+    let BPM = 78;
 
     MIDI.loadPlugin({
         soundfontUrl: "./midi/examples/soundfont/",
@@ -18,8 +18,20 @@ window.onload = function () {
 
         // playMIDI(notes, parseInt($('#bpm').val(), 10));
         //playMIDI(notes, BPM, 10);
+        $("#stopButton").show();
+        $("#playButton").hide();
         playMIDI(BPM);
     };
+
+    $("#stopButton").click(function(){
+        console.log("stop");
+        // if(selected_units.length === 0){
+        //     MIDI.stopAllNotes();
+        // }
+        $("#stopButton").hide();
+        $("#playButton").show();
+        MIDI.stopAllNotes();
+    });
 };
 
 /*

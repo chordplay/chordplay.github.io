@@ -113,6 +113,9 @@ function updateSize(){
   $("#playButton").height(Math.floor(menuHeight*0.77));
   $("#playButton").width(Math.floor(menuHeight*0.46));
 
+  $("#stopButton").height(Math.floor(menuHeight*0.77));
+  $("#stopButton").width(Math.floor(menuHeight*0.46));
+
   $("#invertChordButton").height(Math.floor(menuHeight*0.77));
   $("#invertChordButton").width(Math.floor(menuHeight*0.99));
 
