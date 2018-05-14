@@ -16,7 +16,7 @@ function parseChord(chord){
     }
 
     function numToNote(num, accidental){ //follow MIDI note notation: 0 for C-1, 60 for C4
-        let octave = (Math.floor(num/12)-1).toString();
+        let octave = (Math.floor(num/12)).toString();
         let note;
         if(accidental === "#"){
             note = notes_sharp[num%12];
@@ -99,18 +99,55 @@ class Unit {
     setChord(chord_name){
         this.chord_name = chord_name;
         let notes = parseChord(chord_name);
-        this.right = [new Note(["E/4"], "q", false), new Note(["C/4"], "q", false)];
-        this.left = [new Note(notes, "h", false)];
+        var temp = notes[0].split("/");
+
+        var basenode1 = temp[0]+"/"+(temp[1]-1);
+        var basenode2 = temp[0]+"/"+(temp[1]-2);
+
+        this.left = [new Note([basenode2, basenode1], "h", false)];
+        this.right = [new Note(notes, "q", false), new Note(notes, "q", false)];
     };
 
     deleteChord(){
-        this.chord_name = null;
-        this.right = [new Note(null, "h", true)];
-        this.left = [new Note(null, "h", true)];
+        this.chord_name = "rest";
+        this.right = [new Note(["B/4"], "h", true)];
+        this.left = [new Note(["D/3"], "h", true)];
     }
 
     invertChord(variation){
+      if(variation == 0){
+        setChord(this.chord_name);
+      }
+      else if(variation == 1){
+        let notes = parseChord(this.chord_name);
+        var temp = notes[0].split("/");
+        var basenode1 = temp[0]+"/"+(temp[1]-1);
+        var basenode2 = temp[0]+"/"+(temp[1]-2);
 
+        var octave = temp[1]*1+1;
+        var upnode = temp[0]+"/"+octave;
+
+        notes.push(upnode);
+        notes.splice(0, 1);
+
+        this.left = [new Note([basenode2, basenode1], "h", false)];
+        this.right = [new Note(notes, "q", false), new Note(notes, "q", false)];
+      }
+      else{ // variation == 2, need to be fixed later - there are some bugs
+        let notes = parseChord(this.chord_name);
+        var temp = notes[0].split("/");
+        var basenode1 = temp[0]+"/"+(temp[1]-1);
+        var basenode2 = temp[0]+"/"+(temp[1]-2);
+
+        var temp2 = notes[2].split("/")
+        var octave = temp2[1]*1-1;
+        var downnode = temp2[0]+"/"+octave;
+        notes.splice(2, 1);
+        notes.unshift(downnode);
+
+        this.left = [new Note([basenode2, basenode1], "h", false)];
+        this.right = [new Note(notes, "q", false), new Note(notes, "q", false)];
+      }
     }
 
     changeRhythm(variation){
