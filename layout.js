@@ -51,6 +51,11 @@ $( document ).ready(function() {
     document.onmouseup = on_mouse_up;
     document.onmousemove = on_mouse_move;
   }
+
+  $('.halfBar').click(function(event) {
+    let id = event.currentTarget.id.replace("unit", "");
+    console.log(id);
+  });
 });
 
 function updateSize(){
@@ -146,8 +151,6 @@ function updateSize(){
   $(".basetree").width(titleWidth);
 
 }
-
-
 
 function handleFileSelect(evt) {
   var files = evt.target.files; // FileList object
