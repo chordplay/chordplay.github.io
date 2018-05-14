@@ -48,11 +48,12 @@ $( document ).ready(function() {
     }
   });
 
+
+  addUnit();
+  addUnit();
+  addUnit();
+  addUnit();
   /*
-  addUnit();
-  addUnit();
-  addUnit();
-  addUnit();
   addUnit();
   addUnit();
   addUnit();
