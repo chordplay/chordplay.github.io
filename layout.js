@@ -11,6 +11,44 @@ $( document ).ready(function() {
 
   document.getElementById('files').addEventListener('change', handleFileSelect, false);
 
+  var importDragging = false;
+  $("#lineImportDiv").mousedown(function(e){
+    e.preventDefault();
+
+    importDragging = true;
+    var importDiv = $("#importDiv");
+    var ghostbar = $('<div>',
+                    {id:'ghostbar', css: {width: importDiv.outerWidth(), left: importDiv.offset().left, top: importDiv.offset().top}
+                  }).appendTo('body');
+    $(document).mousemove(function(e){
+      if(e.pageY > windowHeight * 4 / 5){
+        ghostbar.css("top", windowHeight * 4 / 5);
+      }
+      else{
+        ghostbar.css("top",e.pageY);
+      }
+    });
+  });
+
+  $(document).mouseup(function(e){
+    if(importDragging) {
+      var newHeight;
+      if(e.pageY > windowHeight * 4 / 5){
+        newHeight = windowHeight * 1 / 5 + 2;
+      }
+      else{
+        newHeight = mainHeight - e.pageY + 2;
+      }
+      $("#importDiv").height(newHeight);
+      $("#ghostbar").remove();
+      $(document).unbind('mousemove');
+      updateSize();
+
+      importDragging = false;
+    }
+  });
+
+  /*
   addUnit();
   addUnit();
   addUnit();
@@ -36,9 +74,10 @@ $( document ).ready(function() {
   setChord(9, "C");
   setChord(10, "C");
   setChord(11, "C");
+  */
   console.log(score);
 
-  updateSize();
+  initSize();
   renderScore();
   document.getElementById('files').addEventListener('change', handleFileSelect, false);
 
@@ -80,6 +119,105 @@ function updateSize(){
   menuHeight = Math.floor(windowHeight / 12);
 
   importWidth = mainWidth - 30;
+  importHeight = $("#importDiv").height();
+
+  scoreWidth = mainWidth;
+  scoreHeight = windowHeight - menuHeight - importHeight;
+
+  titleHeight = 173
+  titleWidth = libraryWidth;
+  treeHeight = libraryHeight - titleHeight;
+
+  treeWidth = libraryWidth;
+
+  $("#mainDiv").height(windowHeight);
+  $("#mainDiv").width(windowWidth);
+
+  $("#libraryDiv").height(libraryHeight);
+  $("#libraryDiv").width(libraryWidth);
+
+  $("#menuDiv").height(menuHeight);
+  $("#menuDiv").width(menuWidth);
+
+  $("#selectionDiv").height(menuHeight);
+  $("#buttonDiv").height(menuHeight);
+  $("#buttonDiv").width(menuWidth-150);
+
+  $("#line").width(menuWidth);
+
+  $(".menubutton").css("padding-top" , Math.floor(menuHeight*0.1));
+  $(".menubutton").css("padding-left" , Math.floor(menuHeight*0.23));
+  $(".menubutton").css("padding-right" , Math.floor(menuHeight*0.23));
+
+  $("#playButton").height(Math.floor(menuHeight*0.77));
+  $("#playButton").width(Math.floor(menuHeight*0.46));
+
+  $("#invertChordButton").height(Math.floor(menuHeight*0.77));
+  $("#invertChordButton").width(Math.floor(menuHeight*0.99));
+
+  $("#changeRhythmButton").height(Math.floor(menuHeight*0.77));
+  $("#changeRhythmButton").width(Math.floor(menuHeight*1.14));
+
+  $("#deleteChordsButton").height(Math.floor(menuHeight*0.77));
+  $("#deleteChordsButton").width(Math.floor(menuHeight*1.06));
+
+  $("#deleteBarsButton").height(Math.floor(menuHeight*0.77));
+  $("#deleteBarsButton").width(Math.floor(menuHeight*0.85));
+
+  $("#insertBarAfterButton").height(Math.floor(menuHeight*0.77));
+  $("#insertBarAfterButton").width(Math.floor(menuHeight*1.15));
+
+  $("#addBarsButton").height(Math.floor(menuHeight*0.77));
+  $("#addBarsButton").width(Math.floor(menuHeight*0.69));
+
+  $("#exportScoreButton").height(Math.floor(menuHeight*0.77));
+  $("#exportScoreButton").width(Math.floor(menuHeight));
+
+  $("#scoreDiv").height(scoreHeight);
+  $("#scoreDiv").width(scoreWidth);
+
+  $("#importDiv").height(importHeight);
+  $("#importDiv").width(importWidth);
+
+  $("#headerImport").height(20);
+
+  $("#melody").height(importHeight-$("#headerImport").height()-3);
+  $("#melody").width(importWidth);
+
+  $("#tempTitle").width(scoreWidth);
+  $("#tempTitle").css("text-align", "center");
+  $("#tempTitle").css("font-size", "24px");
+
+  $("#chordplayDiv").height(titleHeight);
+  $("#chordplayDiv").width(titleWidth);
+
+  //$("#chordtreeDiv").height(treeHeight);
+  $("#chordtreeDiv").width(treeWidth);
+  $("#chordtreeDiv").height(windowHeight-titleHeight);
+
+  $("#homeDiv").height(70); // need to fix
+  $("#homeDiv").width(titleWidth-68);
+  $("#searchDiv").height(titleHeight-70);
+  $("#searchDiv").width(titleWidth-36);
+
+  $(".basetree").width(titleWidth);
+
+}
+
+function initSize(){
+  windowWidth = window.innerWidth;
+  windowHeight = window.innerHeight;
+
+  libraryWidth = 240;
+  libraryHeight = windowHeight;
+
+  mainWidth = windowWidth - libraryWidth;
+  mainHeight = windowHeight;
+
+  menuWidth = mainWidth;
+  menuHeight = Math.floor(windowHeight / 12);
+
+  importWidth = mainWidth - 30;
   importHeight = Math.floor(windowHeight / 3) - 20;
 
   scoreWidth = mainWidth;
@@ -104,7 +242,7 @@ function updateSize(){
   $("#buttonDiv").height(menuHeight);
   $("#buttonDiv").width(menuWidth-150);
 
-  $("#line").width(menuWidth); 
+  $("#line").width(menuWidth);
 
   $(".menubutton").css("padding-top" , Math.floor(menuHeight*0.1));
   $(".menubutton").css("padding-left" , Math.floor(menuHeight*0.23));
@@ -146,7 +284,7 @@ function updateSize(){
 
   $("#headerImport").height(20);
 
-  $("#melody").height(importHeight-$("#headerImport").height());
+  $("#melody").height(importHeight-$("#headerImport").height()-3);
   $("#melody").width(importWidth);
 
   $("#tempTitle").width(scoreWidth);
@@ -199,8 +337,10 @@ function handleFileSelect(evt) {
   }
 }
 
+/*
 var startpos, diffpos=0, range=50;
 var isEnable = false;
+
 
 function on_mouse_down(e) {
   startpos = event.clientX + diffpos;
@@ -223,3 +363,4 @@ function on_mouse_move(e) {
     }
   }
 }
+*/

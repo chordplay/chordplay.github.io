@@ -29,6 +29,7 @@ $(document).ready(function(){
     renderScore();
   })
 
+
   $("#deleteChordsButton").click(function(){
     console.log("clicked");
     var index = score.length;
@@ -53,7 +54,7 @@ $(document).ready(function(){
     addUnit();
     setChord(index, chord);
     renderScore();
-
+    $("#scoreDiv").scrollTop($("#scoreDiv").prop("scrollHeight"));
   })
 
   function openDetails(chordname, trtemp){
