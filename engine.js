@@ -109,9 +109,9 @@ class Unit {
     };
 
     deleteChord(){
-        this.chord_name = null;
-        this.right = [new Note(null, "h", true)];
-        this.left = [new Note(null, "h", true)];
+        this.chord_name = "rest";
+        this.right = [new Note(["B/4"], "h", true)];
+        this.left = [new Note(["D/3"], "h", true)];
     }
 
     invertChord(variation){
