@@ -50,9 +50,6 @@ $( document ).ready(function() {
 
 
   addUnit();
-  addUnit();
-  addUnit();
-  addUnit();
   /*
   addUnit();
   addUnit();
@@ -62,11 +59,17 @@ $( document ).ready(function() {
   addUnit();
   addUnit();
   addUnit();
+  addUnit();
+  addUnit();
+  addUnit();
+*/
 
   setChord(0, "C");
+  /*
   setChord(1, "C");
   setChord(2, "C");
   setChord(3, "C");
+
   setChord(4, "C");
   setChord(5, "C");
   setChord(6, "C");
