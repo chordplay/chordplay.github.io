@@ -102,10 +102,18 @@ $( document ).ready(function() {
   $('.halfBar').click(function(event) {
     let item = event.currentTarget;
     let selected = item.getAttribute("selected") === "true";
-    event.currentTarget.setAttribute("selected", !selected);
+    item.setAttribute("selected", !selected);
+    let id = item.id.replace("unit", "");
+    if(!selected){
+      $(item).css("border-style", "solid");
+      selected_units.push(id);
+    } else {
+      item.style.removeProperty("border-style");
+      // $(item).css("border", null);
+      selected_units.splice(selected_units.indexOf(id), 1);
+    }
     console.log(event.currentTarget);
-    let id = event.currentTarget.id.replace("unit", "");
-    console.log(id);
+    console.log(selected_units);
   });
 });
 
