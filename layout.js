@@ -98,23 +98,6 @@ $( document ).ready(function() {
     document.onmousemove = on_mouse_move;
   }
 
-  // $('.halfBar').on("click", "div", function(event) {
-  //     console.log("click");
-  //     let item = event.currentTarget;
-  //     let selected = item.getAttribute("selected") === "true";
-  //     item.setAttribute("selected", !selected);
-  //     let id = item.id.replace("unit", "");
-  //     if(!selected){
-  //         $(item).css("border-style", "solid");
-  //         selected_units.push(id);
-  //     } else {
-  //         item.style.removeProperty("border-style");
-  //         // $(item).css("border", null);
-  //         selected_units.splice(selected_units.indexOf(id), 1);
-  //     }
-  //     console.log(event.currentTarget);
-  //     console.log(selected_units);
-  // });
 });
 
 function updateSize(){
