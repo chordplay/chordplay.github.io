@@ -35,16 +35,19 @@ $(document).ready(function(){
     var index = score.length;
     deleteChord(index-1);
     renderScore();
-  })
+  });
+
   $("#deleteBarsButton").click(function(){
     var index = score.length;
     deleteUnit(index-1);
     renderScore();
-  })
+  });
+
   $("#addBarsButton").click(function(){
     addUnit();
     renderScore();
-  })
+  });
+
   $(document).on('click', '.deeptree', function(){
 
     var str = $(this).find("p").text();
