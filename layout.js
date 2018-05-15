@@ -105,10 +105,11 @@ $( document ).ready(function() {
     item.setAttribute("selected", !selected);
     let id = item.id.replace("unit", "");
     if(!selected){
-      $(item).css("border-style", "solid");
+      //$(item).css("border-style", "solid");
+      $(item).css("background-color", "rgba(230,239,255,1)");
       selected_units.push(id);
     } else {
-      item.style.removeProperty("border-style");
+      item.style.removeProperty("background-color");
       // $(item).css("border", null);
       selected_units.splice(selected_units.indexOf(id), 1);
     }
