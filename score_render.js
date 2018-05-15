@@ -4,6 +4,13 @@
 
 VF = Vex.Flow;
 var count = 0;
+var multiSelecting = false;
+var dragStartX, dragStartY;
+var multiSelectBegin, multiSelectEnd = -1;
+var multiFirst, multiLast;
+var dragThreshold = 30;
+var mouseInScore;
+
 function renderScore(){
   var lineWidth = Math.floor(scoreWidth * 9 / 10);
   var lineMargin = Math.floor((scoreWidth - lineWidth) / 2);
@@ -42,23 +49,9 @@ function renderScore(){
         $("#unit"+numScore).append("<div class='restUnit' id='renderDiv"+ numScore +"'></div>");
       }
 
-      $("#unit"+numScore).click(function(event) {
-          console.log("click");
-          let item = event.currentTarget;
-          let selected = item.getAttribute("select") === "true";
-          item.setAttribute("select", !selected);
-          let id = item.id.replace("unit", "");
-          if(!selected){
-              $(item).css("border-style", "solid");
-              selected_units.push(id);
-          } else {
-              item.style.removeProperty("border-style");
-              // $(item).css("border", null);
-              selected_units.splice(selected_units.indexOf(id), 1);
-          }
-          console.log(event.currentTarget);
-          console.log(selected_units);
-      });
+      if(selected_units.includes(numScore)) {
+        //TODO: think of how to update newly drawn scores to maintain selection
+      }
 
       // VexFlow rendering
       var currDiv = $("#renderDiv"+numScore).get(0);
@@ -192,6 +185,106 @@ function renderScore(){
       numScore++;
     }
   }
+
+  $(".halfBar").click(function(event) {
+      let prevSelect = this.getAttribute("select");
+      $(".halfBar").removeClass("selectedBar");
+      $(".halfBar").attr("select", "false");
+      this.setAttribute("select", prevSelect);
+      selected_units=[];
+
+      let item = event.currentTarget;
+      let selected = item.getAttribute("select") === "true";
+      if(!multiSelecting){
+        item.setAttribute("select", !selected);
+      }
+
+      let id = item.id.replace("unit", "");
+      if(!selected){
+          item.classList.add("selectedBar");
+          selected_units.push(id);
+      } else {
+          item.classList.remove("selectedBar");
+          selected_units.splice(selected_units.indexOf(id), 1);
+      }
+      console.log(selected_units);
+      //console.log(event.currentTarget);
+      //console.log(selected_units);
+  });
+
+  // multiple selection
+  $(".halfBar").mousedown(function(e){
+    multiSelectBegin = parseInt(this.id.replace("unit",""), 10);
+    dragStartX = e.pageX;
+    dragStartY = e.pageY;
+    $(".halfBar").mousemove(function(e){
+      let currX = e.pageX;
+      let currY = e.pageY;
+      let dist = Math.round(Math.sqrt(Math.pow(dragStartX - currX, 2) + Math.pow(dragStartY - currY, 2)));
+      let currNumber = parseInt(this.id.replace("unit",""), 10);
+
+      if(dist > dragThreshold){
+        if(!multiSelecting){
+          multiSelecting = true;
+          console.log("Multi");
+        }
+      }
+
+      if(multiSelecting){
+        if(multiSelectEnd == -1){
+          multiSelectEnd = parseInt(this.id.replace("unit", ""), 10);
+        }
+        multiFirst = Math.min(multiSelectBegin, multiSelectEnd);
+        multiLast = Math.max(multiSelectBegin, multiSelectEnd);
+
+        $(".halfBar").removeClass("selectedBar");
+
+        for(var selBar = multiFirst; selBar <= multiLast; selBar++){
+          $("#unit"+selBar).addClass("selectedBar");
+        }
+      }
+
+    });
+  });
+
+
+
+  $(".halfBar").mouseenter(function(){
+    document.body.style.cursor = 'pointer';
+    mouseInScore = true;
+    if(multiSelecting){
+      multiSelectEnd = parseInt(this.id.replace("unit", ""), 10);
+    }
+  });
+
+  $(".halfBar").mouseleave(function(){
+    document.body.style.cursor = 'auto';
+    mouseInScore = false;
+  });
+
+  $(document).mouseup(function(e){
+    if(multiSelecting) {
+      $(".halfBar").attr("select", "false");
+      selected_units=[];
+      for(var i = multiFirst; i <= multiLast; i++){
+        $("#unit"+i).attr("select", "true");
+        selected_units.push(i);
+      }
+
+      console.log(selected_units);
+      multiSelectBegin = -1;
+      multiSelectEnd = -1;
+
+      if(mouseInScore){
+
+      }
+      else{
+
+      }
+    }
+    $(".halfBar").unbind('mousemove');
+    multiSelecting = false;
+  });
 
   $(".barLine").width(lineWidth);
   $(".barLine").css("margin-left",lineMargin);
