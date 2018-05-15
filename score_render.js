@@ -31,16 +31,34 @@ function renderScore(){
 
       if(lineScore == 0){
         rendererWidth = firstUnitWidth;
-        $("#barLine"+line).append("<div class='firstUnit halfBar' id='unit"+ numScore +"'></div>");
-        $("#unit"+numScore).append("<input type='text' class='chordText firstText' id='chordText"+ numScore +"' selected='false'/>");
+        $("#barLine"+line).append("<div class='firstUnit halfBar' id='unit"+ numScore +"' select='false'> </div>");
+        $("#unit"+numScore).append("<input type='text' class='chordText firstText' id='chordText"+ numScore +"'/>");
         $("#unit"+numScore).append("<div class='firstUnit' id='renderDiv"+ numScore +"'></div>");
       }
       else {
         rendererWidth = restUnitWidth;
-        $("#barLine"+line).append("<div class='restUnit halfBar' id='unit"+ numScore +"'></div>");
+        $("#barLine"+line).append("<div class='restUnit halfBar' id='unit"+ numScore +"' select='false'></div>");
         $("#unit"+numScore).append("<input type='text' class='chordText' id='chordText"+ numScore +"'/>");
         $("#unit"+numScore).append("<div class='restUnit' id='renderDiv"+ numScore +"'></div>");
       }
+
+      $("#unit"+numScore).click(function(event) {
+          console.log("click");
+          let item = event.currentTarget;
+          let selected = item.getAttribute("select") === "true";
+          item.setAttribute("select", !selected);
+          let id = item.id.replace("unit", "");
+          if(!selected){
+              $(item).css("border-style", "solid");
+              selected_units.push(id);
+          } else {
+              item.style.removeProperty("border-style");
+              // $(item).css("border", null);
+              selected_units.splice(selected_units.indexOf(id), 1);
+          }
+          console.log(event.currentTarget);
+          console.log(selected_units);
+      });
 
       // VexFlow rendering
       var currDiv = $("#renderDiv"+numScore).get(0);
