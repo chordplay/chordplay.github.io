@@ -3,6 +3,7 @@
   <title>Chordplay</title>
   <link href="./layout.css" rel="stylesheet" />
   <link href="./score_render.css" rel="stylesheet" />
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 </head>
 
 <body>
@@ -11,6 +12,8 @@
   <script src="layout.js" type="text/javascript"></script>
   <script src="engine.js" type="text/javascript"></script>
   <script src="midi.js" type="text/javascript"></script>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <!-- polyfill -->
   <script src="./midi/inc/shim/Base64.js" type="text/javascript"></script>
   <script src="./midi/inc/shim/Base64binary.js" type="text/javascript"></script>
@@ -41,7 +44,7 @@
         </div>
         <div id="searchDiv">
           <div id="searchinput">
-            <input type="search" placeholder= "search your chords!">
+            <input type="search" id="searchArea" placeholder= "search your chords!">
           </div>
           <div id="treetitle">
             <br />
