@@ -13,8 +13,8 @@ window.onload = function () {
     });
 
     document.getElementById("playButton").onclick = function(){
-        console.log($('#bpm').val());
-        console.log(typeof($('#bpm').val()));
+        // console.log($('#bpm').val());
+        // console.log(typeof($('#bpm').val()));
 
         // playMIDI(notes, parseInt($('#bpm').val(), 10));
         //playMIDI(notes, BPM, 10);
@@ -46,9 +46,9 @@ function playNote(note, delay, length){
 }
 
 function playChord(notes, delay, length){
-    MIDI.chordOn(0, notes, 127, delay);
-    console.log(notes);
-    MIDI.chordOff(0, notes, delay+length);
+    let source = MIDI.chordOn(0, notes, 127, delay);
+    console.log(source);
+    console.log(MIDI.chordOff(0, notes, delay+length));
 }
 
 function playMIDI (bpm){
@@ -68,18 +68,12 @@ function playMIDI (bpm){
                 else if (mode === "left")
                     ldelay += qLength*type;
             } else {
-                console.log(note.keys);
-                //let pitch = note.keys.map(key => MIDI.keyToNote[key.replace("/", "")]);
-                let pitch =  note.keys.map(function(key){
-                  if(key.includes("#")) {
+                let pitch = note.keys.map(key => {if(key.includes("#")) {
                     return MIDI.keyToNote[key.replace("#/", "")] + 1;
-                  }
-                  else {
+                } else {
                     return MIDI.keyToNote[key.replace("/", "")];
-                  }
-                })
-                    //TODO fix this because MIDI.keyToNote object is not perfect
-                console.log(typeof(note.keys))
+                }});
+
                 // playNote(MIDI.keyToNote[pitch], delay, qLength * note.type);
                 if(mode === "right"){
                     playChord(pitch, rdelay, qLength*type);

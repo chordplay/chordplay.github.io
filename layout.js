@@ -50,9 +50,6 @@ $( document ).ready(function() {
 
 
   addUnit();
-  addUnit();
-  addUnit();
-  addUnit();
   /*
   addUnit();
   addUnit();
@@ -62,11 +59,17 @@ $( document ).ready(function() {
   addUnit();
   addUnit();
   addUnit();
+  addUnit();
+  addUnit();
+  addUnit();
+*/
 
   setChord(0, "C");
+  /*
   setChord(1, "C");
   setChord(2, "C");
   setChord(3, "C");
+
   setChord(4, "C");
   setChord(5, "C");
   setChord(6, "C");
@@ -76,7 +79,6 @@ $( document ).ready(function() {
   setChord(10, "C");
   setChord(11, "C");
   */
-  console.log(score);
 
   initSize();
   renderScore();
@@ -96,14 +98,23 @@ $( document ).ready(function() {
     document.onmousemove = on_mouse_move;
   }
 
-  $('.halfBar').click(function(event) {
-    let item = event.currentTarget;
-    let selected = item.getAttribute("selected") === "true";
-    event.currentTarget.setAttribute("selected", !selected);
-    console.log(event.currentTarget);
-    let id = event.currentTarget.id.replace("unit", "");
-    console.log(id);
-  });
+  // $('.halfBar').on("click", "div", function(event) {
+  //     console.log("click");
+  //     let item = event.currentTarget;
+  //     let selected = item.getAttribute("selected") === "true";
+  //     item.setAttribute("selected", !selected);
+  //     let id = item.id.replace("unit", "");
+  //     if(!selected){
+  //         $(item).css("border-style", "solid");
+  //         selected_units.push(id);
+  //     } else {
+  //         item.style.removeProperty("border-style");
+  //         // $(item).css("border", null);
+  //         selected_units.splice(selected_units.indexOf(id), 1);
+  //     }
+  //     console.log(event.currentTarget);
+  //     console.log(selected_units);
+  // });
 });
 
 function updateSize(){
