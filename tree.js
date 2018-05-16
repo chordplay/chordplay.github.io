@@ -138,6 +138,7 @@ $(document).ready(function(){
   $("#addBarsButton").click(function(){
     addUnit();
     renderScore();
+    $("#scoreDiv").scrollTop($("#scoreDiv").prop("scrollHeight"));
     if($(this).hasClass("pointer")){
       $(this).removeClass("pointer");
     }
