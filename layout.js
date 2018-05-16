@@ -15,7 +15,7 @@ $( document ).ready(function() {
 
   $("#lineImportDiv").mousedown(function(e){
     e.preventDefault();
-    console.log("importDragg");
+    console.log("importDrag");
 
     importDragging = true;
     var importDiv = $("#importDiv");
@@ -31,75 +31,6 @@ $( document ).ready(function() {
       }
     });
   });
-
-  $(document).mouseup(function(e){
-    if(importDragging) {
-      var newHeight;
-      if(e.pageY > windowHeight * 4 / 5){
-        newHeight = windowHeight * 1 / 5 + 2;
-      }
-      else{
-        newHeight = mainHeight - e.pageY + 2;
-      }
-      $("#importDiv").height(newHeight);
-      $("#ghostbar").remove();
-      $(document).unbind('mousemove');
-      updateSize();
-
-      importDragging = false;
-    }
-    let len = selected_units.length;
-    console.log(len);
-    if(len == 0){
-      $("#invertChordButton").hide();
-      $("#invertChordButton2").show();
-
-      $("#changeRhythmButton").hide();
-      $("#changeRhythmButton2").show();
-
-      $("#deleteChordsButton").hide();
-      $("#deleteChordsButton2").show();
-
-      $("#deleteBarsButton").hide();
-      $("#deleteBarsButton2").show();
-
-      $("#insertBarAfterButton").hide();
-      $("#insertBarAfterButton2").show();
-    }
-    else if(len == 1){
-      $("#invertChordButton2").hide();
-      $("#invertChordButton").show();
-
-      $("#changeRhythmButton2").hide();
-      $("#changeRhythmButton").show();
-
-      $("#deleteChordsButton2").hide();
-      $("#deleteChordsButton").show();
-
-      $("#deleteBarsButton2").hide();
-      $("#deleteBarsButton").show();
-
-      $("#insertBarAfterButton2").hide();
-      $("#insertBarAfterButton").show();
-    }
-    else {
-      $("#invertChordButton2").hide();
-      $("#invertChordButton").show();
-
-      $("#changeRhythmButton2").hide();
-      $("#changeRhythmButton").show();
-
-      $("#deleteChordsButton2").hide();
-      $("#deleteChordsButton").show();
-
-      $("#deleteBarsButton2").hide();
-      $("#deleteBarsButton").show();
-
-      $("#insertBarAfterButton").hide();
-      $("#insertBarAfterButton2").show();
-    }
-  });
-
 
   addUnit();
   /*
@@ -143,12 +74,6 @@ $( document ).ready(function() {
     updateSize();
     renderScore();
   });
-
-  function init() {
-    document.getElementById("#lineImportDiv").onmousedown = on_mouse_down;
-    document.onmouseup = on_mouse_up;
-    document.onmousemove = on_mouse_move;
-  }
 });
 
 function updateSize(){
@@ -511,31 +436,3 @@ function menuUpdate() {
     $("#selected").show();
   }
 }
-
-/*
-var startpos, diffpos=0, range=50;
-var isEnable = false;
-
-
-function on_mouse_down(e) {
-  startpos = event.clientX + diffpos;
-  isEnable = true;
-  return false;
-}
-
-function on_mouse_up(e) {
-  isEnable = false;
-  return false;
-}
-
-function on_mouse_move(e) {
-  if (isEnable) {
-    pos = event.clientX;
-    diffpos = startpos-pos;
-
-    if (diffpos > -(width-range) && diffpos < (width-range)) {
-      document.getElementById("#importDiv").style.height = importHeight - diffpos + "px";
-    }
-  }
-}
-*/

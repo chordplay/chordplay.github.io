@@ -133,6 +133,8 @@ function dragStuff(){
 
     $(".halfBar").unbind('mousemove');
     multiSelecting = false;
+
+    menuUpdate();
   });
 
   $("#scoreDiv").click(function(e){

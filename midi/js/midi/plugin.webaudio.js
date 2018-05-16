@@ -58,7 +58,6 @@
 
 		midi.noteOn = function(channelId, noteId, velocity, delay) {
 			delay = delay || 0;
-			console.log("noteon");
 
 			/// check whether the note exists
 			var channel = root.channels[channelId];
@@ -204,7 +203,6 @@
 		midi.stopAll = function(sources) {
 			for(var sid in sources){
 				var source = sources[sid];
-				console.log(source);
 				Object.keys(source).forEach(function (key) {
 					source[key].stop(0);
                 })
