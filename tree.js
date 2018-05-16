@@ -37,6 +37,12 @@ $(document).ready(function(){
       document.getElementById("searchArea").value = "";
     }}
   )
+  $.ui.autocomplete.filter = function (array, term) {
+    var matcher = new RegExp("^" + $.ui.autocomplete.escapeRegex(term), "i");
+    return $.grep(array, function (value) {
+      return matcher.test(value.label || value.value || value);
+    });
+  };
   $("#searchArea").keydown(function(event){
       if(event.keyCode == 13) {
         if($("#searchArea").val().length==0) {
@@ -74,28 +80,78 @@ $(document).ready(function(){
   })
 
   $("#invertChordButton").click(function(){
-    var index = score.length;
-    invertChord(index-1, 1);
-    renderScore();
+    if(selected_units.length != 0){
+      //var index = score.length;
+      selected_units.forEach(function(value){
+        invertChord(value, 1);
+        renderScore();
+      })
+      selected_units.splice(0, selected_units.length);
+    }
+    if($(this).hasClass("pointer")){
+      $(this).removeClass("pointer");
+    }
   })
 
+  $("#changeRhythmButton").click(function(){
+
+  })
+
+  $("#insertBarAfterButton").click(function(){
+    if(selected_units.length != 0){
+      selected_units.sort(function (a,b){
+        return b-a;
+      });
+      console.log(selected_units);
+      selected_units.forEach(function(value){
+        insertUnit(value*1+1);
+        console.log(value*1+1);
+      })
+      renderScore();
+      selected_units.splice(0, selected_units.length);
+    }
+    if($(this).hasClass("pointer")){
+      $(this).removeClass("pointer");
+    }
+  })
 
   $("#deleteChordsButton").click(function(){
-    console.log("clicked");
-    var index = score.length;
-    deleteChord(index-1);
-    renderScore();
+    if(selected_units.length != 0){
+
+      selected_units.forEach(function(value){
+        deleteChord(value);
+      })
+      renderScore();
+      selected_units.splice(0, selected_units.length);
+    }
+    if($(this).hasClass("pointer")){
+      $(this).removeClass("pointer");
+    }
   });
 
   $("#deleteBarsButton").click(function(){
-    var index = score.length;
-    deleteUnit(index-1);
-    renderScore();
+    if(selected_units.length != 0){
+      selected_units.sort(function (a,b){
+        return b-a;
+      });
+      selected_units.forEach(function(value){
+        deleteUnit(value);
+      })
+      renderScore();
+    }
+    selected_units.splice(0, selected_units.length);
+    if($(this).hasClass("pointer")){
+      $(this).removeClass("pointer");
+    }
   });
 
   $("#addBarsButton").click(function(){
     addUnit();
     renderScore();
+    if($(this).hasClass("pointer")){
+      $(this).removeClass("pointer");
+    }
+    selected_units.splice(0, selected_units.length);
   });
 
   $(document).on('click', '.deeptree', function(){
@@ -108,6 +164,7 @@ $(document).ready(function(){
     setChord(index, chord);
     renderScore();
     $("#scoreDiv").scrollTop($("#scoreDiv").prop("scrollHeight"));
+    selected_units.splice(0, selected_units.length);
   })
 
   function openDetails(chordname, trtemp){
@@ -128,4 +185,50 @@ $(document).ready(function(){
     clickstate = false;
   }
 
+/*------------------*/
+
+  $("#invertChordButton, #changeRhythmButton, #deleteChordsButton, #deleteBarsButton").mouseover(function(){
+    if(selected_units.length != 0){
+      $(this).addClass("pointer");
+    }
+  })
+
+  $("#addBarsButton").mouseover(function(){
+    $(this).addClass("pointer");
+  })
+
+  $("#insertBarAfterButton").mouseover(function(){
+    if(selected_units.length != 0){
+      $(this).addClass("pointer");
+    }
+  })
+
+/*-------------------------*/
+  var modal = document.getElementById('myModal');
+
+  // Get the button that opens the modal
+  var btn = document.getElementById("changeRhythmButton");
+
+  // Get the <span> element that closes the modal
+  var span = document.getElementsByClassName("close")[0];
+
+  // When the user clicks the button, open the modal
+  btn.onclick = function() {
+      modal.style.display = "block";
+      $("#importDiv").hide();
+  }
+
+  // When the user clicks on <span> (x), close the modal
+  span.onclick = function() {
+      modal.style.display = "none";
+      $("#importDiv").show();
+  }
+
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function(event) {
+      if (event.target == modal) {
+          modal.style.display = "none";
+          $("#importDiv").show();
+      }
+  }
 })
