@@ -230,16 +230,21 @@ function renderScore(){
       }
       if(lineScore == 0){
         rendererWidth = firstUnitWidth;
-        $("#barLine"+line).append("<div class='firstUnit halfBar' id='unit"+ numScore +"' select='false'> </div>");
-        $("#unit"+numScore).append("<input type='text' class='chordText firstText' id='chordText"+ numScore +"' onFocus ='autoCompletee()' />")
-
+        $("#barLine"+line).append("<div class='firstUnit halfBar' id='unit"+ numScore +"' select='false' ondragover='allowDrop(event)' ondrop='dropChord(event)'> </div>");
+        $("#unit"+numScore).append("<input type='text' class='chordText firstText' id='chordText"+ numScore +"' onFocus ='autoCompletee()' />");
         $("#unit"+numScore).append("<div class='firstUnit' id='renderDiv"+ numScore +"'></div>");
       }
       else {
         rendererWidth = restUnitWidth;
-        $("#barLine"+line).append("<div class='restUnit halfBar' id='unit"+ numScore +"' select='false'></div>");
+        $("#barLine"+line).append("<div class='restUnit halfBar' id='unit"+ numScore +"' select='false' ondragover='allowDrop(event)' ondrop='dropChord(event)'></div>");
         $("#unit"+numScore).append("<input type='text' class='chordText' id='chordText"+ numScore +"' onFocus ='autoCompletee()' />");
         $("#unit"+numScore).append("<div class='restUnit' id='renderDiv"+ numScore +"'></div>");
+      }
+      if(score[numScore].chord_name === "rest"){
+        $("#chordText"+numScore).val("");
+      }
+      else{
+        $("#chordText"+numScore).val(score[numScore].chord_name);
       }
 
       if(selected_units.includes(numScore)) {

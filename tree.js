@@ -16,7 +16,9 @@ var AllChord = ["C", "Cm", "C7", "Cm7", "CM7", "Csus4", "Caug", "Cdim",
     "A#", "A#m", "A#7", "A#m7", "A#M7", "A#sus4", "A#aug", "A#dim",
     "Bb", "Bbm", "Bb7", "Bbm7", "BbM7", "Bbsus4", "Bbaug", "Bbdim",
     "B", "Bm", "B7", "Bm7", "BM7", "Bsus4", "Baug", "Bdim",
-  ]
+  ];
+
+var chordDragging = false;
 
 $(document).ready(function(){
 
@@ -127,16 +129,17 @@ $(document).ready(function(){
   })
 
   function openDetails(chordname, trtemp){
-    $("<tr><td class='deeptree'> <p class='chordname'>"+chordname+"dim"+"</p></td></tr>").insertAfter(trtemp);
-    $("<tr><td class='deeptree'> <p class='chordname'>"+chordname+"aug"+"</p></td></tr>").insertAfter(trtemp);
-    $("<tr><td class='deeptree'> <p class='chordname'>"+chordname+"sus4"+"</p></td></tr>").insertAfter(trtemp);
-    $("<tr><td class='deeptree'> <p class='chordname'>"+chordname+"M7"+"</p></td></tr>").insertAfter(trtemp);
-    $("<tr><td class='deeptree'> <p class='chordname'>"+chordname+"m7"+"</p></td></tr>").insertAfter(trtemp);
-    $("<tr><td class='deeptree'> <p class='chordname'>"+chordname+"7"+"</p></td></tr>").insertAfter(trtemp);
-    $("<tr><td class='deeptree'> <p class='chordname'>"+chordname+"m"+"</p></td></tr>").insertAfter(trtemp);
-    $("<tr><td class='deeptree'> <p class='chordname'>"+chordname+" (major)"+"</p></td></tr>").insertAfter(trtemp);
+    $("<tr><td class='deeptree' id='" + chordname + "dim' draggable='true' ondragstart='dragChord(event)'> <p class='chordname'>"+chordname+"dim"+"</p></td></tr>").insertAfter(trtemp);
+    $("<tr><td class='deeptree' id='" + chordname + "aug' draggable='true' ondragstart='dragChord(event)'> <p class='chordname'>"+chordname+"aug"+"</p></td></tr>").insertAfter(trtemp);
+    $("<tr><td class='deeptree' id='" + chordname + "sus4' draggable='true' ondragstart='dragChord(event)'> <p class='chordname'>"+chordname+"sus4"+"</p></td></tr>").insertAfter(trtemp);
+    $("<tr><td class='deeptree' id='" + chordname + "M7' draggable='true' ondragstart='dragChord(event)'> <p class='chordname'>"+chordname+"M7"+"</p></td></tr>").insertAfter(trtemp);
+    $("<tr><td class='deeptree' id='" + chordname + "m7' draggable='true' ondragstart='dragChord(event)'> <p class='chordname'>"+chordname+"m7"+"</p></td></tr>").insertAfter(trtemp);
+    $("<tr><td class='deeptree' id='" + chordname + "7' draggable='true' ondragstart='dragChord(event)'> <p class='chordname'>"+chordname+"7"+"</p></td></tr>").insertAfter(trtemp);
+    $("<tr><td class='deeptree' id='" + chordname + "m' draggable='true' ondragstart='dragChord(event)'> <p class='chordname'>"+chordname+"m"+"</p></td></tr>").insertAfter(trtemp);
+    $("<tr><td class='deeptree' id='" + chordname + " (major)' draggable='true' ondragstart='dragChord(event)'> <p class='chordname'>"+chordname+" (major)"+"</p></td></tr>").insertAfter(trtemp);
 
     clickstate = true;
+
   }
 
   function closeDetails(){
@@ -144,3 +147,23 @@ $(document).ready(function(){
     clickstate = false;
   }
 });
+
+function dragChord(ev){
+  let chordName = ev.target.id.split(" (")[0];
+  ev.dataTransfer.setData("chordName", chordName);
+}
+
+function allowDrop(ev){
+  ev.preventDefault();
+  console.log("ALLOWDROP");
+}
+
+function dropChord(ev){
+  ev.preventDefault();
+  let chordName = ev.dataTransfer.getData("chordName");
+  let index = ev.target.closest('.halfBar').id.replace("unit","") * 1;
+  setChord(index, chordName);
+  renderScore();
+  $("#chordText"+index).val(chordName);
+
+}
