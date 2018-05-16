@@ -35,21 +35,21 @@ $(document).ready(function(){
 
       if(chord.includes('#')){
         var temp = chord.split('#');
-        if(temp[0] == 'G') chordbase = "Ab";
-        else{
-          var Alphabet = String.fromCharCode(temp[0].charCodeAt(0)+1);
-          chordbase = Alphabet + 'b';
-        }
+        chordbase = temp[0] + '\\#';
       }
       else if(chord.includes('b')){
         var temp = chord.split('b');
-        chordbase = temp[0] + 'b';
+        if(temp[0] == 'A') chordbase = "G#";
+        else{
+          var Alphabet = String.fromCharCode(temp[0].charCodeAt(0)-1);
+          chordbase = Alphabet + '\\#';
+        }
       }
       else{
         chordbase = chord[0];
       }
-
       //event.preventDefault();
+      console.log(chordbase);
       $("#"+chordbase).trigger("click");
       document.getElementById("searchArea").value = "";
     }
@@ -91,7 +91,7 @@ $(document).ready(function(){
   });
 */
   $(".basetree").click(function(){
-    var match = ["C", "Db", "D", "Eb", "E", "F", "Gb", "G", "Ab", "A", "Bb", "B"];
+    var match = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
     trtemp = $(this).closest("tr");
     if (clickstate == false){
       chordname = $(this).attr('id');
