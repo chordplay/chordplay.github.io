@@ -24,25 +24,52 @@ $(document).ready(function(){
   var chordname;
   var trtemp;
 
-  $("#searchArea").autocomplete(
-    {minLength: 1}, {source: AllChord},
-    {select: function(event, ui){
-      var chord = ui.item.value
-      $("#searchArea").val(ui.item.value);
-      event.preventDefault();
-      var index = score.length;
-      addUnit();
-      setChord(index, chord);
-      renderScore();
+  $("#searchArea").autocomplete({
+    minLength: 1,
+    source: AllChord,
+    select: function(event, ui){
+      var chord = ui.item.value;
+      var chordbase;
+
+      if(chord.includes('#')){
+        var temp = chord.split('#');
+        if(temp[0] == 'G') chordbase = "Ab";
+        else{
+          var Alphabet = String.fromCharCode(temp[0].charCodeAt(0)+1);
+          chordbase = Alphabet + 'b';
+        }
+      }
+      else if(chord.includes('b')){
+        var temp = chord.split('b');
+        chordbase = temp[0] + 'b';
+      }
+      else{
+        chordbase = chord[0];
+      }
+
+      //event.preventDefault();
+      $("#"+chordbase).trigger("click");
       document.getElementById("searchArea").value = "";
-    }}
-  )
+    }
+  })
+  /*$(".chordText").autocomplete({
+    minLength: 1,
+    source: AllChord,
+    select: function(event, ui){
+
+    }
+  })*/
+
+
+
   $.ui.autocomplete.filter = function (array, term) {
     var matcher = new RegExp("^" + $.ui.autocomplete.escapeRegex(term), "i");
     return $.grep(array, function (value) {
       return matcher.test(value.label || value.value || value);
     });
   };
+
+/*
   $("#searchArea").keydown(function(event){
       if(event.keyCode == 13) {
         if($("#searchArea").val().length==0) {
@@ -59,8 +86,10 @@ $(document).ready(function(){
           $(".ui-menu-item").hide();
         }
       }
-   });
+  });
+*/
   $(".basetree").click(function(){
+    var match = ["C", "Db", "D", "Eb", "E", "F", "Gb", "G", "Ab", "A", "Bb", "B"];
     trtemp = $(this).closest("tr");
     if (clickstate == false){
       chordname = $(this).attr('id');
@@ -77,6 +106,10 @@ $(document).ready(function(){
         closeDetails();
       }
     }
+    var index = match.indexOf(chordname);
+    console.log(index);
+    $("#chordtreeDiv").scrollTop(65*index);
+
   });
 
   $(document).on('click', '.deeptree', function(){
@@ -89,6 +122,8 @@ $(document).ready(function(){
     renderScore();
     $("#scoreDiv").scrollTop($("#scoreDiv").prop("scrollHeight"));
     selected_units.splice(0, selected_units.length);
+
+    closeDetails();
   })
 
   function openDetails(chordname, trtemp){

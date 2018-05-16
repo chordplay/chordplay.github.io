@@ -1,4 +1,22 @@
+var ChordList = ["C", "Cm", "C7", "Cm7", "CM7", "Csus4", "Caug", "Cdim",
+      "C#", "C#m", "C#7", "C#m7", "C#M7", "C#sus4", "C#aug", "C#dim",
+      "Db", "Dbm", "Db7", "Dbm7", "DbM7", "Dbsus4", "Dbaug", "Dbdim",
 
+      "D", "Dm", "D7", "Dm7", "DM7", "Dsus4", "Daug", "Ddim",
+      "D#", "D#m", "D#7", "D#m7", "D#M7", "D#sus4", "D#aug", "D#dim",
+      "D#", "D#m", "D#7", "D#m7", "D#M7", "D#sus4", "D#aug", "D#dim",
+      "Eb", "Ebm", "Eb7", "Ebm7", "EbM7", "Ebsus4", "Ebaug", "Ebdim",
+      "E", "Em", "E7", "Em7", "EM7", "Esus4", "Eaug", "Edim",
+      "F", "Fm", "F7", "Fm7", "FM7", "Fsus4", "Faug", "Fdim",
+    "F#", "F#m", "F#7", "F#m7", "F#M7", "F#sus4", "F#aug", "F#dim",
+    "G", "Gm", "G7", "Gm7", "GM7", "Gsus4", "Gaug", "Gdim",
+    "G#", "G#m", "G#7", "G#m7", "G#M7", "G#sus4", "G#aug", "G#dim",
+    "Ab", "Abm", "Ab7", "Abm7", "AbM7", "Absus4", "Abaug", "Abdim",
+    "A", "Am", "A7", "Am7", "AM7", "Asus4", "Aaug", "Adim",
+    "A#", "A#m", "A#7", "A#m7", "A#M7", "A#sus4", "A#aug", "A#dim",
+    "Bb", "Bbm", "Bb7", "Bbm7", "BbM7", "Bbsus4", "Bbaug", "Bbdim",
+    "B", "Bm", "B7", "Bm7", "BM7", "Bsus4", "Baug", "Bdim",
+  ]
 // renderer height = 223px
 // lineDiv height = 223+textbox height (auto)
 
@@ -147,6 +165,38 @@ function dragStuff(){
   })
 }
 
+$("#chordText2").autocomplete({
+  minLength: 1,
+  source: ChordList,
+  select: function(event, ui){
+    console.log("second");
+    /*var chord = ui.item.value
+    $("#searchArea").val(ui.item.value);
+    event.preventDefault();
+    var index = score.length;
+    addUnit();
+    setChord(index, chord);
+    renderScore();
+    document.getElementById("searchArea").value = "";*/
+  }
+})
+
+function autoCompletee(){
+  $(function() {
+    $( '.chordText').autocomplete({
+      source: ChordList,
+      select: function( event, ui ) {
+        var chord = ui.item.value;
+        var index = $(this).context.id.replace("chordText", "");
+        event.preventDefault();
+        console.log(index);
+        setChord(index, chord);
+        renderScore();
+      }
+    })
+  });
+}
+
 function renderScore(){
   var lineWidth = Math.floor(scoreWidth * 9 / 10);
   var lineMargin = Math.floor((scoreWidth - lineWidth) / 2);
@@ -171,17 +221,24 @@ function renderScore(){
       }
 
       var rendererWidth;
-
+      var autocompleteOpt = {
+        //minLength: 1,
+        source: AllChord
+        /*select: function(event, ui){
+          console.log("selected");
+        }*/
+      }
       if(lineScore == 0){
         rendererWidth = firstUnitWidth;
         $("#barLine"+line).append("<div class='firstUnit halfBar' id='unit"+ numScore +"' select='false'> </div>");
-        $("#unit"+numScore).append("<input type='text' class='chordText firstText' id='chordText"+ numScore +"'/>");
+        $("#unit"+numScore).append("<input type='text' class='chordText firstText' id='chordText"+ numScore +"' onFocus ='autoCompletee()' />")
+
         $("#unit"+numScore).append("<div class='firstUnit' id='renderDiv"+ numScore +"'></div>");
       }
       else {
         rendererWidth = restUnitWidth;
         $("#barLine"+line).append("<div class='restUnit halfBar' id='unit"+ numScore +"' select='false'></div>");
-        $("#unit"+numScore).append("<input type='text' class='chordText' id='chordText"+ numScore +"'/>");
+        $("#unit"+numScore).append("<input type='text' class='chordText' id='chordText"+ numScore +"' onFocus ='autoCompletee()' />");
         $("#unit"+numScore).append("<div class='restUnit' id='renderDiv"+ numScore +"'></div>");
       }
 
