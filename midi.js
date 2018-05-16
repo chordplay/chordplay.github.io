@@ -20,17 +20,20 @@ window.onload = function () {
         //playMIDI(notes, BPM, 10);
         $("#stopButton").show();
         $("#playButton").hide();
-        playMIDI(BPM);
+        if(selected_units.length === 0){
+            playMIDI(BPM, score);
+        } else {
+            // playMIDI(BPM, selected_units); need to be sorted
+        }
     };
 
     $("#stopButton").click(function(){
-        console.log("stop");
-        // if(selected_units.length === 0){
-        //     MIDI.stopAllNotes();
-        // }
+        if(selected_units.length === 0){
+            MIDI.stopAll(playing_sources);
+        }
         $("#stopButton").hide();
         $("#playButton").show();
-        MIDI.stopAllNotes();
+
     });
 };
 
@@ -47,17 +50,18 @@ function playNote(note, delay, length){
 
 function playChord(notes, delay, length){
     let source = MIDI.chordOn(0, notes, 127, delay);
-    console.log(source);
-    console.log(MIDI.chordOff(0, notes, delay+length));
+    MIDI.chordOff(0, notes, delay+length);
+    return source;
 }
 
-function playMIDI (bpm){
+function playMIDI (bpm, units){
     let ldelay = MIDI.getContext().currentTime;
     let rdelay = MIDI.getContext().currentTime;
     let qLength = 60.0/bpm; //length of quarter note (1 beat)
 
     MIDI.setVolume(0, 127);
-    score.forEach(function(unit){
+    playing_sources = [];
+    units.forEach(function(unit){
 
         function playNotes(note, mode){
             let type = durationToType(note.duration);
@@ -76,10 +80,12 @@ function playMIDI (bpm){
 
                 // playNote(MIDI.keyToNote[pitch], delay, qLength * note.type);
                 if(mode === "right"){
-                    playChord(pitch, rdelay, qLength*type);
+                    let ret = playChord(pitch, rdelay, qLength*type);
+                    playing_sources = playing_sources.concat(ret);
                     rdelay += qLength * type;
                 } else if (mode === "left"){
-                    playChord(pitch, ldelay, qLength*type);
+                    let ret = playChord(pitch, ldelay, qLength*type);
+                    playing_sources = playing_sources.concat(ret);
                     ldelay += qLength * type;
                 } else {
                     //error
