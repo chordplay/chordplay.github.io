@@ -2,6 +2,7 @@ var BPM = 78;
 var playing_sources = [];
 var playing_notes = [];
 var play_timer;
+var paused_time;
 
 window.onload = function () {
 
@@ -25,13 +26,7 @@ window.onload = function () {
         $("#stopButton").show();
         $("#playButton").hide();
         if(playing_notes.length > 0){
-            ldelay = MIDI.getContext().currentTime;
-            rdelay = MIDI.getContext().currentTime;
-            let notes = playing_notes;
-            playing_notes = [];
-            notes.forEach(note => playNote(note));
-            play_timer = window.setInterval(checkPlayingList, 100);
-            // playMIDI(playing_notes);
+            resumeMIDI();
         } else {
             if (selected_units.length === 0) {
                 playMIDI(score);
@@ -43,9 +38,9 @@ window.onload = function () {
 
     $("#stopButton").click(function(){
         MIDI.stopAll(playing_sources);
-        // playing_notes = [];
         window.clearInterval(play_timer);
-        console.log("pause with: ", playing_notes);
+        // console.log("pause with: ", playing_notes);
+        paused_time = MIDI.getContext().currentTime;
         $("#stopButton").hide();
         $("#playButton").show();
     });
@@ -78,7 +73,7 @@ function checkPlayingList()
     let currentTime = MIDI.getContext().currentTime;
 
     playing_notes = playing_notes.filter(note => note.start>=currentTime);
-    console.log("check: ", playing_notes);
+    // console.log("check: ", playing_notes);
 
     if(playing_notes.length === 0){
         window.clearInterval(play_timer);
@@ -87,57 +82,54 @@ function checkPlayingList()
     }
 }
 
+function resumeMIDI()
+{
+    let currentTime = MIDI.getContext().currentTime;
+    let notes = playing_notes;
+    playing_notes = [];
+    notes.forEach(function(note){
+        let delay = note.start-paused_time+currentTime;
+        playNote(note, delay);
+    });
+    play_timer = window.setInterval(checkPlayingList, 100);
+}
+
 function playMIDI (units){
-    ldelay = MIDI.getContext().currentTime;
-    rdelay = MIDI.getContext().currentTime;
     playing_sources = [];
     playing_notes = [];
 
-    console.log(units);
+    let ldelay = MIDI.getContext().currentTime;
+    let rdelay = MIDI.getContext().currentTime;
     units.forEach(function(unit){
-        unit.left.forEach(note => playNote(note));
-        unit.right.forEach(note => playNote(note));
+        unit.left.forEach(function (note){
+            ldelay += playNote(note, ldelay);
+        });
+        unit.right.forEach(function (note){
+            rdelay += playNote(note, rdelay);
+        });
     });
 
     play_timer = window.setInterval(checkPlayingList, 100);
 }
 
-function playNote(note){
+function playNote(note, delay){
     let qLength = 60.0/BPM; //length of quarter note (1 beat)
-
     let type = durationToType(note.duration);
-    if(note.is_rest){
-        if(note.hand === "right"){
-            note.start = rdelay;
-            rdelay += qLength * type;
-        }
-        else if (note.hand === "left"){
-            note.start = ldelay;
-            ldelay += qLength*type;
-        }
-    } else {
+    note.start = delay;
+    if(!note.is_rest){
         let pitch = note.keys.map(key => {
-            if(key.includes("#")) {
+            if (key.includes("#")) {
                 return MIDI.keyToNote[key.replace("#/", "")] + 1;
             } else {
                 return MIDI.keyToNote[key.replace("/", "")];
             }
         });
-        if(note.hand === "right"){
-            let ret = playChord(pitch, rdelay, qLength*type);
-            playing_sources = playing_sources.concat(ret);
-            note.start = rdelay;
-            rdelay += qLength * type;
-        } else if (note.hand === "left"){
-            let ret = playChord(pitch, ldelay, qLength*type);
-            playing_sources = playing_sources.concat(ret);
-            note.start = ldelay;
-            ldelay += qLength * type;
-        } else {
-            //error
-        }
+        let ret = playChord(pitch, delay, qLength * type);
+
+        playing_sources = playing_sources.concat(ret);
     }
     playing_notes.push(note);
+    return qLength*type;
 }
 
 function durationToType(duration){
