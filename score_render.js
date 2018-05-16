@@ -30,6 +30,10 @@ var multiFirst, multiLast;
 var dragThreshold = 30;
 var mouseInScore;
 
+function limiter(input) {
+    if (input.value < 40) input.value = 40;
+    if (input.value > 200) input.value = 200;
+}
 
 function dragStuff(){
   $(".halfBar").unbind("click");

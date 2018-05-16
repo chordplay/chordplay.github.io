@@ -5,35 +5,31 @@ var play_timer;
 var paused_time;
 
 window.onload = function () {
-
-    MIDI.loadPlugin({
-        soundfontUrl: "./midi/examples/soundfont/",
-        instrument: "acoustic_grand_piano",
-        onprogress: function(state, progress) {
-            console.log(state, progress);
-        },
-        onsuccess: function() {
-            console.log("Loaded");
-            MIDI.setVolume(0, 127);
-        }
-    });
-
     $("#playButton").click(function(){
-        // console.log($('#bpm').val());
-        // console.log(typeof($('#bpm').val()));
-
-        // playMIDI(notes, parseInt($('#bpm').val(), 10));
-        $("#stopButton").show();
-        $("#playButton").hide();
-        if(playing_notes.length > 0){
-            resumeMIDI();
-        } else {
-            if (selected_units.length === 0) {
-                playMIDI(score);
-            } else {
-                // playMIDI(selected_units); need to be sorted
+        MIDI.loadPlugin({
+            soundfontUrl: "./midi/examples/soundfont/",
+            instrument: "acoustic_grand_piano",
+            onprogress: function(state, progress) {
+                console.log(state, progress);
+            },
+            onsuccess: function() {
+                console.log("Loaded");
+                MIDI.setVolume(0, 127);
+                $("#stopButton").show();
+                $("#playButton").hide();
+                if(playing_notes.length > 0){
+                    resumeMIDI();
+                } else {
+                    if (selected_units.length === 0) {
+                        playMIDI(score);
+                    } else {
+                        // playMIDI(selected_units); need to be sorted
+                    }
+                }
             }
-        }
+        });
+        // console.log);
+        // console.log(typeof($('#bpm').val()));
     });
 
     $("#stopButton").click(function(){
@@ -77,8 +73,11 @@ function checkPlayingList()
 
     if(playing_notes.length === 0){
         window.clearInterval(play_timer);
-        $("#stopButton").hide();
-        $("#playButton").show();
+
+        window.setTimeout(function(){
+            $("#stopButton").hide();
+            $("#playButton").show();
+        }, 60/BPM*1000);
     }
 }
 
@@ -113,6 +112,7 @@ function playMIDI (units){
 }
 
 function playNote(note, delay){
+    BPM = $('#bpm').val();
     let qLength = 60.0/BPM; //length of quarter note (1 beat)
     let type = durationToType(note.duration);
     note.start = delay;

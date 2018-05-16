@@ -186,7 +186,10 @@
       <div id="line">
       </div>
       <div id="scoreDiv" ondragstart="return false;">
-        <div id="tempTitle">
+        <div id="bpmDiv" class="scoreDiv">
+          BPM: <input type="number" id="bpm" onchange="limiter(this);" value="100" style="width:60px;"/>
+        </div>
+        <div id="tempTitle" class="scoreDiv">
           TITLE
         </div>
       </div>
