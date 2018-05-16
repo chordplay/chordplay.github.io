@@ -83,10 +83,34 @@ body{
   float:left;
 }
 
+.menuDiv3{
+  float: left;
+}
+
 #selectionDiv{
-  width:150px;
+  width:300px;
 
 }
+
+#iconSelection{
+  width:100px;
+}
+
+#textSelection{
+  padding-left: 15px;
+}
+
+#selectedText{
+  vertical-align: middle;
+  font-family: 'Roboto', sans-serif;
+  font-size: 28px;
+  color: #B1B1B1;
+}
+
+#selected{
+
+}
+
 #buttonDiv{
 
 }
@@ -100,6 +124,17 @@ body{
   position: relative;
 }
 
+.selectbutton {
+}
+
+#noselect{
+  float : right;
+}
+
+#selected{
+  float : right;
+}
+
 #playButton {
   /*left: 500px;*/
 }
@@ -111,16 +146,31 @@ body{
 #invertChordButton {
 }
 
+#invertChordButton2 {
+}
+
 #changeRhythmButton {
+}
+
+#changeRhythmButton2 {
 }
 
 #deleteChordsButton {
 }
 
+#deleteChordsButton2 {
+}
+
 #deleteBarsButton {
 }
 
+#deleteBarsButton2 {
+}
+
 #insertBarAfterButton {
+}
+
+#insertBarAfterButton2 {
 }
 
 #addBarsButton {

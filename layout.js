@@ -152,8 +152,22 @@ function updateSize(){
   $("#menuDiv").width(menuWidth);
 
   $("#selectionDiv").height(menuHeight);
+  $("#iconSelection").height(menuHeight);
+  $("#textSelection").height(menuHeight);
+  $("#selectedText").height(menuHeight);
+  $("#selectedText").css("line-height", menuHeight+"px");
+
   $("#buttonDiv").height(menuHeight);
-  $("#buttonDiv").width(menuWidth-150);
+  $("#buttonDiv").width(menuWidth-300);
+
+  $("#noselect").height(Math.floor(menuHeight*0.4));
+  $("#noselect").width(Math.floor(menuHeight*0.4));
+
+  $("#selected").height(Math.floor(menuHeight*0.4));
+  $("#selected").width(Math.floor(menuHeight*0.4));
+
+  $(".selectbutton").css("padding-top" , Math.floor(menuHeight*0.3));
+
 
   $("#line").width(menuWidth);
 
@@ -163,6 +177,9 @@ function updateSize(){
 
   $("#playButton").height(Math.floor(menuHeight*0.77));
   $("#playButton").width(Math.floor(menuHeight*0.46));
+
+  $("#stopButton").height(Math.floor(menuHeight*0.77));
+  $("#stopButton").width(Math.floor(menuHeight*0.46));
 
   $("#invertChordButton").height(Math.floor(menuHeight*0.77));
   $("#invertChordButton").width(Math.floor(menuHeight*0.99));
@@ -178,6 +195,22 @@ function updateSize(){
 
   $("#insertBarAfterButton").height(Math.floor(menuHeight*0.77));
   $("#insertBarAfterButton").width(Math.floor(menuHeight*1.15));
+
+  $("#invertChordButton2").height(Math.floor(menuHeight*0.77));
+  $("#invertChordButton2").width(Math.floor(menuHeight*0.99));
+
+  $("#changeRhythmButton2").height(Math.floor(menuHeight*0.77));
+  $("#changeRhythmButton2").width(Math.floor(menuHeight*1.14));
+
+  $("#deleteChordsButton2").height(Math.floor(menuHeight*0.77));
+  $("#deleteChordsButton2").width(Math.floor(menuHeight*1.06));
+
+  $("#deleteBarsButton2").height(Math.floor(menuHeight*0.77));
+  $("#deleteBarsButton2").width(Math.floor(menuHeight*0.85));
+
+  $("#insertBarAfterButton2").height(Math.floor(menuHeight*0.77));
+  $("#insertBarAfterButton2").width(Math.floor(menuHeight*1.15));
+
 
   $("#addBarsButton").height(Math.floor(menuHeight*0.77));
   $("#addBarsButton").width(Math.floor(menuHeight*0.69));
@@ -251,14 +284,31 @@ function initSize(){
   $("#menuDiv").width(menuWidth);
 
   $("#selectionDiv").height(menuHeight);
+  $("#iconSelection").height(menuHeight);
+  $("#textSelection").height(menuHeight);
+  $("#selectedText").height(menuHeight);
+  $("#selectedText").css("line-height", menuHeight +"px");
+
   $("#buttonDiv").height(menuHeight);
-  $("#buttonDiv").width(menuWidth-150);
+  $("#buttonDiv").width(menuWidth-300);
+
+  $("#noselect").height(Math.floor(menuHeight*0.4));
+  $("#noselect").width(Math.floor(menuHeight*0.4));
+
+  $("#selected").height(Math.floor(menuHeight*0.4));
+  $("#selected").width(Math.floor(menuHeight*0.4));
+
+  $(".selectbutton").css("padding-top" , Math.floor(menuHeight*0.3));
+
+
+
 
   $("#line").width(menuWidth);
 
   $(".menubutton").css("padding-top" , Math.floor(menuHeight*0.1));
   $(".menubutton").css("padding-left" , Math.floor(menuHeight*0.23));
   $(".menubutton").css("padding-right" , Math.floor(menuHeight*0.23));
+
 
   $("#playButton").height(Math.floor(menuHeight*0.77));
   $("#playButton").width(Math.floor(menuHeight*0.46));
@@ -280,6 +330,21 @@ function initSize(){
 
   $("#insertBarAfterButton").height(Math.floor(menuHeight*0.77));
   $("#insertBarAfterButton").width(Math.floor(menuHeight*1.15));
+
+  $("#invertChordButton2").height(Math.floor(menuHeight*0.77));
+  $("#invertChordButton2").width(Math.floor(menuHeight*0.99));
+
+  $("#changeRhythmButton2").height(Math.floor(menuHeight*0.77));
+  $("#changeRhythmButton2").width(Math.floor(menuHeight*1.14));
+
+  $("#deleteChordsButton2").height(Math.floor(menuHeight*0.77));
+  $("#deleteChordsButton2").width(Math.floor(menuHeight*1.06));
+
+  $("#deleteBarsButton2").height(Math.floor(menuHeight*0.77));
+  $("#deleteBarsButton2").width(Math.floor(menuHeight*0.85));
+
+  $("#insertBarAfterButton2").height(Math.floor(menuHeight*0.77));
+  $("#insertBarAfterButton2").width(Math.floor(menuHeight*1.15));
 
 
   $("#addBarsButton").height(Math.floor(menuHeight*0.77));
