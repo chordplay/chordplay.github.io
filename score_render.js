@@ -4,6 +4,148 @@
 
 VF = Vex.Flow;
 var count = 0;
+var multiSelecting = false;
+var dragStartX, dragStartY;
+var multiSelectBegin, multiSelectEnd = -1;
+var multiFirst, multiLast;
+var dragThreshold = 30;
+var mouseInScore;
+
+
+function dragStuff(){
+  $(".halfBar").unbind("click");
+  $(".halfBar").unbind("mousedown");
+  $(".halfBar").unbind("mouseenter");
+  $(".halfBar").unbind("mouseleave");
+  $(document).unbind("mouseup");
+
+  $(".halfBar").click(function(event) {
+      let prevSelect = this.getAttribute("select");
+      $(".halfBar").removeClass("selectedBar");
+      $(".halfBar").attr("select", "false");
+      let prevLen = selected_units.length;
+      selected_units=[];
+      if(prevLen > 1){
+        this.setAttribute("select", "true");
+        this.classList.add("selectedBar");
+        selected_units.push(this.id.replace("unit",""));
+        console.log(selected_units);
+        return;
+      }
+      else{
+        this.setAttribute("select", prevSelect);
+      }
+
+      let item = event.currentTarget;
+      let selected = item.getAttribute("select") === "true";
+      if(!multiSelecting){
+        item.setAttribute("select", !selected);
+      }
+
+      let id = item.id.replace("unit", "");
+      if(!selected){
+          item.classList.add("selectedBar");
+          selected_units.push(id);
+      } else {
+          item.classList.remove("selectedBar");
+          selected_units.splice(selected_units.indexOf(id), 1);
+      }
+      console.log(selected_units);
+      //console.log(event.currentTarget);
+      //console.log(selected_units);
+  });
+  // multiple selection
+  $(".halfBar").mousedown(function(e){
+    multiSelectBegin = parseInt(this.id.replace("unit",""), 10);
+    dragStartX = e.pageX;
+    dragStartY = e.pageY;
+    $(".halfBar").mousemove(function(e){
+      let currX = e.pageX;
+      let currY = e.pageY;
+      let dist = Math.round(Math.sqrt(Math.pow(dragStartX - currX, 2) + Math.pow(dragStartY - currY, 2)));
+      let currNumber = parseInt(this.id.replace("unit",""), 10);
+
+      if(dist > dragThreshold){
+        if(!multiSelecting){
+          multiSelecting = true;
+          console.log("Multi");
+        }
+      }
+
+      if(multiSelecting){
+        if(multiSelectEnd == -1){
+          multiSelectEnd = parseInt(this.id.replace("unit", ""), 10);
+        }
+        multiFirst = Math.min(multiSelectBegin, multiSelectEnd);
+        multiLast = Math.max(multiSelectBegin, multiSelectEnd);
+
+        $(".halfBar").removeClass("selectedBar");
+
+        for(var selBar = multiFirst; selBar <= multiLast; selBar++){
+          $("#unit"+selBar).addClass("selectedBar");
+        }
+      }
+
+    });
+  });
+
+  $(".halfBar").mouseenter(function(){
+    document.body.style.cursor = 'pointer';
+    mouseInScore = true;
+    if(multiSelecting){
+      multiSelectEnd = parseInt(this.id.replace("unit", ""), 10);
+    }
+  });
+
+  $(".halfBar").mouseleave(function(){
+    document.body.style.cursor = 'auto';
+    mouseInScore = false;
+  });
+
+  $(document).mouseup(function(e){
+    if(multiSelecting) {
+      $(".halfBar").attr("select", "false");
+      selected_units=[];
+      for(var i = multiFirst; i <= multiLast; i++){
+        $("#unit"+i).attr("select", "true");
+        selected_units.push(i.toString());
+      }
+
+      console.log(selected_units);
+      multiSelectBegin = -1;
+      multiSelectEnd = -1;
+    }
+
+    if(importDragging) {
+      var newHeight;
+      if(e.pageY > windowHeight * 4 / 5){
+        newHeight = windowHeight * 1 / 5 + 2;
+      }
+      else{
+        newHeight = mainHeight - e.pageY + 2;
+      }
+      $("#importDiv").height(newHeight);
+      $("#ghostbar").remove();
+      $(document).unbind('mousemove');
+      updateSize();
+
+      importDragging = false;
+    }
+
+    $(".halfBar").unbind('mousemove');
+    multiSelecting = false;
+    console.log("document mouse up");
+  });
+
+  $("#scoreDiv").click(function(e){
+    if(!mouseInScore){
+      $(".halfBar").removeClass("selectedBar");
+      $(".halfBar").attr("select", "false");
+      selected_units=[];
+    }
+  })
+}
+
 function renderScore(){
   var lineWidth = Math.floor(scoreWidth * 9 / 10);
   var lineMargin = Math.floor((scoreWidth - lineWidth) / 2);
@@ -31,15 +173,19 @@ function renderScore(){
 
       if(lineScore == 0){
         rendererWidth = firstUnitWidth;
-        $("#barLine"+line).append("<div class='firstUnit halfBar' id='unit"+ numScore +"'></div>");
-        $("#unit"+numScore).append("<input type='text' class='chordText firstText' id='chordText"+ numScore +"' selected='false'/>");
+        $("#barLine"+line).append("<div class='firstUnit halfBar' id='unit"+ numScore +"' select='false'> </div>");
+        $("#unit"+numScore).append("<input type='text' class='chordText firstText' id='chordText"+ numScore +"'/>");
         $("#unit"+numScore).append("<div class='firstUnit' id='renderDiv"+ numScore +"'></div>");
       }
       else {
         rendererWidth = restUnitWidth;
-        $("#barLine"+line).append("<div class='restUnit halfBar' id='unit"+ numScore +"'></div>");
+        $("#barLine"+line).append("<div class='restUnit halfBar' id='unit"+ numScore +"' select='false'></div>");
         $("#unit"+numScore).append("<input type='text' class='chordText' id='chordText"+ numScore +"'/>");
         $("#unit"+numScore).append("<div class='restUnit' id='renderDiv"+ numScore +"'></div>");
+      }
+
+      if(selected_units.includes(numScore)) {
+        //TODO: think of how to update newly drawn scores to maintain selection
       }
 
       // VexFlow rendering
@@ -184,4 +330,6 @@ function renderScore(){
 
   $(".chordText").css("margin-left",restStartX);
   $(".firstText").css("margin-left",firstStartX);
+
+  dragStuff();
 }

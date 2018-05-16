@@ -203,8 +203,11 @@
 
 		midi.stopAll = function(sources) {
 			for(var sid in sources){
-				var delay = ctx.currentTime;
 				var source = sources[sid];
+				console.log(source);
+				Object.keys(source).forEach(function (key) {
+					source[key].stop(0);
+                })
 			}
 		};
 
