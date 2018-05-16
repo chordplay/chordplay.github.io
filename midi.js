@@ -33,7 +33,6 @@ window.onload = function () {
         }
         $("#stopButton").hide();
         $("#playButton").show();
-
     });
 };
 

@@ -334,9 +334,6 @@ function initSize(){
 
   $(".selectbutton").css("padding-top" , Math.floor(menuHeight*0.3));
 
-
-
-
   $("#line").width(menuWidth);
 
   $(".menubutton").css("padding-top" , Math.floor(menuHeight*0.1));
