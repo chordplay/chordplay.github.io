@@ -203,6 +203,8 @@ function autoCompletee(){
           renderScore();
           $("#chordText" + (score.length-1)).focus();
         }
+        selected_units = [];
+        menuUpdate();
       }
     })
   });
