@@ -193,6 +193,16 @@ function autoCompletee(){
         console.log(index);
         setChord(index, chord);
         renderScore();
+
+        if(index*1 < score.length-1){
+          $("#chordText" + (index*1 +1)).focus();
+          console.log($("#chordText" + (index*1+1)));
+        }
+        else{
+          addUnit();
+          renderScore();
+          $("#chordText" + (score.length-1)).focus();
+        }
       }
     })
   });
