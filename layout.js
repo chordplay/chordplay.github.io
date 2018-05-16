@@ -392,8 +392,7 @@ function menuUpdate() {
     $("#selectedText").text("0 selected");
     $("#noselect").show();
     $("#selected").hide();
-  }
-  else if(len == 1){
+  } else if(len == 1){
     $("#invertChordButton2").hide();
     $("#invertChordButton").show();
 
@@ -413,8 +412,7 @@ function menuUpdate() {
     $("#selectedText").text(selected_units.length + " selected");
     $("#noselect").hide();
     $("#selected").show();
-  }
-  else {
+  } else {
     $("#invertChordButton2").hide();
     $("#invertChordButton").show();
 
