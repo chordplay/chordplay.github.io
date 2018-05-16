@@ -23,8 +23,9 @@ function dragStuff(){
       let prevSelect = this.getAttribute("select");
       $(".halfBar").removeClass("selectedBar");
       $(".halfBar").attr("select", "false");
+      let prevLen = selected_units.length;
       selected_units=[];
-      if(selected_units.length > 1){
+      if(prevLen > 1){
         this.setAttribute("select", "true");
         this.classList.add("selectedBar");
         selected_units.push(this.id.replace("unit",""));
