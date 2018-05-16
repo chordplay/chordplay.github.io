@@ -25,7 +25,6 @@ function dragStuff(){
       $(".halfBar").attr("select", "false");
       let prevLen = selected_units.length;
       selected_units=[];
-      if(selected_units.length > 1){
       if(prevLen > 1){
         this.setAttribute("select", "true");
         this.classList.add("selectedBar");
