@@ -9,13 +9,13 @@ $(document).ready(function(){
         });
         selected_units.splice(0, selected_units.length);
 
-        let modal = document.getElementById('myModal');
+        let modal = document.getElementById('myModal1');
         modal.style.display = "block";
         $("#importDiv").hide();
     });
 
     $("#changeRhythmButton").click(function(){
-        let modal = document.getElementById('myModal');
+        let modal = document.getElementById('myModal2');
         modal.style.display = "block";
         $("#importDiv").hide();
     });

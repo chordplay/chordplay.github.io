@@ -1,22 +1,30 @@
 $(document).ready(function(){
-    var modal = document.getElementById('myModal');
+    var modal1 = document.getElementById('myModal1');
+	var modal2 = document.getElementById('myModal2');
 
-// Get the button that opens the modal
-    var btn = document.getElementById("changeRhythmButton");
 
 // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
+    var cancel1 = document.getElementById("cancel1");
+    var cancel2 = document.getElementById("cancel2");
 
 // When the user clicks on <span> (x), close the modal
-    span.onclick = function() {
+    cancel1.onclick = function() {
         modal.style.display = "none";
         $("#importDiv").show();
     }
 
+	cancel2.onclick = function() {
+        modal.style.display = "none";
+        $("#importDiv").show();
+    }
+    
 // When the user clicks anywhere outside of the modal, close it
     window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
+        if (event.target == modal1) {
+            modal1.style.display = "none";
+            $("#importDiv").show();
+        } else if (event.target == modal2) {
+            modal2.style.display = "none";
             $("#importDiv").show();
         }
     }

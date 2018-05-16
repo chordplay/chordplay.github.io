@@ -183,6 +183,13 @@ function updateSize(){
   $("#importDiv").height(importHeight);
   $("#importDiv").width(importWidth);
 
+  $(".modal-content").width(mainWidth);
+
+  $(".modal-header").width(mainWidth);
+
+  $(".modal-body").width(mainWidth);
+  
+
   $("#headerImport").height(20);
 
   $("#melody").height(importHeight-$("#headerImport").height()-3);
@@ -314,6 +321,12 @@ function initSize(){
 
   $("#importDiv").height(importHeight);
   $("#importDiv").width(importWidth);
+
+  $(".modal-content").width(mainWidth);
+
+  $(".modal-header").width(mainWidth);
+
+  $(".modal-body").width(mainWidth);
 
   $("#headerImport").height(20);
 
