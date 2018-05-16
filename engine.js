@@ -105,14 +105,14 @@ class Unit {
         var basenode1 = temp[0]+"/"+(temp[1]-1);
         var basenode2 = temp[0]+"/"+(temp[1]-2);
 
-        this.left = [new Note([basenode2, basenode1], "h", false)];
-        this.right = [new Note(notes, "q", false), new Note(notes, "q", false)];
+        this.left = [new Note([basenode2, basenode1], "h", false, "left")];
+        this.right = [new Note(notes, "q", false, "right"), new Note(notes, "q", false, "right")];
     };
 
     deleteChord(){
         this.chord_name = "rest";
-        this.right = [new Note(["B/4"], "h", true)];
-        this.left = [new Note(["D/3"], "h", true)];
+        this.right = [new Note(["B/4"], "h", true, "right")];
+        this.left = [new Note(["D/3"], "h", true, "left")];
     }
 
     invertChord(variation){
@@ -131,8 +131,8 @@ class Unit {
         notes.push(upnode);
         notes.splice(0, 1);
 
-        this.left = [new Note([basenode2, basenode1], "h", false)];
-        this.right = [new Note(notes, "q", false), new Note(notes, "q", false)];
+        this.left = [new Note([basenode2, basenode1], "h", false, "left")];
+        this.right = [new Note(notes, "q", false, "right"), new Note(notes, "q", false, "right")];
       }
       else{ // variation == 2, need to be fixed later - there are some bugs
         let notes = parseChord(this.chord_name);
@@ -146,8 +146,8 @@ class Unit {
         notes.splice(2, 1);
         notes.unshift(downnode);
 
-        this.left = [new Note([basenode2, basenode1], "h", false)];
-        this.right = [new Note(notes, "q", false), new Note(notes, "q", false)];
+        this.left = [new Note([basenode2, basenode1], "h", false, "left")];
+        this.right = [new Note(notes, "q", false, "right"), new Note(notes, "q", false, "right")];
       }
     }
 
@@ -158,10 +158,11 @@ class Unit {
 
 class Note {
     //duration: w, h, q, 8, 16 + d
-    constructor(keys, duration, is_rest) {
+    constructor(keys, duration, is_rest, hand) {
         this.keys = keys;
         this.duration = duration;
         this.is_rest = is_rest;
+        this.hand = hand
         //TODO add method to convert and add keys
     }
 
