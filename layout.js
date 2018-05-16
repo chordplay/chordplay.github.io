@@ -7,13 +7,15 @@ var menuWidth, menuHeight;
 var scoreWidth, scoreHeight;
 var importWidth, importHeight;
 
+var importDragging = false;
+
 $( document ).ready(function() {
 
   document.getElementById('files').addEventListener('change', handleFileSelect, false);
 
-  var importDragging = false;
   $("#lineImportDiv").mousedown(function(e){
     e.preventDefault();
+    console.log("importDragg");
 
     importDragging = true;
     var importDiv = $("#importDiv");
@@ -97,7 +99,6 @@ $( document ).ready(function() {
     document.onmouseup = on_mouse_up;
     document.onmousemove = on_mouse_move;
   }
-
 });
 
 function updateSize(){
