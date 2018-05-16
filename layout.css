@@ -44,7 +44,7 @@ body{
 #chordtreeDiv{
   background-color: #36393D;
   cursor: pointer;
-  overflow: scroll;
+  overflow-y: auto;
 }
 #chordtable{
   border-collapse: collapse;
@@ -159,6 +159,10 @@ body{
   opacity: 0.5;
   position: absolute;
   cursor: row-resize;
+}
+
+.selectedBar{
+  background-color: rgb(230,239,255);
 }
 
 #files{
