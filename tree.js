@@ -88,9 +88,6 @@ $(document).ready(function(){
       })
       selected_units.splice(0, selected_units.length);
     }
-    if($(this).hasClass("pointer")){
-      $(this).removeClass("pointer");
-    }
   })
 
   $("#changeRhythmButton").click(function(){
@@ -110,9 +107,6 @@ $(document).ready(function(){
       renderScore();
       selected_units.splice(0, selected_units.length);
     }
-    if($(this).hasClass("pointer")){
-      $(this).removeClass("pointer");
-    }
   })
 
   $("#deleteChordsButton").click(function(){
@@ -124,9 +118,7 @@ $(document).ready(function(){
       renderScore();
       selected_units.splice(0, selected_units.length);
     }
-    if($(this).hasClass("pointer")){
-      $(this).removeClass("pointer");
-    }
+    menuUpdate();
   });
 
   $("#deleteBarsButton").click(function(){
@@ -140,9 +132,7 @@ $(document).ready(function(){
       renderScore();
     }
     selected_units.splice(0, selected_units.length);
-    if($(this).hasClass("pointer")){
-      $(this).removeClass("pointer");
-    }
+    menuUpdate();
   });
 
   $("#addBarsButton").click(function(){
@@ -152,10 +142,10 @@ $(document).ready(function(){
       $(this).removeClass("pointer");
     }
     selected_units.splice(0, selected_units.length);
+    menuUpdate();
   });
 
   $(document).on('click', '.deeptree', function(){
-
     var str = $(this).find("p").text();
     var chord=str.split(" (")[0];
     console.log(chord);

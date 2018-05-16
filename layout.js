@@ -48,6 +48,56 @@ $( document ).ready(function() {
 
       importDragging = false;
     }
+    let len = selected_units.length;
+    console.log(len);
+    if(len == 0){
+      $("#invertChordButton").hide();
+      $("#invertChordButton2").show();
+
+      $("#changeRhythmButton").hide();
+      $("#changeRhythmButton2").show();
+
+      $("#deleteChordsButton").hide();
+      $("#deleteChordsButton2").show();
+
+      $("#deleteBarsButton").hide();
+      $("#deleteBarsButton2").show();
+
+      $("#insertBarAfterButton").hide();
+      $("#insertBarAfterButton2").show();
+    }
+    else if(len == 1){
+      $("#invertChordButton2").hide();
+      $("#invertChordButton").show();
+
+      $("#changeRhythmButton2").hide();
+      $("#changeRhythmButton").show();
+
+      $("#deleteChordsButton2").hide();
+      $("#deleteChordsButton").show();
+
+      $("#deleteBarsButton2").hide();
+      $("#deleteBarsButton").show();
+
+      $("#insertBarAfterButton2").hide();
+      $("#insertBarAfterButton").show();
+    }
+    else {
+      $("#invertChordButton2").hide();
+      $("#invertChordButton").show();
+
+      $("#changeRhythmButton2").hide();
+      $("#changeRhythmButton").show();
+
+      $("#deleteChordsButton2").hide();
+      $("#deleteChordsButton").show();
+
+      $("#deleteBarsButton2").hide();
+      $("#deleteBarsButton").show();
+
+      $("#insertBarAfterButton").hide();
+      $("#insertBarAfterButton2").show();
+    }
   });
 
 
@@ -395,6 +445,73 @@ function handleFileSelect(evt) {
 
     // Read in the image file as a data URL.
     reader.readAsDataURL(f);
+  }
+}
+
+function menuUpdate() {
+  let len = selected_units.length;
+  if(len == 0){
+    $("#invertChordButton").hide();
+    $("#invertChordButton2").show();
+
+    $("#changeRhythmButton").hide();
+    $("#changeRhythmButton2").show();
+
+    $("#deleteChordsButton").hide();
+    $("#deleteChordsButton2").show();
+
+    $("#deleteBarsButton").hide();
+    $("#deleteBarsButton2").show();
+
+    $("#insertBarAfterButton").hide();
+    $("#insertBarAfterButton2").show();
+
+    $("#selectedText").css("color", "#B1B1B1");
+    $("#selectedText").text("0 selected");
+    $("#noselect").show();
+    $("#selected").hide();
+  }
+  else if(len == 1){
+    $("#invertChordButton2").hide();
+    $("#invertChordButton").show();
+
+    $("#changeRhythmButton2").hide();
+    $("#changeRhythmButton").show();
+
+    $("#deleteChordsButton2").hide();
+    $("#deleteChordsButton").show();
+
+    $("#deleteBarsButton2").hide();
+    $("#deleteBarsButton").show();
+
+    $("#insertBarAfterButton2").hide();
+    $("#insertBarAfterButton").show();
+
+    $("#selectedText").css("color", "#4285F4");
+    $("#selectedText").text(selected_units.length + " selected");
+    $("#noselect").hide();
+    $("#selected").show();
+  }
+  else {
+    $("#invertChordButton2").hide();
+    $("#invertChordButton").show();
+
+    $("#changeRhythmButton2").hide();
+    $("#changeRhythmButton").show();
+
+    $("#deleteChordsButton2").hide();
+    $("#deleteChordsButton").show();
+
+    $("#deleteBarsButton2").hide();
+    $("#deleteBarsButton").show();
+
+    $("#insertBarAfterButton").hide();
+    $("#insertBarAfterButton2").show();
+
+    $("#selectedText").css("color", "#4285F4");
+    $("#selectedText").text(selected_units.length + " selected");
+    $("#noselect").hide();
+    $("#selected").show();
   }
 }
 

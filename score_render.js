@@ -29,7 +29,7 @@ function dragStuff(){
         this.setAttribute("select", "true");
         this.classList.add("selectedBar");
         selected_units.push(this.id.replace("unit",""));
-        console.log(selected_units);
+        menuUpdate();
         return;
       }
       else{
@@ -50,7 +50,7 @@ function dragStuff(){
           item.classList.remove("selectedBar");
           selected_units.splice(selected_units.indexOf(id), 1);
       }
-      console.log(selected_units);
+      menuUpdate();
       //console.log(event.currentTarget);
       //console.log(selected_units);
   });
@@ -110,8 +110,7 @@ function dragStuff(){
         $("#unit"+i).attr("select", "true");
         selected_units.push(i.toString());
       }
-
-      console.log(selected_units);
+      menuUpdate();
       multiSelectBegin = -1;
       multiSelectEnd = -1;
     }
@@ -134,7 +133,6 @@ function dragStuff(){
 
     $(".halfBar").unbind('mousemove');
     multiSelecting = false;
-    console.log("document mouse up");
   });
 
   $("#scoreDiv").click(function(e){
@@ -142,6 +140,7 @@ function dragStuff(){
       $(".halfBar").removeClass("selectedBar");
       $(".halfBar").attr("select", "false");
       selected_units=[];
+      menuUpdate();
     }
   })
 }

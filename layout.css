@@ -229,7 +229,7 @@ body{
     border: 1px solid #000;
   }
 
-.pointer{
+.enabled{
     cursor: pointer;
 }
 
