@@ -32,10 +32,8 @@ $(document).ready(function(){
           invertChord(value, inversiontype);
           renderScore();
       });
-      selected_units.splice(0, selected_units.length);
       modal1.style.display = "none";
       $("#importDiv").show();
-      selected_units = [];
       renderScore();
       menuUpdate();
     }
@@ -45,12 +43,9 @@ $(document).ready(function(){
 
       selected_units.forEach(function(value){
         changeRhythm(value, rhythmtype);
-        renderScore();
       })
-      selected_units.splice(0, selected_units.length);
       modal2.style.display = "none";
       $("#importDiv").show();
-      selected_units = [];
       renderScore();
       menuUpdate();
     }

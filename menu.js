@@ -39,9 +39,9 @@ $(document).ready(function(){
             selected_units.forEach(function(value){
                 deleteChord(value);
             });
-            renderScore();
             selected_units.splice(0, selected_units.length);
         }
+        renderScore();
         menuUpdate();
     });
 
