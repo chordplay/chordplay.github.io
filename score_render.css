@@ -24,5 +24,6 @@
     font-weight: bold;
     color: dodgerblue;
     border-color: dodgerblue;
-    border-width: medium;
+    border-bottom: solid 3px;
+    margin-bottom: -2px;
 }
