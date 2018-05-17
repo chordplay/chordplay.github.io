@@ -15,7 +15,7 @@ window.onload = function () {
             onsuccess: function() {
                 console.log("Loaded");
                 MIDI.setVolume(0, 127);
-                $("#stopButton").show();
+                $("#pauseButton").show();
                 $("#playButton").hide();
                 if(playing_notes.length > 0){
                     resumeMIDI();
@@ -23,7 +23,12 @@ window.onload = function () {
                     if (selected_units.length === 0) {
                         playMIDI(score);
                     } else {
-                        // playMIDI(selected_units); need to be sorted
+                        let _score = [];
+                        // selected_units.sort();
+                        for(let i=0;i<selected_units.length;i++){
+                            _score.push(score[selected_units[i]*1]);
+                        }
+                        playMIDI(_score);
                     }
                 }
             }
@@ -32,19 +37,21 @@ window.onload = function () {
         // console.log(typeof($('#bpm').val()));
     });
 
-    $("#stopButton").click(function(){
+    $("#pauseButton").click(function(){
         MIDI.stopAll(playing_sources);
         window.clearInterval(play_timer);
-        // console.log("pause with: ", playing_notes);
         paused_time = MIDI.getContext().currentTime;
-        $("#stopButton").hide();
+        $("#pauseButton").hide();
         $("#playButton").show();
     });
 
-    // $("#pauseButton").click(function(){
-    //     MIDI.stopAll(playing_sources);
-    //     window.clearInterval(play_timer);
-    // })
+    $("#stopButton").click(function(){
+        MIDI.stopAll(playing_sources);
+        window.clearInterval(play_timer);
+        playing_notes = [];
+        $("#pauseButton").hide();
+        $("#playButton").show();
+    })
 };
 
 /*
@@ -64,8 +71,7 @@ function playChord(notes, delay, length){
     return source;
 }
 
-function checkPlayingList()
-{
+function checkPlayingList() {
     let currentTime = MIDI.getContext().currentTime;
 
     playing_notes = playing_notes.filter(note => note.start>=currentTime);
@@ -75,14 +81,13 @@ function checkPlayingList()
         window.clearInterval(play_timer);
 
         window.setTimeout(function(){
-            $("#stopButton").hide();
+            $("#pauseButton").hide();
             $("#playButton").show();
         }, 60/BPM*1000);
     }
 }
 
-function resumeMIDI()
-{
+function resumeMIDI() {
     let currentTime = MIDI.getContext().currentTime;
     let notes = playing_notes;
     playing_notes = [];
@@ -94,6 +99,7 @@ function resumeMIDI()
 }
 
 function playMIDI (units){
+    console.log(units);
     playing_sources = [];
     playing_notes = [];
 
