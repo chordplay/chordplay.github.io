@@ -8,16 +8,16 @@ $(document).ready(function(){
     var cancel2 = document.getElementById("cancel2");
 
 // When the user clicks on <span> (x), close the modal
-    cancel1.onclick = function() {
-        modal.style.display = "none";
+    cancel1.onclick = function() {1
+        modal1.style.display = "none";
         $("#importDiv").show();
     }
 
 	cancel2.onclick = function() {
-        modal.style.display = "none";
+        modal2.style.display = "none";
         $("#importDiv").show();
     }
-    
+
 // When the user clicks anywhere outside of the modal, close it
     window.onclick = function(event) {
         if (event.target == modal1) {

@@ -7,7 +7,6 @@ $(document).ready(function(){
             invertChord(value, 1);
             renderScore();
         });
-        selected_units.splice(0, selected_units.length);
 
         let modal = document.getElementById('myModal1');
         modal.style.display = "block";
