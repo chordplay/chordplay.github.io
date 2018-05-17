@@ -197,8 +197,6 @@ function updateSize(){
   $("#melody").width(importWidth);
 
   $("#tempTitle").width(scoreWidth);
-  $("#tempTitle").css("text-align", "center");
-  $("#tempTitle").css("font-size", "24px");
 
   $("#chordplayDiv").height(titleHeight);
   $("#chordplayDiv").width(titleWidth);

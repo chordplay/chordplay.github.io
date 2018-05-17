@@ -57,6 +57,7 @@ body{
   border-top: 2px solid #36393D;
   border-bottom: 2px solid #36393D;
   padding-left: 10px;
+  line-height: 13px;
   cursor : pointer;
 }
 .chordname{
@@ -89,6 +90,9 @@ body{
 	float: left;
 }
 
+.basetrees2{
+  float: left;
+}
 #rightDiv{
   flex-grow: 1;
 }
@@ -203,6 +207,26 @@ body{
   float: right;
 }
 
+#tempTitle{
+  padding-bottom: 50px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 40px;
+  font-weight: bolder;
+  text-align: center;
+}
+
+#bpmDiv{
+  padding-top: 30px;
+  padding-left: 100px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 25px;  
+}
+
+#bpm{
+  font-family: 'Roboto', sans-serif;
+  font-size: 25px; 
+}
+
 #scoreDiv{
   /* background-color: #e0edff; */
   overflow-y: auto;
@@ -216,6 +240,7 @@ body{
   background-color: #ffffff;
 }
 
+
 #lineImportDiv{
   border-bottom: 5px solid #979797;
   cursor: row-resize;
@@ -223,7 +248,9 @@ body{
 }
 
 #headerImport{
-	padding: 10px 15px 10px 15px;
+	padding: 15px 25px 15px 25px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 25px; 
 }
 
 #ghostbar{
@@ -327,7 +354,7 @@ img{
 	padding-top: 10px;
 	width: 405px;
 	float: left;
-    font-family: 'Roboto', sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 #subtitle{
 	font-weight: 100;
