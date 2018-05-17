@@ -59,13 +59,14 @@ body{
   padding-left: 10px;
   line-height: 13px;
   cursor : pointer;
+  line-height: 13px;
 }
 .chordname{
   vertical-align: middle;
   font-family: Roboto, sans-serif;
   color: #FFFFFF;
   font-size: 26px;
-  width: 180px;
+  width: 172px;
 }
 .deeptree{
   height: 65px;
