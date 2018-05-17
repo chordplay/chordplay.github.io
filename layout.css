@@ -411,6 +411,14 @@ img{
   object-fit: contain;
   margin-left: -110px;
 }
+
+.invert{
+  width: 261px;
+  height: 210px;
+  object-fit: contain;
+  margin-left: -80px;
+
+}
 #modal-body3 {
 	width: 300px;
 	float: right;
