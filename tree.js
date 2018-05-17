@@ -97,6 +97,8 @@ $(document).ready(function(){
     if (clickstate == false){
       chordname = $(this).attr('id');
       openDetails(chordname, trtemp);
+      $(this).children("img").attr("src", "img/closeTr.png");
+      $(this).children("img").attr("srcset", "img/closeTr@2x.png 2x, img/closeTr@3x.png 3x");
     }
     else{
       clickedchord = $(this).attr('id');
@@ -107,7 +109,10 @@ $(document).ready(function(){
       }
       else{
         closeDetails();
+        console.log(chordname);
       }
+      $(this).children("img").attr("src", "img/openTr.png");
+      $(this).children("img").attr("srcset", "img/openTr@2x.png 2x, img/openTr@3x.png 3x");
     }
     var index = match.indexOf(chordname);
     console.log(index);
