@@ -111,7 +111,7 @@ $(document).ready(function(){
     }
     var index = match.indexOf(chordname);
     console.log(index);
-    $("#chordtreeDiv").scrollTop(65*index);
+    $("#chordtreeDiv").scrollTop(69*index);
 
   });
   /* clicking for debug
