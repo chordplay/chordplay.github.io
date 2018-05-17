@@ -220,8 +220,6 @@ class Note {
         this.keys = keys;
         this.duration = duration;
         this.is_rest = is_rest;
-        this.hand = hand
-        //TODO add method to convert and add keys
     }
 
     changeDuration(duration){
