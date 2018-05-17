@@ -189,7 +189,7 @@ function updateSize(){
   $(".modal-header").width(mainWidth);
 
   $(".modal-body").width(mainWidth);
-  
+
 
   $("#headerImport").height(20);
 
@@ -216,6 +216,7 @@ function updateSize(){
 }
 
 function initSize(){
+  windowHeight = window.innerHeight;
   importHeight = Math.floor(windowHeight / 3) - 20;
   $("#importDiv").height(importHeight);
   updateSize();

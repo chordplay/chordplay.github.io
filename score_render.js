@@ -170,21 +170,22 @@ function dragStuff(){
   })
 }
 
-$("#chordText2").autocomplete({
+/*$("#chordText2").autocomplete({
   minLength: 1,
   source: ChordList,
   select: function(event, ui){
     console.log("second");
-    /*var chord = ui.item.value
+    var chord = ui.item.value
     $("#searchArea").val(ui.item.value);
     event.preventDefault();
     var index = score.length;
     addUnit();
     setChord(index, chord);
     renderScore();
-    document.getElementById("searchArea").value = "";*/
+    document.getElementById("searchArea").value = "";
   }
 })
+*/
 
 function autoCompletee(){
   $(function() {
@@ -210,6 +211,33 @@ function autoCompletee(){
         selected_units = [];
         menuUpdate();
       }
+    })
+    $(".chordText").keydown(function(event){
+      console.log(event.keyCode);
+      if(event.keyCode == 13) {
+        if($(this).val().length==0) {
+            event.preventDefault();
+            return false;
+        }
+        else{
+          //event.preventDefault();
+          var chord = $(this).val();
+          var id = $(this).attr("id")
+          console.log(id);
+          var index = id.replace("chordText", "");
+          window.setChord(index, chord);
+          renderScore();
+
+          if((score.length-1) == index){
+            addUnit();
+            renderScore();
+          }
+          //$(".ui-menu-item").hide();
+        }
+      }
+    })
+    $(".chordText").focusout(function(){
+      $(this).val(score[this.closest("div").id.replace("unit", "")*1].chord_name);
     })
   });
 }

@@ -114,7 +114,7 @@ $(document).ready(function(){
     $("#chordtreeDiv").scrollTop(65*index);
 
   });
-
+  /* clicking for debug
   $(document).on('click', '.deeptree', function(){
     var str = $(this).find("p").text();
     var chord=str.split(" (")[0];
@@ -128,7 +128,7 @@ $(document).ready(function(){
 
     closeDetails();
   })
-
+*/
   function openDetails(chordname, trtemp){
     $("<tr><td class='deeptree' id='" + chordname + "dim' draggable='true' ondragstart='dragChord(event)'> <p class='chordname'>"+chordname+"dim"+"</p></td></tr>").insertAfter(trtemp);
     $("<tr><td class='deeptree' id='" + chordname + "aug' draggable='true' ondragstart='dragChord(event)'> <p class='chordname'>"+chordname+"aug"+"</p></td></tr>").insertAfter(trtemp);
