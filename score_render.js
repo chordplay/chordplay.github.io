@@ -1,7 +1,6 @@
 var ChordList = ["C", "Cm", "C7", "Cm7", "CM7", "Csus4", "Caug", "Cdim",
       "C#", "C#m", "C#7", "C#m7", "C#M7", "C#sus4", "C#aug", "C#dim",
       "Db", "Dbm", "Db7", "Dbm7", "DbM7", "Dbsus4", "Dbaug", "Dbdim",
-
       "D", "Dm", "D7", "Dm7", "DM7", "Dsus4", "Daug", "Ddim",
       "D#", "D#m", "D#7", "D#m7", "D#M7", "D#sus4", "D#aug", "D#dim",
       "D#", "D#m", "D#7", "D#m7", "D#M7", "D#sus4", "D#aug", "D#dim",
@@ -17,7 +16,7 @@ var ChordList = ["C", "Cm", "C7", "Cm7", "CM7", "Csus4", "Caug", "Cdim",
     "A#", "A#m", "A#7", "A#m7", "A#M7", "A#sus4", "A#aug", "A#dim",
     "Bb", "Bbm", "Bb7", "Bbm7", "BbM7", "Bbsus4", "Bbaug", "Bbdim",
     "B", "Bm", "B7", "Bm7", "BM7", "Bsus4", "Baug", "Bdim",
-  ]
+  ];
 // renderer height = 223px
 // lineDiv height = 223+textbox height (auto)
 
@@ -211,31 +210,34 @@ function autoCompletee(){
         selected_units = [];
         menuUpdate();
       }
-    })
+    });
+
     $(".chordText").keydown(function(event){
-      console.log(event.keyCode);
-      if(event.keyCode == 13) {
-        if($(this).val().length==0) {
+      if(event.keyCode === 13) {
+        if($(this).val().length === 0) {
             event.preventDefault();
             return false;
-        }
-        else{
+        } else {
           //event.preventDefault();
           var chord = $(this).val();
-          var id = $(this).attr("id")
-          console.log(id);
+          var id = $(this).attr("id");
+          console.log(chord);
+          if(!ChordList.includes(chord)){
+            return false;
+          }
           var index = id.replace("chordText", "");
           window.setChord(index, chord);
           renderScore();
 
-          if((score.length-1) == index){
+          if((score.length-1) === index){
             addUnit();
             renderScore();
           }
           //$(".ui-menu-item").hide();
         }
       }
-    })
+    });
+
     $(".chordText").focusout(function(){
       $(this).val(score[this.closest("div").id.replace("unit", "")*1].chord_name);
     })
