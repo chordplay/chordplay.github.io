@@ -33,12 +33,10 @@ body{
   padding-top: 32;
   padding-down: 26;
 }
-/*
+
 #searchinput{
-  padding-left: 18;
-  padding-right: 18;
-  padding-down: 20;
-}*/
+  padding-left: 10px;
+}
 
 #searchArea{
   background-color: #FFFFFF;
@@ -49,7 +47,7 @@ body{
   border-right: none;
   border-bottom: solid #000000 1px;
   padding: 3px 10px;
-  width: 5em
+  width: 220px;
 }
 
 #treetitle{

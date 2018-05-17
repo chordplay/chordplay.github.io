@@ -31,6 +31,10 @@ $(document).ready(function () {
                 if ((score.length - 1) == index) {
                     addUnit();
                     renderScore();
+                    $("#chordText" + (score.length-1)).focus();
+                }
+                else{
+                  $("#chordText" + (index * 1 + 1)).focus();
                 }
             }
         }
@@ -54,7 +58,8 @@ $(document).ready(function () {
                     } else {
                         addUnit();
                         renderScore();
-                        $("#chordText" + (score.length - 1)).focus();
+                        console.log(score.length);
+                        $("#chordText" + (score.length-1)).focus();
                     }
                     selected_units = [];
                     menuUpdate();
@@ -64,8 +69,11 @@ $(document).ready(function () {
     });
 
     $(document).on("focusout", ".chordText", function(){
-        $(this).val(score[this.closest("div").id.replace("unit", "")*1].chord_name);
-        $(this).removeClass("focused");
+      let chord = score[this.closest("div").id.replace("unit", "")*1].chord_name;
+      if(chord != "rest"){
+        $(this).val(chord);
+      }
+      $(this).removeClass("focused");
     });
 
     $("#lineImportDiv").mousedown(function (e) {
