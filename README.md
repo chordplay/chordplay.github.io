@@ -7,48 +7,47 @@ engine.js contains the main backend data structures and functions. It manipulate
 function parseChord(chord)
 ```
 - Parses raw string *chord* into root note and chord elements. Returns notes of the chord.
-<br>
+
 ```javascript
 class Note
 ```
 - Saves a note. Contains keys, duration, is_rest and functions to modify them.
-<br>
+
 ```javascript
 class Unit
 ```
 - Represent a half bar that contains several Notes.
-<br>
 
 ```javascript
 function addUnit()
 ```
 - Add an empty(rest) unit at the end of the score.
-<br>
+
 ```javascript
 function insertUnit(index) 
 ```
 - Add an empty(rest) unit next to the Unit at score[index].
-<br>
+
 ```javascript
 function deleteUnit(index)
 ```
 - Delete the selected Unit at score[index]
-<br>
+
 ```javascript
 function setChord(index, chord_name)
 ```
 - Set chord of Unit score[index] to *chordname* (e.g. "C", "D", "F#", ...)
-<br>
+
 ```javascript
 function invertChord(index, variation)
 ```
 - Invert chord (e.g. [C,E,G] -> [E,G,C]) of Unit score[index]
-<br>
+
 ```javascript
 function changeRhythm(index, variation)
 ```
 - Change rhythm of Unit score[index].
-<br>
+
 ```javascript
 function deleteChord(index)
 ```
@@ -99,32 +98,31 @@ $("#pauseButton").click
 $("#stopButton").click
 ```
 - Click listeners for play, pause, stop menu buttons.
-<br>
+
 ```javascript
 function playChord(notes, delay, length)
 ```
 - Play chords with *notes*, *delay* and *length*.
-<br>
+
 ```javascript
 function checkPlayingList()
 ```
 - called repeatedly by setInterval. Check queue of notes that waits to play and remove played notes.
-<br>
+
 ```javascript
 function resumeMIDI()
 ```
 - Resume paused playing score.
-<br>
+
 ```javascript
 function playMIDI (units)
 ```
 - Play list of units.
-<br>
+
 ```javascript
 function playNote(note, delay)
 ```
 - Play a class Note.
-<br>
 
 ## modal.js
 
