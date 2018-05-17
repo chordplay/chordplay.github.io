@@ -28,8 +28,7 @@ $(document).ready(function () {
                 var index = id.replace("chordText", "");
                 window.setChord(index, chord);
                 renderScore();
-
-                if ((score.length - 1) === index) {
+                if ((score.length - 1) == index) {
                     addUnit();
                     renderScore();
                 }
