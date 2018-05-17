@@ -1,21 +1,28 @@
 .halfBar {
-  display: inline-block;
-  *display: inline;
-  vertical-align: top;
+    display: inline-block;
+    *display: inline;
+    vertical-align: top;
 }
 
-.chordText{
-  background-color: transparent;
-  outline: none;
-  outline-style: none;
-  border-top: none;
-  border-left: none;
-  border-right: none;
-  border-bottom: solid #000000 1px;
-  padding: 3px 10px;
-  width: 5em
+.chordText {
+    background-color: transparent;
+    outline: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: solid #000000 1px;
+    padding: 3px 10px;
+    width: 5em;
+    font-family: Roboto, sans-serif;
 }
 
-.barLine{
-  margin-bottom: 50px; /* to be adjusted */
+.barLine {
+    margin-bottom: 50px; /* to be adjusted */
+}
+
+.chordText.focused {
+    font-weight: bold;
+    color: dodgerblue;
+    border-color: dodgerblue;
+    border-width: medium;
 }

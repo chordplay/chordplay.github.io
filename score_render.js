@@ -95,7 +95,7 @@ function dragStuff(){
       }
 
       if(multiSelecting){
-        if(multiSelectEnd == -1){
+        if(multiSelectEnd === -1){
           multiSelectEnd = parseInt(this.id.replace("unit", ""), 10);
         }
         multiFirst = Math.min(multiSelectBegin, multiSelectEnd);
@@ -186,64 +186,6 @@ function dragStuff(){
 })
 */
 
-function autoCompletee(){
-  $(function() {
-    $( '.chordText').autocomplete({
-      source: ChordList,
-      select: function( event, ui ) {
-        var chord = ui.item.value;
-        var index = $(this).context.id.replace("chordText", "");
-        event.preventDefault();
-        console.log(index);
-        setChord(index, chord);
-        renderScore();
-
-        if(index*1 < score.length-1){
-          $("#chordText" + (index*1 +1)).focus();
-          console.log($("#chordText" + (index*1+1)));
-        }
-        else{
-          addUnit();
-          renderScore();
-          $("#chordText" + (score.length-1)).focus();
-        }
-        selected_units = [];
-        menuUpdate();
-      }
-    });
-
-    $(".chordText").keydown(function(event){
-      if(event.keyCode === 13) {
-        if($(this).val().length === 0) {
-            event.preventDefault();
-            return false;
-        } else {
-          //event.preventDefault();
-          var chord = $(this).val();
-          var id = $(this).attr("id");
-          console.log(chord);
-          if(!ChordList.includes(chord)){
-            return false;
-          }
-          var index = id.replace("chordText", "");
-          window.setChord(index, chord);
-          renderScore();
-
-          if((score.length-1) === index){
-            addUnit();
-            renderScore();
-          }
-          //$(".ui-menu-item").hide();
-        }
-      }
-    });
-
-    $(".chordText").focusout(function(){
-      $(this).val(score[this.closest("div").id.replace("unit", "")*1].chord_name);
-    })
-  });
-}
-
 function renderScore(){
   var lineWidth = Math.floor(scoreWidth * 9/10);
   var lineMargin = Math.floor((scoreWidth - lineWidth) / 2);
@@ -279,13 +221,13 @@ function renderScore(){
         rendererWidth = firstUnitWidth;
         if(selected_units.includes(""+numScore)){
           $("#barLine"+line).append("<div class='firstUnit halfBar selectedBar' id='unit"+ numScore +"' select='true' ondragover='allowDrop(event)' ondrop='dropChord(event)' ondragleave='dragLeave(event)'> </div>");
-          $("#unit"+numScore).append("<input type='text' class='chordText firstText' id='chordText"+ numScore +"' onFocus ='autoCompletee()' />");
+          $("#unit"+numScore).append("<input type='text' class='chordText firstText' id='chordText"+ numScore +"' />");
           $("#unit"+numScore).append("<div class='firstUnit' id='renderDiv"+ numScore +"'></div>");
 
         }
         else{
           $("#barLine"+line).append("<div class='firstUnit halfBar' id='unit"+ numScore +"' select='false' ondragover='allowDrop(event)' ondrop='dropChord(event)' ondragleave='dragLeave(event)'> </div>");
-          $("#unit"+numScore).append("<input type='text' class='chordText firstText' id='chordText"+ numScore +"' onFocus ='autoCompletee()' />");
+          $("#unit"+numScore).append("<input type='text' class='chordText firstText' id='chordText"+ numScore +"' />");
           $("#unit"+numScore).append("<div class='firstUnit' id='renderDiv"+ numScore +"'></div>");
 
         }
@@ -294,13 +236,13 @@ function renderScore(){
         rendererWidth = restUnitWidth;
         if(selected_units.includes(""+numScore)){
           $("#barLine"+line).append("<div class='restUnit halfBar selectedBar' id='unit"+ numScore +"' select='true' ondragover='allowDrop(event)' ondrop='dropChord(event)' ondragleave='dragLeave(event)'></div>");
-          $("#unit"+numScore).append("<input type='text' class='chordText' id='chordText"+ numScore +"' onFocus ='autoCompletee()' />");
+          $("#unit"+numScore).append("<input type='text' class='chordText' id='chordText"+ numScore +"' />");
           $("#unit"+numScore).append("<div class='restUnit' id='renderDiv"+ numScore +"'></div>");
 
         }
         else{
           $("#barLine"+line).append("<div class='restUnit halfBar' id='unit"+ numScore +"' select='false' ondragover='allowDrop(event)' ondrop='dropChord(event)' ondragleave='dragLeave(event)'></div>");
-          $("#unit"+numScore).append("<input type='text' class='chordText' id='chordText"+ numScore +"' onFocus ='autoCompletee()' />");
+          $("#unit"+numScore).append("<input type='text' class='chordText' id='chordText"+ numScore +"' />");
           $("#unit"+numScore).append("<div class='restUnit' id='renderDiv"+ numScore +"'></div>");
 
         }

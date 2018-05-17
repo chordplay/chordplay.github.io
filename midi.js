@@ -33,8 +33,6 @@ window.onload = function () {
                 }
             }
         });
-        // console.log);
-        // console.log(typeof($('#bpm').val()));
     });
 
     $("#pauseButton").click(function(){
