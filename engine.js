@@ -159,7 +159,7 @@ class Unit {
           this.inversion = "1";
         }
         else{
-          this.left = [new Note([basenode2, basenode1], "h", false, "left")];
+          this.left = [new Note([basenode2, basenode1], "qd", false, "left"), new Note([basenode1], "8", false, "left")];
           this.right = [new Note(notes, "q", false, "right"), new Note(notes, "8", false, "right"), new Note([notes[1]], "16", false, "right"), new Note([notes[0]], "16", false, "right")];
           this.inversion = "2"
         }
@@ -206,7 +206,7 @@ class Unit {
           this.rhythm = "1";
         }
         else{
-          this.left = [new Note([basenode2, basenode1], "h", false, "left")];
+          this.left = [new Note([basenode2, basenode1], "qd", false, "left"), new Note([basenode1], "8", false, "left")];
           this.right = [new Note(notes, "q", false, "right"), new Note(notes, "8", false, "right"), new Note([notes[1]], "16", false, "right"), new Note([notes[0]], "16", false, "right")];
           this.rhythm = "2";
         }
