@@ -95,7 +95,7 @@ function updateSize(){
   scoreWidth = mainWidth;
   scoreHeight = windowHeight - menuHeight - importHeight;
 
-  titleHeight = 173
+  titleHeight = 180
   titleWidth = libraryWidth;
   treeHeight = libraryHeight - titleHeight;
 
@@ -234,7 +234,7 @@ function initSize(){
   scoreWidth = mainWidth;
   scoreHeight = windowHeight - menuHeight - importHeight;
 
-  titleHeight = 173
+  titleHeight = 180
   titleWidth = libraryWidth;
   treeHeight = libraryHeight - titleHeight;
 

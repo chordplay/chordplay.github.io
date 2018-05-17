@@ -9,12 +9,12 @@ $(document).ready(function(){
 
 // When the user clicks on <span> (x), close the modal
     cancel1.onclick = function() {
-        modal.style.display = "none";
+        modal1.style.display = "none";
         $("#importDiv").show();
     }
 
 	cancel2.onclick = function() {
-        modal.style.display = "none";
+        modal2.style.display = "none";
         $("#importDiv").show();
     }
     
