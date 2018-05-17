@@ -135,19 +135,31 @@ $(document).ready(function(){
   })
 */
   function openDetails(chordname, trtemp){
-    $("<tr><td class='deeptree' id='" + chordname + "dim' draggable='true' ondragstart='dragChord(event)'> <p class='chordname'>"+chordname+"dim"+"</p></td></tr>").insertAfter(trtemp);
-    $("<tr><td class='deeptree' id='" + chordname + "aug' draggable='true' ondragstart='dragChord(event)'> <p class='chordname'>"+chordname+"aug"+"</p></td></tr>").insertAfter(trtemp);
-    $("<tr><td class='deeptree' id='" + chordname + "sus4' draggable='true' ondragstart='dragChord(event)'> <p class='chordname'>"+chordname+"sus4"+"</p></td></tr>").insertAfter(trtemp);
-    $("<tr><td class='deeptree' id='" + chordname + "M7' draggable='true' ondragstart='dragChord(event)'> <p class='chordname'>"+chordname+"M7"+"</p></td></tr>").insertAfter(trtemp);
-    $("<tr><td class='deeptree' id='" + chordname + "m7' draggable='true' ondragstart='dragChord(event)'> <p class='chordname'>"+chordname+"m7"+"</p></td></tr>").insertAfter(trtemp);
-    $("<tr><td class='deeptree' id='" + chordname + "7' draggable='true' ondragstart='dragChord(event)'> <p class='chordname'>"+chordname+"7"+"</p></td></tr>").insertAfter(trtemp);
-    $("<tr><td class='deeptree' id='" + chordname + "m' draggable='true' ondragstart='dragChord(event)'> <p class='chordname'>"+chordname+"m"+"</p></td></tr>").insertAfter(trtemp);
-    $("<tr><td class='deeptree' id='" + chordname + " (major)' draggable='true' ondragstart='dragChord(event)'> <p class='chordname'>"+chordname+" (major)"+"</p></td></tr>").insertAfter(trtemp);
+    $("<tr><td class='deeptree' id='" + chordname + "dim' draggable='true' ondragstart='dragChord(event)'> <p class='chordname basetrees'>"+chordname+"dim"+"</p> <img src='img/empty.png' srcset='img/empty@2x.png 2x, img/empty@3x.png 3x' class='dragaffordance basetrees'> <img hidden src='img/draggable.png' srcset='img/draggable@2x.png 2x, img/draggable@3x.png 3x' class='dragaffordance2 basetrees'></td></tr>").insertAfter(trtemp);
+    $("<tr><td class='deeptree' id='" + chordname + "aug' draggable='true' ondragstart='dragChord(event)'> <p class='chordname basetrees'>"+chordname+"aug"+"</p> <img src='img/empty.png' srcset='img/empty@2x.png 2x, img/empty@3x.png 3x' class='dragaffordance basetrees'> <img hidden src='img/draggable.png' srcset='img/draggable@2x.png 2x, img/draggable@3x.png 3x' class='dragaffordance2 basetrees'></td></tr>").insertAfter(trtemp);
+    $("<tr><td class='deeptree' id='" + chordname + "sus4' draggable='true' ondragstart='dragChord(event)'> <p class='chordname basetrees'>"+chordname+"sus4"+"</p> <img src='img/empty.png' srcset='img/empty@2x.png 2x, img/empty@3x.png 3x' class='dragaffordance basetrees'> <img hidden src='img/draggable.png' srcset='img/draggable@2x.png 2x, img/draggable@3x.png 3x' class='dragaffordance2 basetrees'></td></tr>").insertAfter(trtemp);
+    $("<tr><td class='deeptree' id='" + chordname + "M7' draggable='true' ondragstart='dragChord(event)'> <p class='chordname basetrees'>"+chordname+"M7"+"</p> <img src='img/empty.png' srcset='img/empty@2x.png 2x, img/empty@3x.png 3x' class='dragaffordance basetrees'> <img hidden src='img/draggable.png' srcset='img/draggable@2x.png 2x, img/draggable@3x.png 3x' class='dragaffordance2 basetrees'></td></tr>").insertAfter(trtemp);
+    $("<tr><td class='deeptree' id='" + chordname + "m7' draggable='true' ondragstart='dragChord(event)'> <p class='chordname basetrees'>"+chordname+"m7"+"</p> <img src='img/empty.png' srcset='img/empty@2x.png 2x, img/empty@3x.png 3x' class='dragaffordance basetrees'> <img hidden src='img/draggable.png' srcset='img/draggable@2x.png 2x, img/draggable@3x.png 3x' class='dragaffordance2 basetrees'> </td></tr>").insertAfter(trtemp);
+    $("<tr><td class='deeptree' id='" + chordname + "7' draggable='true' ondragstart='dragChord(event)'> <p class='chordname basetrees'>"+chordname+"7"+"</p> <img src='img/empty.png' srcset='img/empty@2x.png 2x, img/empty@3x.png 3x' class='dragaffordance basetrees'> <img hidden src='img/draggable.png' srcset='img/draggable@2x.png 2x, img/draggable@3x.png 3x' class='dragaffordance2 basetrees'> </td></tr>").insertAfter(trtemp);
+    $("<tr><td class='deeptree' id='" + chordname + "m' draggable='true' ondragstart='dragChord(event)'> <p class='chordname basetrees'>"+chordname+"m"+"</p> <img src='img/empty.png' srcset='img/empty@2x.png 2x, img/empty@3x.png 3x' class='dragaffordance basetrees'> <img hidden src='img/draggable.png' srcset='img/draggable@2x.png 2x, img/draggable@3x.png 3x' class='dragaffordance2 basetrees'> </td></tr>").insertAfter(trtemp);
+    $("<tr><td class='deeptree' id='" + chordname + " (major)' draggable='true' ondragstart='dragChord(event)'> <p class='chordname basetrees'>"+chordname+" (major)"+"</p> <img src='img/empty.png' srcset='img/empty@2x.png 2x, img/empty@3x.png 3x' class='dragaffordance basetrees'><img hidden src='img/draggable.png' srcset='img/draggable@2x.png 2x, img/draggable@3x.png 3x' class='dragaffordance2 basetrees'> </td></tr>").insertAfter(trtemp);
 
     clickstate = true;
-
   }
 
+  $(document).on("mouseenter", ".deeptree", function(){
+    console.log($(this));
+    $(this).children("img").attr("src", "img/draggable.png");
+    $(this).children("img").attr("srcset","img/draggable@2x.png 2x, img/draggable@3x.png 3x")
+
+
+  })
+  $(document).on("mouseleave", ".deeptree", function(){
+    console.log($(this));
+    $(this).children("img").attr("src", "img/empty.png");
+    $(this).children("img").attr("srcset","img/empty@2x.png 2x, img/empty@3x.png 3x")
+
+  })
   function closeDetails(){
     $(".deeptree").closest("tr").remove();
     clickstate = false;

@@ -33,11 +33,25 @@ body{
   padding-top: 32;
   padding-down: 26;
 }
+/*
 #searchinput{
   padding-left: 18;
   padding-right: 18;
   padding-down: 20;
+}*/
+
+#searchArea{
+  background-color: #FFFFFF;
+  outline: none;
+  outline-style: none;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: solid #000000 1px;
+  padding: 3px 10px;
+  width: 5em
 }
+
 #treetitle{
 
 }
@@ -75,6 +89,7 @@ body{
   border-bottom: 2px solid #484B4E;
   padding-left: 10px;
   cursor: -webkit-grab;
+  line-height: 13px;
 }
 
 .triangle {
@@ -83,6 +98,16 @@ body{
   object-fit: contain;
 }
 
+.dragaffordance{
+  width: 40px;
+  height: 65px;
+  object-fit: contain;
+}
+.dragaffordance2{
+  width: 40px;
+  height: 65px;
+  object-fit: contain;
+}
 .triangleDiv {
 	height: 100%;
 }
@@ -220,12 +245,12 @@ body{
   padding-top: 30px;
   padding-left: 100px;
   font-family: 'Roboto', sans-serif;
-  font-size: 25px;  
+  font-size: 25px;
 }
 
 #bpm{
   font-family: 'Roboto', sans-serif;
-  font-size: 25px; 
+  font-size: 25px;
 }
 
 #scoreDiv{
@@ -251,7 +276,7 @@ body{
 #headerImport{
 	padding: 15px 25px 15px 25px;
   font-family: 'Roboto', sans-serif;
-  font-size: 25px; 
+  font-size: 25px;
 }
 
 #ghostbar{
