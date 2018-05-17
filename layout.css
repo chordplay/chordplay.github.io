@@ -33,11 +33,25 @@ body{
   padding-top: 32;
   padding-down: 26;
 }
+/*
 #searchinput{
   padding-left: 18;
   padding-right: 18;
   padding-down: 20;
+}*/
+
+#searchArea{
+  background-color: #FFFFFF;
+  outline: none;
+  outline-style: none;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: solid #000000 1px;
+  padding: 3px 10px;
+  width: 5em
 }
+
 #treetitle{
 
 }
@@ -65,7 +79,7 @@ body{
   font-family: Roboto, sans-serif;
   color: #FFFFFF;
   font-size: 26px;
-  width: 180px;
+  width: 170px;
 }
 .deeptree{
   height: 65px;
@@ -74,6 +88,7 @@ body{
   border-bottom: 2px solid #484B4E;
   padding-left: 10px;
   cursor: -webkit-grab;
+  line-height: 13px;
 }
 
 .triangle {
@@ -82,6 +97,16 @@ body{
   object-fit: contain;
 }
 
+.dragaffordance{
+  width: 40px;
+  height: 65px;
+  object-fit: contain;
+}
+.dragaffordance2{
+  width: 40px;
+  height: 65px;
+  object-fit: contain;
+}
 .triangleDiv {
 	height: 100%;
 }
