@@ -156,7 +156,9 @@ function dragChord(ev){
 
 function allowDrop(ev){
   ev.preventDefault();
-  console.log("ALLOWDROP");
+  let index = ev.target.closest('.halfBar').id.replace("unit","") * 1;
+  $("#unit"+index).css("background-color", "#F6F6F6");
+  console.log(index);
 }
 
 function dropChord(ev){
@@ -166,5 +168,11 @@ function dropChord(ev){
   setChord(index, chordName);
   renderScore();
   $("#chordText"+index).val(chordName);
+}
 
+function dragLeave(ev){
+  ev.preventDefault();
+  let index = ev.target.closest('.halfBar').id.replace("unit","") * 1;
+  $("#unit"+index).css("background-color", "");
+  console.log(index);
 }

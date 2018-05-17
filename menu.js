@@ -2,19 +2,17 @@ $(document).ready(function(){
 
     $("#invertChordButton").click(function(){
         //var index = score.length;
+        $("#inversion0").prop('checked', true);
         console.log("invert");
-        selected_units.forEach(function(value){
-            invertChord(value, 1);
-            renderScore();
-        });
-        selected_units.splice(0, selected_units.length);
-
         let modal = document.getElementById('myModal1');
         modal.style.display = "block";
         $("#importDiv").hide();
     });
 
     $("#changeRhythmButton").click(function(){
+        $("#rhythm0").prop('checked', true);
+        console.log("change rhythm");
+
         let modal = document.getElementById('myModal2');
         modal.style.display = "block";
         $("#importDiv").hide();
@@ -41,9 +39,9 @@ $(document).ready(function(){
             selected_units.forEach(function(value){
                 deleteChord(value);
             });
-            renderScore();
             selected_units.splice(0, selected_units.length);
         }
+        renderScore();
         menuUpdate();
     });
 
