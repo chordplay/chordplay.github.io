@@ -29,7 +29,6 @@ $(document).ready(function(){
                 console.log(value*1+1);
             });
             renderScore();
-            selected_units.splice(0, selected_units.length);
         }
     });
 
@@ -39,7 +38,6 @@ $(document).ready(function(){
             selected_units.forEach(function(value){
                 deleteChord(value);
             });
-            selected_units.splice(0, selected_units.length);
         }
         renderScore();
         menuUpdate();
@@ -53,17 +51,17 @@ $(document).ready(function(){
             selected_units.forEach(function(value){
                 deleteUnit(value);
             });
-            renderScore();
         }
         selected_units.splice(0, selected_units.length);
+        renderScore();
         menuUpdate();
     });
 
     $("#addBarsButton").click(function(){
         addUnit();
-        renderScore();
         $("#scoreDiv").scrollTop($("#scoreDiv").prop("scrollHeight"));
         selected_units.splice(0, selected_units.length);
+        renderScore();
         menuUpdate();
     });
 });
