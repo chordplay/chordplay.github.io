@@ -145,8 +145,8 @@
             <div class="modal-bodys" id ="modal-body2">
               <div class="modal-bodys2">
                   <label class="container">Neutral
-                    <input type="radio" checked="checked" name="radio">
-                    <span class="checkmark"></span> 
+                    <input type="radio" checked="checked" name="radio" value=0 class="inversionset" id="inversion0">
+                    <span class="checkmark"></span>
                     <div>
                       <img src="img/rhythm/neutral.png" srcset="img/rhythm/neutral@2x.png 2x, img/rhythm/neutral@3x.png 3x" class="rhythm" >
                     </div>
@@ -154,31 +154,31 @@
               </div>
               <div class="modal-bodys2">
                 <label class="container">1st inversion
-                  <input type="radio" name="radio">
+                  <input type="radio" name="radio" value=1 class="inversionset" id="inversion1">
                   <span class="checkmark"></span>
                   <div>
                     <img src="img/rhythm/smooth.png" srcset="img/rhythm/smooth@2x.png 2x, img/rhythm/smooth@3x.png 3x" class="rhythm" >
-                  </div>                  
+                  </div>
                 </label>
               </div>
               <div class="modal-bodys2">
                 <label class="container">2nd inversion
-                  <input type="radio" name="radio">
+                  <input type="radio" name="radio" value=2 class="inversionset" id="inversion2">
                   <span class="checkmark"></span>
                   <div>
                     <img src="img/rhythm/energetic.png" srcset="img/rhythm/energetic@2x.png 2x, img/rhythm/energetic@3x.png 3x" class="rhythm" >
                   </div>
                 </label>
-              </div>          
+              </div>
              </div>
             <div class="modal-bodys" id ="modal-body3">
               <div class="modal-bodys3">
-                <img src="img/apply.png" srcset="img/apply@2x.png 2x, img/apply@3x.png 3x" class="modalButton" >
+                <img src="img/apply.png" srcset="img/apply@2x.png 2x, img/apply@3x.png 3x" class="modalButton" id="select1">
               </div>
               <div class="modal-bodys3">
                 <img src="img/cancel.png" srcset="img/cancel@2x.png 2x, img/cancel@3x.png 3x" class="modalButton" id="cancel1">
               </div>
-            </div>           
+            </div>
            </div>
         </div>
       </div>
@@ -196,8 +196,8 @@
             <div class="modal-bodys" id ="modal-body2">
               <div class="modal-bodys2">
                   <label class="container">Neutral
-                    <input type="radio" checked="checked" name="radio">
-                    <span class="checkmark"></span> 
+                    <input type="radio" checked="checked" name="radio" value=0 class=rhythmset id=rhythm0>
+                    <span class="checkmark"></span>
                     <div>
                       <img src="img/rhythm/neutral.png" srcset="img/rhythm/neutral@2x.png 2x, img/rhythm/neutral@3x.png 3x" class="rhythm" >
                     </div>
@@ -205,31 +205,31 @@
               </div>
               <div class="modal-bodys2">
                 <label class="container">Smooth
-                  <input type="radio" name="radio">
+                  <input type="radio" name="radio" value=1 class=rhythmset id=rhythm1>
                   <span class="checkmark"></span>
                   <div>
                     <img src="img/rhythm/smooth.png" srcset="img/rhythm/smooth@2x.png 2x, img/rhythm/smooth@3x.png 3x" class="rhythm" >
-                  </div>                  
+                  </div>
                 </label>
               </div>
               <div class="modal-bodys2">
                 <label class="container">Energetic
-                  <input type="radio" name="radio">
+                  <input type="radio" name="radio"value=2 class=rhythmset id=rhythm2>
                   <span class="checkmark"></span>
                   <div>
                     <img src="img/rhythm/energetic.png" srcset="img/rhythm/energetic@2x.png 2x, img/rhythm/energetic@3x.png 3x" class="rhythm" >
                   </div>
                 </label>
-              </div>          
+              </div>
              </div>
             <div class="modal-bodys" id ="modal-body3">
               <div class="modal-bodys3">
-                <img src="img/apply.png" srcset="img/apply@2x.png 2x, img/apply@3x.png 3x" class="modalButton" >
+                <img src="img/apply.png" srcset="img/apply@2x.png 2x, img/apply@3x.png 3x" class="modalButton" id="select2">
               </div>
               <div class="modal-bodys3">
                 <img src="img/cancel.png" srcset="img/cancel@2x.png 2x, img/cancel@3x.png 3x" class="modalButton" id="cancel2">
               </div>
-            </div>           
+            </div>
            </div>
         </div>
       </div>
@@ -247,12 +247,14 @@
         <div id="buttonDiv" class ="menuDiv2">
 
           <img src="img/menu/play.png" srcset="img/menu/play@2x.png 2x, img/menu/play@3x.png 3x" class="menubutton enabled" id="playButton">
-          <img hidden src="img/menu/stop.png" srcset="img/menu/stop@2x.png 2x, img/menu/stop@3x.png 3x" class="menubutton enabled" id="stopButton">
+          <img hidden src="img/menu/pause.png" srcset="img/menu/pause@2x.png 2x, img/menu/pause@3x.png 3x" class="menubutton enabled" id="pauseButton">
+          <img src="img/menu/stop.png" srcset="img/menu/stop@2x.png 2x, img/menu/stop@3x.png 3x" class="menubutton enabled" id="stopButton">
+
 
 
           <img hidden src="img/menu/invertChords.png" srcset="img/menu/invertChords@2x.png 2x, img/menu/invertChords@3x.png 3x" class="menubutton enabled" id="invertChordButton">
           <img src="img/menu/invertChords2.png" srcset="img/menu/invertChords2@2x.png 2x, img/menu/invertChords2@3x.png 3x" class="menubutton" id="invertChordButton2">
-          
+
           <img hidden src="img/menu/changeRhythm.png" srcset="img/menu/changeRhythm@2x.png 2x, img/menu/changeRhythm@3x.png 3x" class="menubutton enabled" id="changeRhythmButton">
           <img src="img/menu/changeRhythm2.png" srcset="img/menu/changeRhythm2@2x.png 2x, img/menu/changeRhythm2@3x.png 3x" class="menubutton" id="changeRhythmButton2">
 
