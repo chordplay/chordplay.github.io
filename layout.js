@@ -97,9 +97,7 @@ $(document).ready(function () {
     });
 
     addUnit();
-    addUnit();
-    addUnit();
-    addUnit();
+
     /*
     addUnit();
     addUnit();
@@ -112,9 +110,7 @@ $(document).ready(function () {
   */
 
     setChord(0, "C");
-    setChord(1, "F");
-    setChord(2, "G");
-    setChord(3, "C");
+
     /*
       setChord(4, "C");
       setChord(5, "C");
@@ -143,7 +139,7 @@ function updateSize() {
     windowWidth = window.innerWidth;
     windowHeight = window.innerHeight;
 
-    libraryWidth = 240;
+    libraryWidth = 244;
     libraryHeight = windowHeight;
 
     mainWidth = windowWidth - libraryWidth;
