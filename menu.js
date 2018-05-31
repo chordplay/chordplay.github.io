@@ -19,7 +19,7 @@ $(document).ready(function(){
     });
 
     $("#insertBarAfterButton").click(function(){
-        if(selected_units.length != 0){
+        if(selected_units.length !== 0){
             selected_units.sort(function (a,b){
                 return b-a;
             });
@@ -33,32 +33,23 @@ $(document).ready(function(){
     });
 
     $("#deleteChordsButton").click(function(){
-        if(selected_units.length != 0){
-
-            selected_units.forEach(function(value){
-                deleteChord(value);
-            });
-        }
+        if(selected_units.length === 0)
+            return;
+        deleteChords();
         renderScore();
         menuUpdate();
     });
 
     $("#deleteBarsButton").click(function(){
-        if(selected_units.length != 0){
-            selected_units.sort(function (a,b){
-                return b-a;
-            });
-            selected_units.forEach(function(value){
-                deleteUnit(value);
-            });
+        if(selected_units.length !== 0){
+            deleteUnits();
         }
-        selected_units.splice(0, selected_units.length);
         renderScore();
         menuUpdate();
     });
 
     $("#addBarsButton").click(function(){
-        addUnit();
+        addUnits();
         $("#scoreDiv").scrollTop($("#scoreDiv").prop("scrollHeight"));
         selected_units.splice(0, selected_units.length);
         renderScore();

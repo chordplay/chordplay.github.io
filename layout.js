@@ -14,19 +14,21 @@ $(document).ready(function () {
     document.getElementById('files').addEventListener('change', handleFileSelect, false);
 
     $(document).on("keydown", ".chordText", function (event) {
+        event.stopPropagation();
         if (event.keyCode === 13) {
             if ($(this).val().length === 0) {
                 event.preventDefault();
                 return false;
             } else {
-                var chord = $(this).val();
-                var id = $(this).attr("id");
+                const chord = $(this).val();
+                let id = $(this).attr("id");
                 console.log(chord);
                 if (!ChordList.includes(chord)) {
                     return false;
                 }
-                var index = id.replace("chordText", "");
-                window.setChord(index, chord);
+                let index = id.replace("chordText", "");
+                console.log(typeof index);
+                setChord(index, chord);
                 renderScore();
                 if ((score.length - 1) == index) {
                     addUnit();
@@ -37,6 +39,13 @@ $(document).ready(function () {
                   $("#chordText" + (index * 1 + 1)).focus();
                 }
             }
+        }
+    });
+
+    $(document).on("keydown", function(e){
+        let evtobj = window.event? event : e;
+        if (evtobj.keyCode === 90 && evtobj.ctrlKey){
+            undo();
         }
     });
 
@@ -97,19 +106,11 @@ $(document).ready(function () {
     });
 
     addUnit();
+    addUnit();
+    addUnit();
+    addUnit();
 
-    /*
-    addUnit();
-    addUnit();
-    addUnit();
-    addUnit();
-    addUnit();
-    addUnit();
-    addUnit();
-    addUnit();
-  */
-
-    setChord(0, "C");
+    //setChord(0, "C");
 
     /*
       setChord(4, "C");
@@ -154,7 +155,7 @@ function updateSize() {
     scoreWidth = mainWidth;
     scoreHeight = windowHeight - menuHeight - importHeight;
 
-    titleHeight = 180
+    titleHeight = 180;
     titleWidth = libraryWidth;
     treeHeight = libraryHeight - titleHeight;
 
@@ -282,23 +283,23 @@ function initSize() {
 }
 
 function handleFileSelect(evt) {
-    var files = evt.target.files; // FileList object
+    let files = evt.target.files; // FileList object
 
     // Loop through the FileList and render image files as thumbnails.
-    for (var i = 0, f; f = files[i]; i++) {
+    for (let i = 0, f; f = files[i]; i++) {
 
         // Only process image files.
         if (!f.type.match('image.*')) {
             continue;
         }
 
-        var reader = new FileReader();
+        let reader = new FileReader();
 
         // Closure to capture the file information.
         reader.onload = (function (theFile) {
             return function (e) {
                 // Render thumbnail.
-                var div = document.createElement('div');
+                let div = document.createElement('div');
 
                 div.innerHTML = ['<img class="thumb" src="', e.target.result,
                     '" title="', escape(theFile.name), '"/>'].join('');
@@ -313,7 +314,7 @@ function handleFileSelect(evt) {
 
 function menuUpdate() {
     let len = selected_units.length;
-    if (len == 0) {
+    if (len === 0) {
         $("#invertChordButton").hide();
         $("#invertChordButton2").show();
 
@@ -333,7 +334,7 @@ function menuUpdate() {
         $("#selectedText").text("0 selected");
         $("#noselect").show();
         $("#selected").hide();
-    } else if (len == 1) {
+    } else if (len === 1) {
         $("#invertChordButton2").hide();
         $("#invertChordButton").show();
 
