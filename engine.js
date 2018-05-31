@@ -285,7 +285,20 @@ function insertUnit(index) { //insert a new empty unit to score with index
     undo_list.push(action);
 }
 
+function checkAllRest(){
+    let ret = true;
+    selected_units.forEach(function (index) {
+       if(score[index]['chord_name'] != 'rest'){
+           ret = false;
+       }
+    });
+    return ret;
+}
+
 function deleteUnits(){
+    if(selected_units.length === 0)
+        return;
+
     let units = [];
     selected_units.sort((a, b) => b-a);
     selected_units.forEach(function(index){ //from back to front
@@ -300,6 +313,30 @@ function deleteUnits(){
 
     undo_list.push(action);
     selected_units = [];
+
+    renderScore();
+    menuUpdate();
+}
+
+function deleteChords() {
+    if(selected_units.length === 0)
+        return;
+
+    let units=[];
+    selected_units.forEach(function(index){
+        let unit = Object.assign(Object.create( Object.getPrototypeOf(score[index])), score[index]);
+        //copy instance of score[index]
+        units.push({index: index*1, unit: unit});
+        score[index].deleteChord();
+    });
+    let action = {
+        action: 'set_units',
+        units: units
+    };
+    undo_list.push(action);
+
+    renderScore();
+    menuUpdate();
 }
 
 function setChord(index, chord_name) {
@@ -332,20 +369,6 @@ function changeRhythms(variation) {
         let unit = Object.assign(Object.create( Object.getPrototypeOf(score[index])), score[index]);
         units.push({index: index*1, unit: unit});
         score[index].changeRhythm(variation);
-    });
-    let action = {
-        action: 'set_units',
-        units: units
-    };
-    undo_list.push(action);
-}
-
-function deleteChords() {
-    let units=[];
-    selected_units.forEach(function(index){
-        let unit = Object.assign(Object.create( Object.getPrototypeOf(score[index])), score[index]);
-        units.push({index: index*1, unit: unit});
-        score[index].deleteChord();
     });
     let action = {
         action: 'set_units',

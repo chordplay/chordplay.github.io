@@ -33,19 +33,11 @@ $(document).ready(function(){
     });
 
     $("#deleteChordsButton").click(function(){
-        if(selected_units.length === 0)
-            return;
         deleteChords();
-        renderScore();
-        menuUpdate();
     });
 
     $("#deleteBarsButton").click(function(){
-        if(selected_units.length !== 0){
-            deleteUnits();
-        }
-        renderScore();
-        menuUpdate();
+        deleteUnits();
     });
 
     $("#addBarsButton").click(function(){

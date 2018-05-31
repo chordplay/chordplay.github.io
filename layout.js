@@ -13,6 +13,8 @@ $(document).ready(function () {
 
     document.getElementById('files').addEventListener('change', handleFileSelect, false);
 
+    let fired = false;
+
     $(document).on("keydown", ".chordText", function (event) {
         event.stopPropagation();
         if (event.keyCode === 13) {
@@ -44,9 +46,23 @@ $(document).ready(function () {
 
     $(document).on("keydown", function(e){
         let evtobj = window.event? event : e;
+        if(fired)
+            return;
         if (evtobj.keyCode === 90 && evtobj.ctrlKey){
             undo();
+            fired = true;
+        } else if (evtobj.keyCode === 46){ //delete key
+            if(checkAllRest()){
+                deleteUnits();
+            } else {
+                deleteChords();
+            }
+            fired = true;
         }
+    });
+
+    $(document).on("keyup", function () {
+        fired = false;
     });
 
     $(document).on("focusin", ".chordText", function () {
