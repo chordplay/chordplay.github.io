@@ -25,6 +25,7 @@ $(document).ready(function(){
 
   var clickstate = false;
   var chordname;
+  var openChord;
   var trtemp;
 
   $("#searchArea").autocomplete({
@@ -103,6 +104,8 @@ $(document).ready(function(){
     else{
       clickedchord = $(this).attr('id');
       if(chordname != clickedchord){
+        $(".basetree").children("img").attr("src", "img/closeTr.png");
+        $(".basetree").children("img").attr("srcset", "img/closeTr@2x.png 2x, img/closeTr@3x.png 3x");
         closeDetails();
         openDetails(clickedchord, trtemp);
         chordname = clickedchord;
@@ -145,6 +148,7 @@ $(document).ready(function(){
     $("<tr><td class='deeptree' id='" + chordname + " (major)' draggable='true' ondragstart='dragChord(event)'> <p class='chordname basetrees'>"+chordname+" (major)"+"</p> <img src='img/empty.png' srcset='img/empty@2x.png 2x, img/empty@3x.png 3x' class='dragaffordance basetrees'><img hidden src='img/draggable.png' srcset='img/draggable@2x.png 2x, img/draggable@3x.png 3x' class='dragaffordance2 basetrees'> </td></tr>").insertAfter(trtemp);
     $('img').attr('draggable', 'false');
     clickstate = true;
+    openChord = chordname;
   }
 
   $(document).on("mouseenter", ".deeptree", function(){
