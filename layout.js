@@ -315,11 +315,16 @@ function handleFileSelect(evt) {
         reader.onload = (function (theFile) {
             return function (e) {
                 // Render thumbnail.
+                let output = document.getElementById('list');
+                if(output.firstChild) {
+                  output.removeChild(output.firstChild);
+                }
                 let div = document.createElement('div');
 
                 div.innerHTML = ['<img class="thumb" src="', e.target.result,
                     '" title="', escape(theFile.name), '"/>'].join('');
-                document.getElementById('list').insertBefore(div, null);
+                output.insertBefore(div, null);
+                $("img").attr('draggable', 'false');
             };
         })(f);
 

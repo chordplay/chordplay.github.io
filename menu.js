@@ -1,5 +1,5 @@
 $(document).ready(function(){
-
+    $("img").attr('draggable', 'false');
     $("#invertChordButton").click(function(){
         //var index = score.length;
         $("#inversion0").prop('checked', true);
