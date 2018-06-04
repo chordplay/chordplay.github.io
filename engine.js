@@ -340,6 +340,7 @@ function deleteChords() {
 }
 
 function setChord(index, chord_name) {
+    console.log(chord_name);
     let unit = Object.assign(Object.create( Object.getPrototypeOf(score[index])), score[index]);
     score[index].setChord(chord_name);
     let action = {

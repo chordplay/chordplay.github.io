@@ -1,22 +1,20 @@
 var AllChord = ["C", "Cm", "C7", "Cm7", "CM7", "Csus4", "Caug", "Cdim",
       "C#", "C#m", "C#7", "C#m7", "C#M7", "C#sus4", "C#aug", "C#dim",
-      "Db", "Dbm", "Db7", "Dbm7", "DbM7", "Dbsus4", "Dbaug", "Dbdim",
-
       "D", "Dm", "D7", "Dm7", "DM7", "Dsus4", "Daug", "Ddim",
+      "Db", "Dbm", "Db7", "Dbm7", "DbM7", "Dbsus4", "Dbaug", "Dbdim",
       "D#", "D#m", "D#7", "D#m7", "D#M7", "D#sus4", "D#aug", "D#dim",
-      "D#", "D#m", "D#7", "D#m7", "D#M7", "D#sus4", "D#aug", "D#dim",
-      "Eb", "Ebm", "Eb7", "Ebm7", "EbM7", "Ebsus4", "Ebaug", "Ebdim",
       "E", "Em", "E7", "Em7", "EM7", "Esus4", "Eaug", "Edim",
+      "Eb", "Ebm", "Eb7", "Ebm7", "EbM7", "Ebsus4", "Ebaug", "Ebdim",
       "F", "Fm", "F7", "Fm7", "FM7", "Fsus4", "Faug", "Fdim",
     "F#", "F#m", "F#7", "F#m7", "F#M7", "F#sus4", "F#aug", "F#dim",
-    "Gb", "Gbm", "Gb7", "Gbm7", "GbM7", "Gbsus4", "GbauGb", "Gbdim",
     "G", "Gm", "G7", "Gm7", "GM7", "Gsus4", "Gaug", "Gdim",
+    "Gb", "Gbm", "Gb7", "Gbm7", "GbM7", "Gbsus4", "GbauGb", "Gbdim",
     "G#", "G#m", "G#7", "G#m7", "G#M7", "G#sus4", "G#aug", "G#dim",
-    "Ab", "Abm", "Ab7", "Abm7", "AbM7", "Absus4", "Abaug", "Abdim",
     "A", "Am", "A7", "Am7", "AM7", "Asus4", "Aaug", "Adim",
+    "Ab", "Abm", "Ab7", "Abm7", "AbM7", "Absus4", "Abaug", "Abdim",
     "A#", "A#m", "A#7", "A#m7", "A#M7", "A#sus4", "A#aug", "A#dim",
-    "Bb", "Bbm", "Bb7", "Bbm7", "BbM7", "Bbsus4", "Bbaug", "Bbdim",
     "B", "Bm", "B7", "Bm7", "BM7", "Bsus4", "Baug", "Bdim",
+    "Bb", "Bbm", "Bb7", "Bbm7", "BbM7", "Bbsus4", "Bbaug", "Bbdim",
   ];
 
 var chordDragging = false;

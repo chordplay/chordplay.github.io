@@ -3,8 +3,42 @@ var playing_sources = [];
 var playing_notes = [];
 var play_timer;
 var paused_time;
-
+var prelisten_note = [];
 window.onload = function () {
+    $(document).on("click", ".deeptree", function(){
+      var name = $(this).attr('id');
+      //console.log("clicked");
+      MIDI.loadPlugin({
+          soundfontUrl: "./midi/examples/soundfont/",
+          instrument: "acoustic_grand_piano",
+          onprogress: function(state, progress) {
+              console.log(state, progress);
+          },
+          onsuccess: function() {
+              var prelistenchord;
+              if(name.includes(" ")){
+                prelistenchord = name.split(' ')[0];
+              }
+              else{
+                prelistenchord = name;
+              }
+              MIDI.setVolume(0, 127);
+              let unit = new Unit();
+              unit.chord_name = prelistenchord;
+              let notes = parseChord(prelistenchord);
+              let temp = notes[0].split("/");
+
+              let basenode1 = temp[0] + "/" + (temp[1] - 1);
+              let basenode2 = temp[0] + "/" + (temp[1] - 2);
+
+              unit.left = [new Note([basenode2, basenode1], "q", false, "left")];
+              unit.right = [new Note(notes, "q", false, "right")];
+              prelisten_note.push(unit);
+              playMIDI(prelisten_note);
+              prelisten_note = [];
+          }
+      });
+    })
     $("#playButton").click(function(){
         MIDI.loadPlugin({
             soundfontUrl: "./midi/examples/soundfont/",
