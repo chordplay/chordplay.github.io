@@ -252,11 +252,17 @@ body{
 }
 
 #tempTitle{
-  padding-bottom: 50px;
+  margin-bottom: 50px;
   font-family: 'Roboto', sans-serif;
   font-size: 40px;
   font-weight: bolder;
   text-align: center;
+  max-width: 400px;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: solid #000000 1px;
+  outline: none;
 }
 
 #bpmDiv{

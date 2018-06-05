@@ -298,9 +298,10 @@
         <div id="bpmDiv" class="scoreDiv">
           BPM : <input type="number" id="bpm" onchange="limiter(this);" value="100" style="width:65px;"/>
         </div>
-        <div id="tempTitle" class="scoreDiv">
-          TITLE
-        </div>
+        <input type='text' id="tempTitle" class="scoreDiv" placeholder="Title" onfocus="this.placeholder = ''"
+onblur="this.placeholder = 'Title'">
+
+        </input>
       </div>
 
       <div id="importDiv">

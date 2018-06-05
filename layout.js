@@ -192,6 +192,8 @@ function updateSize() {
     $("#selectedText").height(menuHeight);
     $("#selectedText").css("line-height", menuHeight + "px");
 
+    $("#tempTitle").css("margin-left", (scoreWidth - 400)/2)
+
     $("#buttonDiv").height(menuHeight);
     $("#buttonDiv").width(menuWidth - 300);
 
