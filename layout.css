@@ -78,6 +78,13 @@ body{
   font-family: Roboto, sans-serif;
   color: #FFFFFF;
   font-size: 26px;
+  width: 132px;
+}
+.chordname0{
+  vertical-align: middle;
+  font-family: Roboto, sans-serif;
+  color: #FFFFFF;
+  font-size: 26px;
   width: 172px;
 }
 .deeptree{
@@ -106,6 +113,19 @@ body{
   height: 65px;
   object-fit: contain;
 }
+
+.sound{
+  width: 40px;
+  height: 65px;
+  object-fit: contain;
+}
+
+.sound2{
+  width: 40px;
+  height: 65px;
+  object-fit: contain;
+}
+
 .triangleDiv {
 	height: 100%;
 }

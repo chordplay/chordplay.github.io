@@ -5,8 +5,9 @@ var play_timer;
 var paused_time;
 var prelisten_note = [];
 window.onload = function () {
-    $(document).on("click", ".deeptree", function(){
-      var name = $(this).attr('id');
+    $(document).on("click", ".sound2", function(){
+      var name = $(this).closest("td").attr('id');
+      console.log(name);
       //console.log("clicked");
       MIDI.loadPlugin({
           soundfontUrl: "./midi/examples/soundfont/",

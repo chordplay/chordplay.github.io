@@ -143,7 +143,7 @@ $(document).ready(function(){
     $("<tr><td class='deeptree' id='" + chordname + "m7' draggable='true' ondragstart='dragChord(event)'> <p class='chordname basetrees'>"+chordname+"m7"+"</p> <img src='img/empty.png' srcset='img/empty@2x.png 2x, img/empty@3x.png 3x' class='dragaffordance basetrees'> <img hidden src='img/draggable.png' srcset='img/draggable@2x.png 2x, img/draggable@3x.png 3x' class='dragaffordance2 basetrees'> </td></tr>").insertAfter(trtemp);
     $("<tr><td class='deeptree' id='" + chordname + "7' draggable='true' ondragstart='dragChord(event)'> <p class='chordname basetrees'>"+chordname+"7"+"</p> <img src='img/empty.png' srcset='img/empty@2x.png 2x, img/empty@3x.png 3x' class='dragaffordance basetrees'> <img hidden src='img/draggable.png' srcset='img/draggable@2x.png 2x, img/draggable@3x.png 3x' class='dragaffordance2 basetrees'> </td></tr>").insertAfter(trtemp);
     $("<tr><td class='deeptree' id='" + chordname + "m' draggable='true' ondragstart='dragChord(event)'> <p class='chordname basetrees'>"+chordname+"m"+"</p> <img src='img/empty.png' srcset='img/empty@2x.png 2x, img/empty@3x.png 3x' class='dragaffordance basetrees'> <img hidden src='img/draggable.png' srcset='img/draggable@2x.png 2x, img/draggable@3x.png 3x' class='dragaffordance2 basetrees'> </td></tr>").insertAfter(trtemp);
-    $("<tr><td class='deeptree' id='" + chordname + " (major)' draggable='true' ondragstart='dragChord(event)'> <p class='chordname basetrees'>"+chordname+" (major)"+"</p> <img src='img/empty.png' srcset='img/empty@2x.png 2x, img/empty@3x.png 3x' class='dragaffordance basetrees'><img hidden src='img/draggable.png' srcset='img/draggable@2x.png 2x, img/draggable@3x.png 3x' class='dragaffordance2 basetrees'> </td></tr>").insertAfter(trtemp);
+    $("<tr><td class='deeptree' id='" + chordname + " (major)' draggable='true' ondragstart='dragChord(event)'> <p class='chordname basetrees'>"+chordname+" (major)"+"</p> <img src='img/empty.png' srcset='img/empty@2x.png 2x, img/empty@3x.png 3x' class='sound basetrees'><img hidden src='img/sound.png' srcset='img/sound@2x.png 2x, img/sound@3x.png 3x' class='sound2 basetrees'> <img src='img/empty.png' srcset='img/empty@2x.png 2x, img/empty@3x.png 3x' class='dragaffordance basetrees'><img hidden src='img/draggable.png' srcset='img/draggable@2x.png 2x, img/draggable@3x.png 3x' class='dragaffordance2 basetrees'> </td></tr>").insertAfter(trtemp);
     $('img').attr('draggable', 'false');
     clickstate = true;
     openChord = chordname;
@@ -151,16 +151,32 @@ $(document).ready(function(){
 
   $(document).on("mouseenter", ".deeptree", function(){
     console.log($(this));
-    $(this).children("img").attr("src", "img/draggable.png");
-    $(this).children("img").attr("srcset","img/draggable@2x.png 2x, img/draggable@3x.png 3x")
+    // $(this).children(".dragaffordance2").attr("src", "img/draggable.png");
+    // $(this).children(".dragaffordance2").attr("srcset","img/draggable@2x.png 2x, img/draggable@3x.png 3x");
 
+    // $(this).children(".sound2").attr("src", "img/sound.png");
+    // $(this).children(".sound2").attr("srcset","img/sound@2x.png 2x, img/sound@3x.png 3x");
+
+    $(this).children(".dragaffordance2").show();
+    $(this).children(".dragaffordance").hide();
+
+    $(this).children(".sound2").show();
+    $(this).children(".sound").hide();
 
   })
   $(document).on("mouseleave", ".deeptree", function(){
     console.log($(this));
-    $(this).children("img").attr("src", "img/empty.png");
-    $(this).children("img").attr("srcset","img/empty@2x.png 2x, img/empty@3x.png 3x")
+    // $(this).children(".dragaffordance").attr("src", "img/empty.png");
+    // $(this).children(".dragaffordance").attr("srcset","img/empty@2x.png 2x, img/empty@3x.png 3x");
 
+    // $(this).children(".sound").attr("src", "img/empty.png");
+    // $(this).children(".sound").attr("srcset","img/empty@2x.png 2x, img/empty@3x.png 3x");
+
+    $(this).children(".dragaffordance").show();
+    $(this).children(".dragaffordance2").hide();
+
+    $(this).children(".sound").show();
+    $(this).children(".sound2").hide();
   })
   function closeDetails(){
     $(".deeptree").closest("tr").remove();
