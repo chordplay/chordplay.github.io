@@ -3,6 +3,29 @@ body{
   padding:0;
 }
 
+::-webkit-input-placeholder { /* 크롬 4–56 */
+    color: #bbbcbc;
+    text-transform:uppercase;
+    font-weight: normal;
+}
+:-moz-placeholder { /* 파이어폭스 4–18 */
+   color: #bbbcbc;
+   opacity:  1;
+}
+::-moz-placeholder { /* 파이어폭스 19–50 */
+   color: #bbbcbc;
+   opacity:  1;
+}
+:-ms-input-placeholder { /* 인터넷 익스플로러 10+ */
+   color:  #bbbcbc;
+}
+::placeholder { /* 파이어폭스 51+, 크롬 57+ */
+   color: #c9caca;
+   text-transform:uppercase;
+   font-weight: normal;
+   opacity:  1;
+}
+
 #mainDiv{
 
 }
@@ -257,7 +280,7 @@ body{
   font-size: 40px;
   font-weight: bolder;
   text-align: center;
-  max-width: 400px;
+  max-width: 300px;
   border-top: none;
   border-left: none;
   border-right: none;
