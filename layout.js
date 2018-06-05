@@ -293,7 +293,7 @@ function updateSize() {
 
 function initSize() {
     windowHeight = window.innerHeight;
-    importHeight = Math.floor(windowHeight / 3) - 20;
+    importHeight = Math.floor(windowHeight / 2) - 20;
     $("#importDiv").height(importHeight);
     updateSize();
 }
