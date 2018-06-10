@@ -28,6 +28,7 @@ var multiSelectBegin, multiSelectEnd = -1;
 var multiFirst, multiLast;
 var dragThreshold = 30;
 var mouseInScore;
+var lastClick = "0";
 
 function limiter(input) {
     if (input.value < 40) input.value = 40;
@@ -42,6 +43,7 @@ function dragStuff(){
   $(document).unbind("mouseup");
 
   $(".halfBar").click(function(event) {
+    if(!event.ctrlKey && !event.shiftKey){
       let prevSelect = this.getAttribute("select");
       $(".halfBar").removeClass("selectedBar");
       $(".halfBar").attr("select", "false");
@@ -51,6 +53,7 @@ function dragStuff(){
         this.setAttribute("select", "true");
         this.classList.add("selectedBar");
         selected_units.push(this.id.replace("unit",""));
+        lastClick = this.id.replace("unit","");
         menuUpdate();
         return;
       }
@@ -72,7 +75,57 @@ function dragStuff(){
           item.classList.remove("selectedBar");
           selected_units.splice(selected_units.indexOf(id), 1);
       }
+      lastClick = id;
       menuUpdate();
+    }
+    else if(event.ctrlKey && !event.shiftKey){
+      let item = event.currentTarget;
+      let selected = item.getAttribute("select") === "true";
+      let id = item.id.replace("unit", "");
+      if(!selected){
+          item.classList.add("selectedBar");
+          selected_units.push(id);
+          item.setAttribute("select", "true");
+      } else {
+          item.classList.remove("selectedBar");
+          selected_units.splice(selected_units.indexOf(id), 1);
+          item.setAttribute("select", "false");
+      }
+      lastClick = id;
+      menuUpdate();
+    }
+    else if(event.shiftKey && !event.ctrlKey){
+      let item = event.currentTarget;
+      let id = item.id.replace("unit", "");
+      let start = Math.min(lastClick*1, id*1);
+      let end = Math.max(lastClick*1, id*1);
+
+      $(".halfBar").removeClass("selectedBar");
+      $(".halfBar").attr("select", "false");
+      selected_units=[];
+
+      for(var i = start; i <= end; i++){
+        $("#unit"+i).addClass("selectedBar");
+        selected_units.push(i+"");
+        $("#unit"+i).attr("select", "true");
+      }
+      menuUpdate();
+    }
+    else{
+      let item = event.currentTarget;
+      let id = item.id.replace("unit", "");
+      let start = Math.min(lastClick*1, id*1);
+      let end = Math.max(lastClick*1, id*1);
+
+      for(var i = start; i <= end; i++){
+        $("#unit"+i).addClass("selectedBar");
+        selected_units.push(i+"");
+        $("#unit"+i).attr("select", "true");
+      }
+      menuUpdate();
+    }
+    selected_units = sort_unique(selected_units);
+
       //console.log(event.currentTarget);
       //console.log(selected_units);
   });
@@ -168,9 +221,7 @@ function dragStuff(){
       menuUpdate();
     }
     else{
-      console.log("clicked");
-      console.log(selected_units[0]);
-      $("#chordText"+selected_units[0]).focus();
+      //$("#chordText"+selected_units[0]).focus();
     }
   })
 }
@@ -408,4 +459,16 @@ function renderScore(){
   $(".firstText").css("margin-left",firstStartX);
 
   dragStuff();
+}
+
+function sort_unique(arr) {
+  if (arr.length === 0) return arr;
+  arr = arr.sort(function (a, b) { return a*1 - b*1; });
+  var ret = [arr[0]];
+  for (var i = 1; i < arr.length; i++) { //Start loop at 1: arr[0] can never be a duplicate
+    if (arr[i-1] !== arr[i]) {
+      ret.push(arr[i]);
+    }
+  }
+  return ret;
 }

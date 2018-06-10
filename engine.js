@@ -1,6 +1,7 @@
 let score = [];
 let selected_units = [];
 let undo_list = [];
+let clipboard = [];
 
 function parseChord(chord) {
     const notes_sharp = ['C', 'C#', 'D', 'D#', "E", "F", "F#", "G", "G#", "A", "A#", "B"];
