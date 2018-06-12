@@ -51,7 +51,7 @@ $(document).ready(function () {
         if (evtobj.keyCode === 90 && evtobj.ctrlKey){
             undo();
             fired = true;
-        } else if (evtobj.keyCode === 46){ //delete key
+        } else if (evtobj.keyCode === 46 || evtobj.keyCode === 8){ //delete key
             if(checkAllRest()){
                 deleteUnits();
             } else {

@@ -127,10 +127,10 @@ class Unit {
             let basenode1 = temp[0] + "/" + (temp[1] - 1);
             let basenode2 = temp[0] + "/" + (temp[1] - 2);
 
-            if (variation === 0) {
+            if (variation == 0) {
                 this.setChord(this.chord_name);
                 this.inversion = 0;
-            } else if (variation === 1) {
+            } else if (variation == 1) {
                 octave = temp[1] * 1 + 1;
                 let upnode = temp[0] + "/" + octave;
                 notes.push(upnode);
@@ -146,11 +146,11 @@ class Unit {
                 this.inversion = 2;
             }
 
-            if (this.rhythm === 0) {
+            if (this.rhythm == 0) {
                 //console.log(this.chord_name);
                 this.left = [new Note([basenode2, basenode1], "h", false, "left")];
                 this.right = [new Note(notes, "q", false, "right"), new Note(notes, "q", false, "right")];
-            } else if (this.rhythm === 1) {
+            } else if (this.rhythm == 1) {
                 this.left = [new Note([basenode2, basenode1], "h", false, "left")];
                 this.right = [new Note(notes, "8", false, "right"), new Note([notes[0]], "8", false, "right"), new Note([notes[1]], "8", false, "right"), new Note([notes[2]], "8", false, "right")];
                 this.inversion = 1;
@@ -169,13 +169,13 @@ class Unit {
             let temp = notes[0].split("/");
             let basenode1 = temp[0] + "/" + (temp[1] - 1);
             let basenode2 = temp[0] + "/" + (temp[1] - 2);
-            if (this.inversion === 1) {
+            if (this.inversion == 1) {
                 octave = temp[1] * 1 + 1;
                 let upnode = temp[0] + "/" + octave;
                 notes.push(upnode);
                 notes.splice(0, 1);
                 // console.log(notes);
-            } else if (this.inversion === 2) {
+            } else if (this.inversion == 2) {
                 let temp2 = notes[notes.length - 1].split("/");
                 octave = temp2[1] * 1 - 1;
                 let downnode = temp2[0] + "/" + octave;
