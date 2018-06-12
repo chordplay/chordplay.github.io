@@ -48,7 +48,7 @@ $(document).ready(function () {
         let evtobj = window.event? event : e;
         if(fired)
             return;
-        if (evtobj.keyCode === 90 && evtobj.ctrlKey){
+        if (!evtobj.shiftKey && ((evtobj.keyCode === 90 && evtobj.ctrlKey) || (evtobj.keyCode === 91 && event.metaKey))){
             undo();
             fired = true;
         } else if (evtobj.keyCode === 46 || evtobj.keyCode === 8){ //delete key

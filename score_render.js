@@ -278,13 +278,15 @@ function renderScore(){
         rendererWidth = firstUnitWidth;
         if(selected_units.includes(""+numScore)){
           $("#barLine"+line).append("<div class='firstUnit halfBar selectedBar' id='unit"+ numScore +"' select='true' ondragover='allowDrop(event)' ondrop='dropChord(event)' ondragleave='dragLeave(event)'> </div>");
-          $("#unit"+numScore).append("<input type='text' class='chordText firstText' id='chordText"+ numScore +"' />");
+          $("#unit"+numScore).append("<input type='text' class='chordText firstText' id='chordText"+ numScore +"' " +"/>");
+              //"onfocus=\"this.placeholder = ''\" onblur=\"this.placeholder = 'Title'\"/>");
           $("#unit"+numScore).append("<div class='firstUnit' id='renderDiv"+ numScore +"'></div>");
 
         }
         else{
           $("#barLine"+line).append("<div class='firstUnit halfBar' id='unit"+ numScore +"' select='false' ondragover='allowDrop(event)' ondrop='dropChord(event)' ondragleave='dragLeave(event)'> </div>");
-          $("#unit"+numScore).append("<input type='text' class='chordText firstText' id='chordText"+ numScore +"' />");
+          $("#unit"+numScore).append("<input type='text' class='chordText firstText' id='chordText"+ numScore + "' "+"/>");
+              // "onfocus=\"this.placeholder = ''\" onblur=\"this.placeholder = 'Title'\"/>");
           $("#unit"+numScore).append("<div class='firstUnit' id='renderDiv"+ numScore +"'></div>");
 
         }
@@ -293,13 +295,15 @@ function renderScore(){
         rendererWidth = restUnitWidth;
         if(selected_units.includes(""+numScore)){
           $("#barLine"+line).append("<div class='restUnit halfBar selectedBar' id='unit"+ numScore +"' select='true' ondragover='allowDrop(event)' ondrop='dropChord(event)' ondragleave='dragLeave(event)'></div>");
-          $("#unit"+numScore).append("<input type='text' class='chordText' id='chordText"+ numScore +"' />");
+          $("#unit"+numScore).append("<input type='text' class='chordText' id='chordText"+ numScore +"' "+"/>");
+              // "onfocus=\"this.placeholder = ''\" onblur=\"this.placeholder = 'Title'\"/>");
           $("#unit"+numScore).append("<div class='restUnit' id='renderDiv"+ numScore +"'></div>");
 
         }
         else{
           $("#barLine"+line).append("<div class='restUnit halfBar' id='unit"+ numScore +"' select='false' ondragover='allowDrop(event)' ondrop='dropChord(event)' ondragleave='dragLeave(event)'></div>");
-          $("#unit"+numScore).append("<input type='text' class='chordText' id='chordText"+ numScore +"' />");
+          $("#unit"+numScore).append("<input type='text' class='chordText' id='chordText"+ numScore +"' "+"/>");
+              // "onfocus=\"this.placeholder = ''\" onblur=\"this.placeholder = 'Title'\"/>");
           $("#unit"+numScore).append("<div class='restUnit' id='renderDiv"+ numScore +"'></div>");
 
         }

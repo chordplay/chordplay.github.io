@@ -274,6 +274,7 @@ function addUnits() { //add units to be multiple of 8
         number: n
     };
     undo_list.push(action);
+    renderScore();
 }
 
 function insertUnit(index) { //insert a new empty unit to score with index
