@@ -2,7 +2,7 @@ let score = [];
 let selected_units = [];
 let undo_list = [];
 let clipboard = [];
-
+let copylist = [];
 function parseChord(chord) {
     const notes_sharp = ['C', 'C#', 'D', 'D#', "E", "F", "F#", "G", "G#", "A", "A#", "B"];
     const notes_flat = ['C', "Db", 'D', 'Eb', "E", "F", "Gb", "G", "Ab", "A", "Bb", "B"];
@@ -250,6 +250,10 @@ function undo() {
                 score[i] = elem['unit'];
             });
             break;
+        case 'paste_reverse':
+            console.log(action['index']);
+            score.splice(action['index']*1+1, action['number']);
+            break;
     }
     renderScore();
 }
@@ -378,4 +382,31 @@ function changeRhythms(variation) {
         units: units
     };
     undo_list.push(action);
+}
+function copy(){
+  copylist = [];
+  let units = [];
+  selected_units.forEach(function(index){
+    let unit = Object.assign(Object.create( Object.getPrototypeOf(score[index])), score[index]);
+    units.push({index: index*1, unit: unit});
+    copylist.push(unit);
+  })
+}
+function paste(){
+  let units = [];
+
+  let index = selected_units[selected_units.length-1];
+
+  for(i=0; i<copylist.length; i++){
+    let unit = Object.assign(Object.create( Object.getPrototypeOf(copylist[i])), copylist[i]);
+    score.splice(index*1 +1+i, 0, unit);
+  }
+
+  renderScore();
+  let action = {
+      action: 'paste_reverse',
+      index: index,
+      number: i
+  };
+  undo_list.push(action);
 }

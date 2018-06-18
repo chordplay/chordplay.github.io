@@ -51,6 +51,13 @@ $(document).ready(function () {
         if (!evtobj.shiftKey && evtobj.keyCode === 90 && (evtobj.ctrlKey || evtobj.metaKey)){
             undo();
             fired = true;
+        } else if(!evtobj.shiftKey && evtobj.keyCode === 67 && (evtobj.ctrlKey || evtobj.metaKey)){
+          copy();
+          fired = true;
+        } else if(!evtobj.shiftKey && evtobj.keyCode === 86 && (evtobj.ctrlKey || evtobj.metaKey)){
+          paste();
+          console.log("comm v entered");
+          fired = true;
         } else if (evtobj.keyCode === 46 || evtobj.keyCode === 8){ //delete key
             if(checkAllRest()){
                 deleteUnits();
